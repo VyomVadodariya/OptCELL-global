@@ -1,0 +1,465 @@
+<!DOCTYPE html>
+<html lang="en" class="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Section - Fixed Layout</title>
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+    <style>
+        body { 
+            font-family: 'Montserrat', sans-serif; 
+            background-color: #4285F4; 
+            color: #333;
+            overflow-x: hidden;
+        }
+
+        /* =========================================
+           ANIMATIONS
+           ========================================= */
+        :root {
+            --glass-border: rgba(255, 255, 255, 0.3);
+            --brand-blue: #4285F4;
+        }
+
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(40px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes sheen {
+            0% { left: -100%; opacity: 0; }
+            5% { opacity: 1; }
+            100% { left: 200%; opacity: 0; }
+        }
+
+        @keyframes textShine {
+            to { background-position: 200% center; }
+        }
+
+        .animate-enter {
+            opacity: 0; 
+            animation: fadeInUp 0.8s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+        }
+        .delay-0 { animation-delay: 0s; }
+        .delay-1 { animation-delay: 0.2s; }
+        .delay-2 { animation-delay: 0.4s; }
+        .delay-3 { animation-delay: 0.6s; }
+
+        /* =========================================
+           HEADER STYLES
+           ========================================= */
+        .hero {
+            text-align: center;
+            padding: 60px 40px;
+            max-width: 1100px; 
+            width: 100%; 
+            margin: 0 auto 60px;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid var(--glass-border);
+            border-radius: 30px;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.15); 
+            transition: transform 0.4s ease, box-shadow 0.4s ease;
+        }
+
+        .hero:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 30px 70px rgba(0, 0, 0, 0.25);
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            font-weight: 900;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+            line-height: 1.1;
+            color: #ffffff;
+            text-shadow: 0 5px 15px rgba(0,0,0,0.2); 
+            letter-spacing: -2px;
+        }
+
+        .hero h1 span {
+            display: inline-block;
+            font-weight: 900;
+            letter-spacing: 2px;
+            background: linear-gradient(to right, #ffffff 0%, #93c5fd 25%, #ffffff 50%, #93c5fd 75%, #ffffff 100%);
+            background-size: 200% auto;
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent; 
+            color: transparent;
+            animation: textShine 4s linear infinite;
+            filter: drop-shadow(0 0 10px rgba(255, 255, 255, 0.3));
+        }
+
+        .hero .subtitle {
+            color: #f1f5f9;
+            font-size: 1.2rem;
+            font-weight: 500;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+            letter-spacing: 0.5px;
+            line-height: 1.6;
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 2.2rem; }
+            .hero { padding: 40px 20px; }
+        }
+
+        /* =========================================
+           CARD STYLES
+           ========================================= */
+        .premium-card {
+            background: #ffffff;
+            border-radius: 24px;
+            box-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.2), 0 0 0 1px rgba(255, 255, 255, 0.1) inset;
+            border: 1px solid rgba(255, 255, 255, 0.4);
+            padding: 2.5rem;
+            /* Removed height: 100% to fix layout overlap issues */
+            position: relative;
+            overflow: hidden; 
+            transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.4s ease;
+        }
+
+        .premium-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 30px 60px -12px rgba(0, 0, 0, 0.3), 0 0 0 1px rgba(255, 255, 255, 0.2) inset;
+        }
+
+        .premium-card::after {
+            content: '';
+            position: absolute;
+            top: 0; left: -100%;
+            width: 50%; height: 100%;
+            background: linear-gradient(to right, rgba(255,255,255,0) 0%, rgba(255,255,255,0.4) 100%);
+            transform: skewX(-25deg);
+            pointer-events: none;
+            z-index: 10;
+        }
+        .premium-card:hover::after { animation: sheen 0.75s; }
+
+        .premium-card::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0;
+            height: 6px;
+            background: linear-gradient(90deg, #4285F4, #93c5fd);
+            z-index: 5;
+        }
+
+        .card-title {
+            color: #1e293b;
+            font-weight: 800;
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+            letter-spacing: -0.5px;
+        }
+        
+        .card-desc {
+            color: #64748b;
+            font-size: 0.95rem;
+            margin-bottom: 2rem;
+        }
+
+        .modern-input-group label {
+            display: block;
+            font-size: 0.8rem;
+            font-weight: 700;
+            color: #475569;
+            margin-bottom: 0.5rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .modern-input {
+            width: 100%;
+            background: #f8fafc;
+            border: 2px solid #e2e8f0;
+            border-radius: 12px;
+            padding: 14px 18px;
+            color: #334155;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+        .modern-input:focus {
+            outline: none;
+            background: #ffffff;
+            border-color: var(--brand-blue);
+            box-shadow: 0 0 0 4px rgba(66, 133, 244, 0.15);
+            transform: translateY(-2px);
+        }
+
+        .modern-btn {
+            background: linear-gradient(135deg, #4285F4 0%, #2c5ebb 100%);
+            color: white;
+            font-weight: 700;
+            padding: 16px;
+            border-radius: 12px;
+            width: 100%;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 20px rgba(66, 133, 244, 0.3);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
+            border: none;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+        }
+        .modern-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 15px 30px rgba(66, 133, 244, 0.4);
+            filter: brightness(1.1);
+        }
+
+        .icon-circle {
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            background: #eff6ff; 
+            color: var(--brand-blue);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            transition: all 0.3s ease;
+        }
+        .group:hover .icon-circle {
+            background: var(--brand-blue);
+            color: white;
+            transform: scale(1.1) rotate(-5deg);
+        }
+
+        .hover-link { transition: color 0.2s ease; color: #64748b; }
+        .hover-link:hover { color: var(--brand-blue); }
+
+        .action-btn {
+            background: white;
+            border: 1px solid #e2e8f0;
+            border-radius: 12px;
+            padding: 12px 20px;
+            width: 100%;
+            text-align: left;
+            font-weight: 600;
+            color: #334155;
+            transition: all 0.2s;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .action-btn:hover {
+            border-color: var(--brand-blue);
+            color: var(--brand-blue);
+            background: #f0f7ff;
+            transform: translateX(5px);
+        }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col">
+
+    <div id="contact" class="page-section pt-12 pb-32 md:pt-24 md:pb-40 px-4 relative z-10 block">
+        <div class="max-w-7xl mx-auto">
+            
+            <div class="hero animate-enter delay-0">
+                <h1>
+                    Get in <span>Touch</span>
+                </h1>
+                <p class="subtitle">
+                    Have questions about our programs or want to schedule a campus visit? We are here to assist you.
+                </p>
+            </div>
+
+            <div class="grid lg:grid-cols-3 gap-8">
+                
+                <div class="lg:col-span-2 animate-enter delay-1">
+                    <div class="premium-card h-full">
+                        <h2 class="card-title">Send a Message</h2>
+                        <p class="card-desc">Fill out the form below. Our team typically responds within 24 hours.</p>
+                        
+                        <form id="contact-form-real" class="space-y-6" onsubmit="event.preventDefault(); alert('Message sent (Demo)');">
+                            <div class="grid md:grid-cols-2 gap-6">
+                                <div class="modern-input-group">
+                                    <label>Full Name</label>
+                                    <input type="text" class="modern-input" placeholder="e.g. John Doe" required>
+                                </div>
+                                <div class="modern-input-group">
+                                    <label>Email Address</label>
+                                    <input type="email" class="modern-input" placeholder="john@example.com" required>
+                                </div>
+                            </div>
+                            
+                            <div class="modern-input-group">
+                                <label>Message</label>
+                                <textarea rows="6" class="modern-input" placeholder="How can we help you?" required></textarea>
+                            </div>
+                            
+                            <button type="submit" class="modern-btn">
+                                Send Message
+                                <i class="fas fa-paper-plane"></i>
+                            </button>
+                        </form>
+                    </div>
+                </div>
+
+                <div class="space-y-6 animate-enter delay-2">
+                    
+                    <div class="premium-card" style="padding: 2rem;">
+                        <div class="flex items-center gap-3 mb-6 pb-4 border-b border-gray-100">
+                            <div class="w-2 h-8 bg-blue-500 rounded-full"></div>
+                            <h3 class="text-xl font-bold text-slate-800 m-0">Contact Info</h3>
+                        </div>
+                        
+                        <div class="space-y-6">
+                            <div class="flex items-start gap-4 group">
+                                <a href="https://mail.google.com/mail/?view=cm&fs=1&to=info@optcell.in" target="_blank" class="icon-circle shadow-sm">
+                                    <i class="fas fa-envelope"></i>
+                                </a>
+                                <div class="flex-grow pt-1">
+                                    <h4 class="font-bold text-slate-800 text-sm mb-1">Email</h4>
+                                    <a href="mailto:info@optcell.in" class="block hover-link text-sm font-medium">info@optcell.in</a>
+                                    <a href="mailto:support@optcell.in" class="block hover-link text-sm font-medium">support@optcell.in</a>
+                                </div>
+                            </div>
+
+                            <a href="tel:+919035874229" class="flex items-center gap-4 group">
+                                <div class="icon-circle shadow-sm">
+                                    <i class="fas fa-phone"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold text-slate-800 text-sm mb-0.5">Phone</h4>
+                                    <span class="hover-link text-sm font-medium">+91 90358 74229</span>
+                                </div>
+                            </a>
+
+                            <a href="https://wa.me/919035874229" target="_blank" class="flex items-center gap-4 group">
+                                <div class="icon-circle shadow-sm">
+                                    <i class="fab fa-whatsapp text-xl"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold text-slate-800 text-sm mb-0.5">WhatsApp</h4>
+                                    <span class="hover-link text-sm font-medium">Chat on WhatsApp</span>
+                                </div>
+                            </a>
+
+                            <div class="flex items-start gap-4 group">
+                                <div class="icon-circle shadow-sm">
+                                    <i class="fas fa-map-marker-alt"></i>
+                                </div>
+                                <div class="pt-1">
+                                    <h4 class="font-bold text-slate-800 text-sm mb-1">Address</h4>
+                                    <p class="text-slate-500 text-sm leading-relaxed">
+                                        OptCELL Global<br>
+                                        Innovation Park, Bangalore<br>
+                                        Karnataka, India
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="premium-card animate-enter delay-3" style="padding: 1.5rem;">
+                        <h3 class="text-lg font-bold text-slate-800 mb-4 flex items-center gap-2">
+                            <i class="fas fa-bolt text-yellow-500"></i> Quick Actions
+                        </h3>
+                        <div class="space-y-3">
+                            <button class="action-btn group">
+                                Apply for Internship 
+                                <i class="fas fa-arrow-right text-gray-300 group-hover:text-blue-500 transition-colors"></i>
+                            </button>
+                            <button class="action-btn group">
+                                Explore Infrastructure 
+                                <i class="fas fa-building text-gray-300 group-hover:text-blue-500 transition-colors"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                    <a href="https://www.google.com/maps/search/?api=1&query=OptCELL+Global+1st+Main+Rd+RHCS+Layout+Annapoorneshwari+Nagar+Naagarabhaavi+Bengaluru+Karnataka+560091" target="_blank" class="block h-48 rounded-2xl overflow-hidden shadow-lg relative group cursor-pointer border-2 border-white/50 hover:border-white transition-all animate-enter delay-3">
+                        <img src="https://images.unsplash.com/photo-1524661135-423995f22d0b?q=80&w=1000&auto=format&fit=crop" class="w-full h-full object-cover filter brightness-90 group-hover:brightness-100 transition duration-500 group-hover:scale-110">
+                        <div class="absolute inset-0 flex items-center justify-center">
+                            <span class="bg-white text-slate-900 px-5 py-2.5 rounded-full text-xs font-bold shadow-lg flex items-center gap-2 group-hover:bg-blue-600 group-hover:text-white transition-all transform group-hover:scale-105">
+                                <i class="fas fa-map-location-dot"></i> View on Google Maps
+                            </span>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer class="bg-[#050A1E] text-slate-400 py-10 mt-auto border-t border-white/10 relative z-20">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-8">
+                
+                <div>
+                    <div class="flex items-center gap-2 mb-4">
+                        <i class="fas fa-building text-slate-300 text-lg"></i>
+                        <h3 class="text-white font-bold text-base tracking-wider">OPTCELL GLOBAL</h3>
+                    </div>
+                    <p class="text-xs leading-relaxed mb-4">
+                        Empowering the next generation of deep tech innovators through industry-aligned R&D programs.
+                    </p>
+                </div>
+
+                <div>
+                    <div class="flex items-center gap-2 mb-4">
+                        <i class="fas fa-bolt text-yellow-500 text-base"></i>
+                        <h3 class="text-white font-bold text-base tracking-wider">QUICK LINKS</h3>
+                    </div>
+                    <ul class="space-y-2 text-xs">
+                        <li><a href="#" class="hover:text-white transition-colors">Home</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Programme</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">About</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Infrastructure</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <div class="flex items-center gap-2 mb-4">
+                        <i class="fas fa-rocket text-pink-500 text-base"></i>
+                        <h3 class="text-white font-bold text-base tracking-wider">PROGRAMME</h3>
+                    </div>
+                    <ul class="space-y-2 text-xs">
+                        <li><a href="#" class="hover:text-white transition-colors">IP Product R&D Track</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Advanced Internship</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Entry-Level Internship</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <div class="flex items-center gap-2 mb-4">
+                        <i class="fas fa-envelope-open-text text-blue-400 text-base"></i>
+                        <h3 class="text-white font-bold text-base tracking-wider">CONNECT</h3>
+                    </div>
+                    <div class="space-y-3 text-xs">
+                        <div class="bg-white/5 p-2 rounded-lg border border-white/10 hover:bg-white/10 transition-colors">
+                            <a href="mailto:info@optcell.in" class="text-white block w-full h-full">info@optcell.in</a>
+                        </div>
+                        <div class="bg-white/5 p-2 rounded-lg border border-white/10 hover:bg-white/10 transition-colors">
+                            <a href="tel:+919035874229" class="text-white block w-full h-full">+91 90358 74229</a>
+                        </div>
+                        <div class="bg-white/5 p-2 rounded-lg border border-white/10">
+                            <p class="leading-relaxed">1st Main Rd, RHCS Layout,<br>Bengaluru, Karnataka</p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            
+            <div class="border-t border-white/10 pt-6 text-center text-[10px] text-slate-500">
+                <p>© 2025 OptCELL Global. All rights reserved. <span class="ml-2">Made with <i class="fas fa-heart text-blue-600 mx-1"></i> in India</span></p>
+            </div>
+        </div>
+    </footer>
+    
+</body>
+</html>

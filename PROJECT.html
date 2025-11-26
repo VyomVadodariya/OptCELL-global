@@ -1,0 +1,2159 @@
+<!DOCTYPE html>
+<html lang="en" class="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OptCELL Global - Empowering Collaborative Growth</title>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Tailwind Configuration -->
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        primary: {
+                            DEFAULT: '#0056b3', // Deep Blue
+                            light: '#007bff',
+                            dark: '#004494',
+                        },
+                        secondary: {
+                            DEFAULT: '#ff8c00', // Orange
+                            hover: '#e07b00',
+                        },
+                        sky: {
+                            50: '#f0f9ff',
+                            100: '#e0f2fe',
+                            900: '#0c4a6e',
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Montserrat', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+
+    <style>
+        body { font-family: 'Montserrat', sans-serif; }
+        
+        /* Carousel Slider Animation */
+        .slider-container {
+            display: flex;
+            transition: transform 1s ease-in-out;
+            height: 100%;
+            width: 100%;
+        }
+        
+        .slide {
+            min-width: 100%;
+            height: 100%;
+            position: relative;
+        }
+
+        .slide img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        /* Overlay gradient */
+        .slide-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to right, rgba(0, 86, 179, 0.85), rgba(0, 86, 179, 0.4));
+        }
+
+        .fade-in-up { animation: fadeInUp 0.8s ease-out forwards; opacity: 0; transform: translateY(20px); }
+        .delay-100 { animation-delay: 0.1s; }
+        .delay-200 { animation-delay: 0.2s; }
+        .delay-300 { animation-delay: 0.3s; }
+
+        @keyframes fadeInUp {
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Fixed Modal Styling using Visibility */
+        .modal {
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s ease-in-out, visibility 0.3s ease-in-out;
+        }
+        .modal.active {
+            opacity: 1;
+            visibility: visible;
+        }
+        
+        /* Toast Animations */
+        .toast-enter { transform: translateY(0) !important; opacity: 1 !important; }
+
+        /* --- UPDATED: REMOVED BACKGROUND IMAGE, KEPT SOLID DARK BLUE COLOR --- */
+        .bg-tech-doodle {
+            background-color: #004494; /* Using primary dark color for solid background */
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-position: center center;
+            background-attachment: fixed;
+        }
+        /* --------------------------------------------------------------------- */
+
+        /* --- Programs Page Custom Styles (Strict Theme Adherence) --- */
+        .program-card {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 1rem;
+            overflow: hidden;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+        }
+        .dark .program-card {
+            background: rgba(30, 41, 59, 0.95);
+            color: white;
+        }
+        .program-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        }
+
+        .card-header {
+            padding: 1.5rem;
+            text-align: center;
+            color: white;
+            position: relative;
+        }
+
+        /* STRICT THEME COLORS - NO RANDOM COLORS */
+        /* Deep Tech - Primary Dark Gradient */
+        .deep-tech-header { background: linear-gradient(135deg, #0056b3 0%, #004494 100%); }
+        
+        /* Advanced - Primary Light Gradient */
+        .advanced-header { background: linear-gradient(135deg, #007bff 0%, #0056b3 100%); }
+        
+        /* Entry Level - Primary Darkest Gradient */
+        .entry-level-header { background: linear-gradient(135deg, #004494 0%, #002a5c 100%); }
+
+        .featured-badge {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: #ff8c00; /* Secondary Orange */
+            color: white;
+            font-size: 0.7rem;
+            font-weight: 800;
+            padding: 2px 8px;
+            border-radius: 999px;
+            text-transform: uppercase;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+            animation: pulse 2s infinite;
+        }
+        @keyframes pulse {
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.8; transform: scale(1.05); }
+        }
+
+        .header-icon { font-size: 2.5rem; display: block; margin-bottom: 0.5rem; }
+        .card-title { font-size: 1.25rem; font-weight: 800; line-height: 1.2; margin-bottom: 0.25rem; }
+        .card-subtitle { font-size: 0.8rem; font-weight: 500; opacity: 0.9; }
+
+        .card-content { padding: 1.5rem; flex-grow: 1; }
+        
+        .price-row {
+            display: flex;
+            justify-content: center;
+            align-items: baseline;
+            gap: 10px;
+            margin-bottom: 1rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid rgba(0,0,0,0.1);
+        }
+        .dark .price-row { border-bottom: 1px solid rgba(255,255,255,0.1); }
+        
+        .price-new { font-size: 2rem; font-weight: 800; color: #0056b3; } /* Primary Blue */
+        .dark .price-new { color: #60a5fa; }
+        .price-old { font-size: 0.9rem; color: #94a3b8; text-decoration: line-through; }
+
+        .details-row { font-size: 0.9rem; color: #475569; margin-bottom: 0.5rem; text-align: center; }
+        .dark .details-row { color: #cbd5e1; }
+
+        .feature-list { margin-top: 1.5rem; text-align: left; }
+        .feature-item {
+            display: flex;
+            align-items: start;
+            font-size: 0.9rem;
+            color: #334155;
+            margin-bottom: 0.5rem;
+        }
+        .dark .feature-item { color: #cbd5e1; }
+        .feature-item::before {
+            content: '\f00c';
+            font-family: 'Font Awesome 6 Free';
+            font-weight: 900;
+            color: #ff8c00; /* Secondary Orange Checks */
+            margin-right: 0.5rem;
+            margin-top: 2px;
+        }
+
+        .card-footer { padding: 1.5rem; text-align: center; background: rgba(0,0,0,0.02); }
+        .dark .card-footer { background: rgba(255,255,255,0.02); }
+
+        .apply-btn {
+            background: #ff8c00; /* Secondary Orange Buttons */
+            color: white;
+            font-weight: 700;
+            padding: 0.75rem 2rem;
+            border-radius: 0.5rem;
+            transition: all 0.3s;
+            width: 100%;
+            display: block;
+        }
+        .apply-btn:hover { background: #e07b00; transform: scale(1.02); }
+
+        .offer-box {
+            background: white;
+            padding: 2rem;
+            border-radius: 1rem;
+            text-align: center;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s;
+        }
+        .dark .offer-box { background: #1e293b; color: white; }
+        .offer-box:hover { transform: translateY(-5px); }
+        
+        .offer-icon {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1rem auto;
+            color: #0056b3; /* Primary Blue Icon */
+        }
+        .offer-title { font-weight: 700; font-size: 1.1rem; margin-bottom: 0.5rem; color: #1e293b; }
+        .dark .offer-title { color: white; }
+        .offer-desc { font-size: 0.9rem; color: #64748b; }
+        .dark .offer-desc { color: #94a3b8; }
+
+        /* --- NEW: Infinite Marquee CSS --- */
+        .logo-track {
+            display: flex;
+            white-space: nowrap;
+            animation: marquee 7.5s linear infinite; /* ADJUSTED SPEED: Doubled speed (15s -> 7.5s) */
+            will-change: transform;
+        }
+        .logo-track:hover {
+            animation-play-state: paused;
+        }
+        .logo-item {
+            padding: 0 2rem;
+            display: inline-block;
+            flex-shrink: 0;
+            /* Ensures both logo sections take up equal space for the -50% translation to work */
+            min-width: calc((100% / 19) * 2); /* Adjust based on number of unique logos (19) */
+            height: 80px;
+        }
+        @keyframes marquee {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); } /* Scrolls exactly one set of logos */
+        }
+        /* --------------------------------- */
+        
+    </style>
+    
+    <!-- Define navigateTo early so it's available for inline onclick handlers -->
+    <script>
+        window.navigateTo = function(pageId) {
+            // Logic handled inside DOMContentLoaded via event dispatch
+            document.dispatchEvent(new CustomEvent('navigate-to', { detail: pageId }));
+        };
+        
+        window.toggleMobileMenu = function() {
+            const menu = document.getElementById('mobile-menu');
+            if(menu) menu.classList.toggle('hidden');
+        };
+        
+        window.toggleDarkMode = function() {
+              const html = document.documentElement;
+            if (html.classList.contains('dark')) {
+                html.classList.remove('dark');
+                localStorage.theme = 'light';
+            } else {
+                html.classList.add('dark');
+                localStorage.theme = 'dark';
+            }
+        }
+        
+        // Define openLeaderModal function globally
+        window.openLeaderModal = function(memberId) {
+            // Function definition will be implemented inside DOMContentLoaded to use teamData
+        };
+    </script>
+</head>
+<!-- APPLIED GLOBAL BACKGROUND HERE -->
+<body class="bg-tech-doodle text-white flex flex-col min-h-screen relative">
+
+    <!-- REMOVED: GLOBAL DOODLE ICONS OVERLAY (The fixed div with the fas icons has been removed) -->
+
+    <!-- ADMIN SETTINGS MODAL -->
+    <div id="admin-modal" class="modal fixed inset-0 z-[100] flex items-center justify-center bg-black/60 backdrop-blur-sm">
+        <div class="bg-white dark:bg-slate-800 rounded-2xl p-8 w-full max-w-md shadow-2xl transform scale-95 transition-transform duration-300" id="modal-content">
+            <h3 class="text-2xl font-bold text-primary dark:text-sky-400 mb-2">Admin Settings</h3>
+            <p class="text-gray-600 dark:text-gray-400 mb-6 text-sm">Set the new deadline date for the application timer.</p>
+            
+            <label class="block text-xs font-bold uppercase text-gray-500 mb-2">New Deadline</label>
+            <input type="date" id="admin-date-input" class="w-full p-3 border rounded-lg mb-6 dark:bg-slate-700 dark:border-slate-600 dark:text-white focus:ring-2 focus:ring-primary outline-none">
+            
+            <div class="flex gap-4">
+                <button id="btn-cancel-modal" class="flex-1 py-3 rounded-lg border border-gray-300 text-gray-600 font-bold hover:bg-gray-100 transition">Cancel</button>
+                <button id="btn-save-modal" class="flex-1 py-3 rounded-lg bg-secondary text-white font-bold hover:bg-secondary-hover transition shadow-lg">Save Changes</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- GALLERY ADMIN MODAL -->
+    <div id="gallery-admin-modal" class="modal fixed inset-0 z-[100] flex items-center justify-center bg-black/60 backdrop-blur-sm">
+        <div class="bg-white dark:bg-slate-800 rounded-2xl p-8 w-full max-w-2xl shadow-2xl transform scale-95 transition-transform duration-300 h-[90vh] flex flex-col">
+            <h3 class="text-2xl font-bold text-primary dark:text-sky-400 mb-2">Gallery Editor</h3>
+            <p class="text-gray-600 dark:text-gray-400 mb-6 text-sm">Manage the photos displayed in the About page gallery.</p>
+            
+            <div id="gallery-editor-list" class="flex-grow overflow-y-auto space-y-4 pr-2 mb-6">
+                <!-- Gallery items will be injected here -->
+            </div>
+
+            <form id="add-gallery-item-form" class="space-y-3 p-4 border border-dashed border-gray-300 dark:border-gray-700 rounded-xl bg-gray-50 dark:bg-slate-700/50">
+                <h4 class="text-lg font-bold text-slate-800 dark:text-white">Add New Photo</h4>
+                <input type="url" id="new-photo-url" class="w-full p-2 border rounded-lg dark:bg-slate-700 dark:border-slate-600 dark:text-white text-sm" placeholder="Image URL (e.g., https://unsplash.com/photo...)" required>
+                <input type="text" id="new-photo-caption" class="w-full p-2 border rounded-lg dark:bg-slate-700 dark:border-slate-600 dark:text-white text-sm" placeholder="Caption (Max 50 chars)" maxlength="50" required>
+                <button type="submit" class="w-full py-2 rounded-lg bg-primary text-white font-bold hover:bg-primary-dark transition">Add Photo</button>
+            </form>
+
+            <button id="btn-cancel-gallery-modal" class="mt-4 py-3 rounded-lg border border-gray-300 text-gray-600 dark:text-gray-300 font-bold hover:bg-gray-100 dark:hover:bg-slate-700 transition">Close Editor</button>
+        </div>
+    </div>
+
+    <!-- LEADER PROFILE MODAL -->
+    <div id="leader-modal" class="modal fixed inset-0 z-[100] flex items-center justify-center bg-black/80 backdrop-blur-md px-4 py-8">
+        <div id="leader-modal-content" class="bg-white dark:bg-slate-900 rounded-3xl w-full max-w-4xl h-auto md:h-[60vh] max-h-full shadow-2xl transform scale-95 transition-transform duration-300 flex flex-col md:flex-row overflow-hidden relative">
+            
+            <!-- Close Button -->
+            <button id="btn-close-leader-modal" class="absolute top-4 right-4 z-50 text-white md:text-slate-500 hover:text-secondary dark:hover:text-secondary transition bg-black/30 md:bg-transparent p-2 rounded-full">
+                <i class="fas fa-times text-2xl"></i>
+            </button>
+
+            <!-- Left Side: Image -->
+            <div class="w-full md:w-1/3 flex-shrink-0 h-64 md:h-full relative overflow-hidden">
+                <img id="leader-modal-image" src="" alt="Leader Profile" class="w-full h-full object-cover">
+                <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
+            </div>
+
+            <!-- Right Side: Details -->
+            <div class="w-full md:w-2/3 p-8 flex flex-col justify-center text-slate-800 dark:text-white">
+                <h2 id="leader-modal-name" class="text-4xl font-extrabold text-primary dark:text-sky-400 mb-2"></h2>
+                <h3 id="leader-modal-title" class="text-base font-semibold text-secondary uppercase tracking-widest mb-4"></h3>
+                
+                <p id="leader-modal-quote" class="text-lg leading-relaxed text-slate-600 dark:text-slate-300 italic mb-8 flex-grow"></p>
+                
+                <a id="leader-modal-linkedin" href="#" target="_blank" class="inline-flex items-center gap-3 text-primary dark:text-sky-400 hover:text-secondary dark:hover:text-secondary-hover font-bold transition">
+                    <i class="fab fa-linkedin text-2xl"></i> Connect on LinkedIn
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- NOTIFICATION TOAST -->
+    <div id="toast" class="fixed bottom-8 right-8 bg-green-500 text-white px-6 py-4 rounded-xl shadow-2xl z-[100] transform translate-y-20 opacity-0 transition-all duration-500 flex items-center gap-3">
+        <i id="toast-icon" class="fas fa-check-circle text-2xl"></i>
+        <div>
+            <h4 id="toast-title" class="font-bold">Success!</h4>
+            <p class="text-xs text-green-100" id="toast-message">Operation completed successfully.</p>
+        </div>
+    </div>
+
+    <!-- Header & Navigation Wrapper -->
+    <div id="main-nav-wrapper" class="fixed top-0 w-full z-50 transition-transform duration-700 ease-in-out transform translate-y-0">
+        
+        <!-- 1. HEADER: Solid White Background, Blue Text -->
+        <header class="bg-white dark:bg-slate-900 h-20 border-b border-gray-100 dark:border-slate-800 relative z-50 shadow-sm">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-full flex justify-between items-center">
+                
+                <!-- LOGO (Simple Text) -->
+                <div class="flex items-center cursor-pointer" onclick="navigateTo('home')">
+                    <span class="font-extrabold text-3xl tracking-tight text-primary dark:text-sky-400 leading-none">
+                        OptCELL GLOBAL
+                    </span>
+                </div>
+
+                <!-- Right Side Controls -->
+                <div class="flex items-center gap-4">
+                    <!-- Gallery Admin Button (Appears only on About Page) -->
+                    <button id="btn-gallery-admin" onclick="openGalleryAdmin()" class="hidden p-2 rounded-full hover:bg-gray-100 dark:hover:bg-slate-800 transition text-secondary hover:text-secondary-hover" title="Admin: Edit Gallery">
+                        <i class="fas fa-images text-xl"></i>
+                    </button>
+
+                    <!-- Dark Mode Toggle -->
+                    <button onclick="toggleDarkMode()" class="p-2 rounded-full hover:bg-gray-100 dark:hover:bg-slate-800 transition text-primary dark:text-yellow-400">
+                        <i class="fas fa-moon dark:hidden"></i>
+                        <i class="fas fa-sun hidden dark:inline"></i>
+                    </button>
+
+                    <!-- Mobile Menu Button -->
+                    <button onclick="toggleMobileMenu()" class="md:hidden text-primary text-2xl focus:outline-none">
+                        <i class="fas fa-bars"></i>
+                    </button>
+                </div>
+            </div>
+        </header>
+
+        <!-- 2. NAVIGATION BAR: Transparent/Integrated with Photos -->
+        <nav class="h-12 hidden md:flex justify-center w-full relative z-40 bg-gradient-to-b from-black/50 to-transparent backdrop-blur-[2px]">
+            <div class="flex items-center space-x-8 px-6 h-full transition-colors">
+                <button id="nav-home" onclick="navigateTo('home')" class="nav-item text-white hover:text-secondary hover:scale-110 font-medium uppercase text-xs tracking-wider transition-all duration-300 transform origin-bottom shadow-black drop-shadow-md">Home</button>
+                <button id="nav-programs" onclick="navigateTo('programs')" class="nav-item text-white/90 hover:text-white hover:scale-110 font-medium uppercase text-xs tracking-wider transition-all duration-300 transform origin-bottom shadow-black drop-shadow-md">Programs & Internships</button>
+                <button id="nav-infrastructure" onclick="navigateTo('infrastructure')" class="nav-item text-white/90 hover:text-white hover:scale-110 font-medium uppercase text-xs tracking-wider transition-all duration-300 transform origin-bottom shadow-black drop-shadow-md">Infrastructure</button>
+                <button id="nav-about" onclick="navigateTo('about')" class="nav-item text-white/90 hover:text-white hover:scale-110 font-medium uppercase text-xs tracking-wider transition-all duration-300 transform origin-bottom shadow-black drop-shadow-md">About</button>
+                <button id="nav-contact" onclick="navigateTo('contact')" class="nav-item text-white/90 hover:text-white hover:scale-110 font-medium uppercase text-xs tracking-wider transition-all duration-300 transform origin-bottom shadow-black drop-shadow-md">Contact</button>
+            </div>
+        </nav>
+
+        <!-- Mobile Menu Dropdown -->
+        <div id="mobile-menu" class="hidden md:hidden bg-white dark:bg-slate-900 border-t border-gray-100 dark:border-slate-800 absolute w-full shadow-lg z-50">
+            <div class="px-4 pt-2 pb-4 space-y-2">
+                <button onclick="navigateTo('home')" class="block w-full text-left px-3 py-3 text-primary font-bold bg-blue-50 dark:bg-slate-800 rounded-md">HOME</button>
+                <button onclick="navigateTo('programs')" class="block w-full text-left px-3 py-3 text-gray-600 dark:text-gray-300 hover:bg-gray-50 rounded-md font-medium uppercase text-sm">Programs & Internships</button>
+                <button onclick="navigateTo('infrastructure')" class="block w-full text-left px-3 py-3 text-gray-600 dark:text-gray-300 hover:bg-gray-50 rounded-md font-medium uppercase text-sm">Infrastructure</button>
+                <button onclick="navigateTo('about')" class="block w-full text-left px-3 py-3 text-gray-600 dark:text-gray-300 hover:bg-gray-50 rounded-md font-medium uppercase text-sm">About</button>
+                <button onclick="navigateTo('contact')" class="block w-full text-left px-3 py-3 text-gray-600 dark:text-gray-300 hover:bg-gray-50 rounded-md font-medium uppercase text-sm">Contact</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Content Area -->
+    <main class="flex-grow pt-20 relative z-10">
+
+        <!-- ================= HOME PAGE SECTION ================= -->
+        <div id="home" class="page-section">
+            
+            <!-- 1. Hero Slider Section -->
+            <div class="min-h-[calc(100vh-80px)] relative overflow-hidden flex flex-col -mt-12 pt-12">
+                
+                <!-- Sliding Background Images -->
+                <div class="absolute inset-0 z-0">
+                    <div id="slider-track" class="slider-container">
+                        <!-- Slide 1: AI -->
+                        <div class="slide">
+                            <img src="https://images.unsplash.com/photo-1620712943543-bcc4688e7485?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80" alt="Artificial Intelligence">
+                            <div class="slide-overlay"></div>
+                        </div>
+                        <!-- Slide 2: 6G -->
+                        <div class="slide">
+                            <img src="https://images.unsplash.com/photo-1519389950473-47ba0277781c?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80" alt="6G Network">
+                            <div class="slide-overlay"></div>
+                        </div>
+                        <!-- Slide 3: EV -->
+                        <div class="slide">
+                            <img src="https://images.unsplash.com/photo-1593941707882-a5bba14938c7?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80" alt="EV Technology">
+                            <div class="slide-overlay"></div>
+                        </div>
+                        <!-- Slide 4: Quantum -->
+                        <div class="slide">
+                            <img src="https://images.unsplash.com/photo-1635070041078-e363dbe005cb?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80" alt="Quantum Computing">
+                            <div class="slide-overlay"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Scrollable Content Overlay (CENTERED CONTENT) -->
+                <div class="relative z-10 flex-grow flex flex-col items-center justify-center py-20 px-4 h-full">
+                    <div class="max-w-7xl mx-auto text-center text-white w-full">
+                        
+                        <!-- Largest Heading -->
+                        <h1 class="text-3xl md:text-5xl lg:text-6xl font-extrabold mb-6 leading-tight drop-shadow-2xl fade-in-up reveal">
+                            Empowering Collaborative Growth<br>
+                            <span class="text-sky-300">Across Deep Tech & Core Engineering</span>
+                        </h1>
+                        
+                        <!-- Subline -->
+                        <div class="fade-in-up delay-100 reveal">
+                            <p class="text-lg md:text-2xl lg:text-3xl font-semibold text-white mb-6 inline-block drop-shadow-md">
+                                Government Initiatives • Startups • R&D Institutions • Financial Institutions • Academia
+                            </p>
+                        </div>
+                        
+                        <!-- Description -->
+                        <p class="text-sm md:text-lg text-gray-200 max-w-4xl mx-auto mb-8 font-light tracking-wide fade-in-up delay-200 drop-shadow-sm reveal">
+                            OptCELL Global bridges innovation and execution through collaborative R&D, world-class infrastructure, and deep industry partnerships.
+                        </p>
+                        
+                        <!-- CTA Buttons -->
+                        <div class="flex flex-col sm:flex-row gap-6 justify-center fade-in-up delay-300 reveal">
+                            <button onclick="navigateTo('programs')" class="bg-secondary hover:bg-secondary-hover text-white text-lg font-bold px-10 py-4 rounded-full shadow-lg transform hover:scale-110 transition-all duration-300 border-2 border-secondary hover:shadow-orange-500/50">
+                                Apply for Internship
+                            </button>
+                            <button onclick="navigateTo('programs')" class="bg-transparent border-2 border-white hover:bg-white hover:text-primary-dark text-white text-lg font-bold px-10 py-4 rounded-full shadow-lg transform hover:scale-110 transition-all duration-300 hover:shadow-white/50">
+                                Explore Programs
+                            </button>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+            <!-- 2. TIMER & STATS SECTION -->
+            <div class="py-16 px-4 relative z-20 border-t border-white/10 shadow-inner overflow-hidden reveal">
+                <div class="max-w-7xl mx-auto">
+                    
+                    <!-- Timer Card -->
+                    <div class="group bg-white/10 backdrop-blur-md border border-white/20 rounded-3xl p-8 max-w-4xl mx-auto shadow-2xl relative transition-all hover:bg-white/15">
+                        
+                        <!-- ADMIN BUTTON -->
+                        <button id="btn-admin-open" class="absolute top-4 right-4 text-white/40 hover:text-white opacity-0 group-hover:opacity-100 transition duration-300 bg-black/20 p-2 rounded-full backdrop-blur-sm" title="Admin: Set Deadline">
+                            <i class="fas fa-cog text-xl"></i>
+                        </button>
+
+                        <!-- Header -->
+                        <div class="flex items-center justify-center gap-2 mb-6 text-sky-200 font-bold uppercase tracking-widest text-sm">
+                            <i class="far fa-clock animate-pulse"></i> Application Deadline
+                        </div>
+                        
+                        <!-- Timer Grid -->
+                        <div class="grid grid-cols-4 gap-4 text-center divide-x divide-white/10">
+                            <div class="flex flex-col">
+                                <span id="timer-days" class="text-4xl md:text-6xl font-extrabold text-white tabular-nums drop-shadow-lg">00</span>
+                                <span class="text-xs md:text-sm text-sky-100 uppercase tracking-widest mt-2 font-medium">Days</span>
+                            </div>
+                            <div class="flex flex-col">
+                                <span id="timer-hours" class="text-4xl md:text-6xl font-extrabold text-white tabular-nums drop-shadow-lg">00</span>
+                                <span class="text-xs md:text-sm text-sky-100 uppercase tracking-widest mt-2 font-medium">Hours</span>
+                            </div>
+                            <div class="flex flex-col">
+                                <span id="timer-minutes" class="text-4xl md:text-6xl font-extrabold text-white tabular-nums drop-shadow-lg">00</span>
+                                <span class="text-xs md:text-sm text-sky-100 uppercase tracking-widest mt-2 font-medium">Minutes</span>
+                            </div>
+                            <div class="flex flex-col">
+                                <span id="timer-seconds" class="text-4xl md:text-6xl font-extrabold text-sky-300 tabular-nums drop-shadow-lg">00</span>
+                                <span class="text-xs md:text-sm text-sky-100 uppercase tracking-widest mt-2 font-medium">Seconds</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Stats Row -->
+                    <div class="grid grid-cols-2 md:grid-cols-4 gap-8 mt-12 text-center text-white/90 max-w-5xl mx-auto">
+                        <div class="transform hover:scale-105 transition duration-300 reveal">
+                            <div class="text-3xl font-extrabold text-white mb-1">750+</div>
+                            <div class="text-xs text-sky-200 uppercase font-bold tracking-wider">Students Annually</div>
+                        </div>
+                        <div class="transform hover:scale-105 transition duration-300 reveal">
+                            <div class="text-3xl font-extrabold text-white mb-1">3 Months</div>
+                            <div class="text-xs text-sky-200 uppercase font-bold tracking-wider">Program Duration</div>
+                        </div>
+                        <div class="transform hover:scale-105 transition duration-300 reveal">
+                            <div class="text-3xl font-extrabold text-white mb-1">80%</div>
+                            <div class="text-xs text-sky-200 uppercase font-bold tracking-wider">Practical Training</div>
+                        </div>
+                        <div class="transform hover:scale-105 transition duration-300 reveal">
+                            <div class="text-3xl font-extrabold text-white mb-1">100%</div>
+                            <div class="text-xs text-sky-200 uppercase font-bold tracking-wider">Placement Support</div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <!-- 3. HOMEPAGE TEASER: OUR INTERNSHIP PROGRAMS -->
+            <div class="py-24 px-4 relative overflow-hidden">
+                <!-- Light Gradient Overlay -->
+                <div class="absolute inset-0 bg-gradient-to-b from-blue-600/30 via-transparent to-blue-900/50 pointer-events-none"></div>
+
+                <div class="max-w-7xl mx-auto relative z-10">
+                    
+                    <!-- Section Header -->
+                    <div class="text-center mb-16 reveal">
+                        <h2 class="text-3xl md:text-5xl font-extrabold text-white mb-4 drop-shadow-md">
+                            Our Internship Programs
+                        </h2>
+                        <div class="h-1.5 w-24 bg-secondary mx-auto mb-6 rounded-full shadow-lg"></div>
+                        <p class="text-blue-50 text-lg max-w-2xl mx-auto font-medium leading-relaxed">
+                            Choose your pathway into the future of engineering and deep tech innovation.
+                        </p>
+                    </div>
+
+                    <!-- Button to go to programs page -->
+                    <div class="text-center mt-16 reveal">
+                        <button onclick="navigateTo('programs')" class="bg-white text-primary font-extrabold py-4 px-10 rounded-full shadow-lg hover:shadow-white/40 transition transform hover:scale-105 border-4 border-white/20 hover:border-white/50">
+                            View All Program Details <i class="fas fa-arrow-right ml-2"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ================= NEW SECTION: WHY OPTCELL GLOBAL ================= -->
+            <div class="py-24 px-4 relative overflow-hidden">
+                <!-- Subtle separation gradient -->
+                <div class="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-white/20 to-transparent"></div>
+
+                <div class="max-w-7xl mx-auto relative z-10">
+                    <!-- Header -->
+                    <div class="text-center mb-16 reveal">
+                        <h2 class="text-3xl md:text-5xl font-extrabold text-white mb-4 drop-shadow-xl">
+                            Why <span class="text-sky-300 drop-shadow-[0_0_10px_rgba(56,189,248,0.5)]">OptCELL Global</span>
+                        </h2>
+                        <div class="h-1 w-16 bg-secondary mx-auto rounded-full shadow-lg"></div>
+                    </div>
+
+                    <!-- 4-Column Grid -->
+                    <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+                        
+                        <!-- Feature 1 -->
+                        <div class="group bg-slate-900/40 backdrop-blur-md border border-white/10 p-8 rounded-2xl hover:bg-slate-900/60 hover:border-sky-400/50 transition-all duration-300 hover:-translate-y-1 shadow-lg tilt-card reveal">
+                            <div class="w-14 h-14 bg-sky-500/10 rounded-xl flex items-center justify-center mb-6 text-sky-400 text-3xl group-hover:scale-110 transition-transform duration-300 group-hover:text-sky-300 tilt-card-content">
+                                <i class="fas fa-bolt"></i>
+                            </div>
+                            <h3 class="text-xl font-bold text-white mb-3 tilt-card-content">Deep Tech Exposure</h3>
+                            <p class="text-slate-300 text-sm leading-relaxed tilt-card-content">
+                                Work on cutting-edge R&D projects with real-world impact.
+                            </p>
+                        </div>
+
+                        <!-- Feature 2 -->
+                        <div class="group bg-slate-900/40 backdrop-blur-md border border-white/10 p-8 rounded-2xl hover:bg-slate-900/60 hover:border-sky-400/50 transition-all duration-300 hover:-translate-y-1 shadow-lg tilt-card reveal">
+                            <div class="w-14 h-14 bg-sky-500/10 rounded-xl flex items-center justify-center mb-6 text-sky-400 text-3xl group-hover:scale-110 transition-transform duration-300 group-hover:text-sky-300 tilt-card-content">
+                                <i class="fas fa-users"></i>
+                            </div>
+                            <h3 class="text-xl font-bold text-white mb-3 tilt-card-content">Expert Mentorship</h3>
+                            <p class="text-slate-300 text-sm leading-relaxed tilt-card-content">
+                                Learn from industry veterans and core engineering specialists.
+                            </p>
+                        </div>
+
+                        <!-- Feature 3 -->
+                        <div class="group bg-slate-900/40 backdrop-blur-md border border-white/10 p-8 rounded-2xl hover:bg-slate-900/60 hover:border-sky-400/50 transition-all duration-300 hover:-translate-y-1 shadow-lg tilt-card reveal">
+                            <div class="w-14 h-14 bg-sky-500/10 rounded-xl flex items-center justify-center mb-6 text-sky-400 text-3xl group-hover:scale-110 transition-transform duration-300 group-hover:text-sky-300 tilt-card-content">
+                                <i class="fas fa-medal"></i>
+                            </div>
+                            <h3 class="text-xl font-bold text-white mb-3 tilt-card-content">80% Practical Learning</h3>
+                            <p class="text-slate-300 text-sm leading-relaxed tilt-card-content">
+                                Hands-on projects and real-world problem solving.
+                            </p>
+                        </div>
+
+                        <!-- Feature 4 -->
+                        <div class="group bg-slate-900/40 backdrop-blur-md border border-white/10 p-8 rounded-2xl hover:bg-slate-900/60 hover:border-sky-400/50 transition-all duration-300 hover:-translate-y-1 shadow-lg tilt-card reveal">
+                            <div class="w-14 h-14 bg-sky-500/10 rounded-xl flex items-center justify-center mb-6 text-sky-400 text-3xl group-hover:scale-110 transition-transform duration-300 group-hover:text-sky-300 tilt-card-content">
+                                <i class="fas fa-bullseye"></i>
+                            </div>
+                            <h3 class="text-xl font-bold text-white mb-3 tilt-card-content">Government Collaboration</h3>
+                            <p class="text-slate-300 text-sm leading-relaxed tilt-card-content">
+                                Access to institutional partnerships and initiatives.
+                            </p>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+            <!-- ================= NEW SECTION: WORLD-CLASS INFRASTRUCTURE (HOMEPAGE TEASER) ================= -->
+            <div class="py-24 px-4 relative overflow-hidden">
+                <div class="max-w-7xl mx-auto relative z-10">
+                    
+                    <!-- Header -->
+                    <div class="text-center mb-16 reveal">
+                        <h2 class="text-3xl md:text-5xl font-extrabold text-white mb-4 drop-shadow-xl">
+                            World-Class <span class="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-500">Infrastructure</span>
+                        </h2>
+                        <p class="text-slate-300 text-lg max-w-2xl mx-auto font-medium">
+                            State-of-the-art facilities designed for innovation and collaborative growth
+                        </p>
+                    </div>
+
+                    <!-- Infrastructure Gallery Grid -->
+                    <div class="grid md:grid-cols-3 gap-8">
+                        
+                        <!-- Card 1: Innovation Hall -->
+                        <div class="group relative h-64 rounded-2xl overflow-hidden shadow-2xl border border-white/10 cursor-pointer tilt-card reveal">
+                            <img src="https://img.sanishtech.com/u/b1ce0f99ffe4d6dd356a897d33b20744.jpg">
+                            <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent opacity-80 group-hover:opacity-90 transition-opacity duration-300"></div>
+                            <div class="absolute bottom-0 left-0 w-full p-6 translate-y-2 group-hover:translate-y-0 transition-transform duration-300 tilt-card-content">
+                                <h3 class="text-xl font-bold text-white mb-1">Innovation Hall</h3>
+                                <p class="text-slate-300 text-xs font-medium uppercase tracking-wide">State of the art collaboration spaces</p>
+                            </div>
+                        </div>
+
+                        <!-- Card 2: R&D Laboratory -->
+                        <div class="group relative h-64 rounded-2xl overflow-hidden shadow-2xl border border-white/10 cursor-pointer tilt-card reveal">
+                            <img src="https://img.sanishtech.com/u/f155b9880054e2f82729a96d12c1f045.jpg">
+                            <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent opacity-80 group-hover:opacity-90 transition-opacity duration-300"></div>
+                            <div class="absolute bottom-0 left-0 w-full p-6 translate-y-2 group-hover:translate-y-0 transition-transform duration-300 tilt-card-content">
+                                <h3 class="text-xl font-bold text-white mb-1">R&D Laboratory</h3>
+                                <p class="text-slate-300 text-xs font-medium uppercase tracking-wide">Advanced testing and development facilities</p>
+                            </div>
+                        </div>
+
+                        <!-- Card 3: Training Zones -->
+                        <div class="group relative h-64 rounded-2xl overflow-hidden shadow-2xl border border-white/10 cursor-pointer tilt-card reveal">
+                            <img src="https://img.sanishtech.com/u/8592603f6dd89331251e97a28c7ffae4.jpg">
+                            <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent opacity-80 group-hover:opacity-90 transition-opacity duration-300"></div>
+                            <div class="absolute bottom-0 left-0 w-full p-6 translate-y-2 group-hover:translate-y-0 transition-transform duration-300 tilt-card-content">
+                                <h3 class="text-xl font-bold text-white mb-1">Training Zones</h3>
+                                <p class="text-slate-300 text-xs font-medium uppercase tracking-wide">Modern learning environments</p>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <!-- Button -->
+                    <div class="text-center mt-12 reveal">
+                        <button onclick="navigateTo('infrastructure')" class="px-8 py-3 rounded-lg border border-white/20 bg-white/5 text-white text-sm font-bold hover:bg-white/10 hover:border-white/40 transition-all backdrop-blur-sm">
+                            Explore All Facilities
+                        </button>
+                    </div>
+
+                </div>
+            </div>
+
+            <!-- ================= NEW SECTION: OUR PARTNERS ================= -->
+            <div class="py-16 px-4 relative overflow-hidden border-b border-white/10">
+                <div class="max-w-7xl mx-auto relative z-10">
+                    <div class="text-center mb-12 reveal">
+                        <h2 class="text-2xl md:text-4xl font-bold text-white mb-2">
+                            Our <span class="text-secondary">Partners</span>
+                        </h2>
+                        <div class="h-1 w-12 bg-secondary mx-auto rounded-full"></div>
+                    </div>
+                    <div class="flex flex-wrap justify-center items-center gap-8 md:gap-16 reveal">
+                        <div class="group p-4 bg-white rounded-xl hover:bg-white/90 transition duration-300 cursor-pointer w-32 h-20 md:w-48 md:h-24 flex items-center justify-center shadow-lg transform hover:scale-105">
+                            <img src="https://img.sanishtech.com/u/45f7a3b9558f6b651146caddaeec1dd0.png">
+                        </div>
+                        <div class="group p-4 bg-white rounded-xl hover:bg-white/90 transition duration-300 cursor-pointer w-32 h-20 md:w-48 md:h-24 flex items-center justify-center shadow-lg transform hover:scale-105">
+                            <img src="https://img.sanishtech.com/u/982f9fb7ad08c324aab64c08fe5814a4.png">
+                        </div>
+                        <div class="group p-4 bg-white rounded-xl hover:bg-white/90 transition duration-300 cursor-pointer w-32 h-20 md:w-48 md:h-24 flex items-center justify-center shadow-lg transform hover:scale-105">
+                            <img src="https://img.sanishtech.com/u/8ccb75b2bb10604e0531f98b8fd68ea4.png">
+                        </div>
+                        <div class="group p-4 bg-white rounded-xl hover:bg-white/90 transition duration-300 cursor-pointer w-32 h-20 md:w-48 md:h-24 flex items-center justify-center shadow-lg transform hover:scale-105">
+                            <img src="https://img.sanishtech.com/u/9ba306b4cb9c25dfe3c0e5f09d2a2465.png">
+                        </div>
+                        <div class="group p-4 bg-white rounded-xl hover:bg-white/90 transition duration-300 cursor-pointer w-32 h-20 md:w-48 md:h-24 flex items-center justify-center shadow-lg transform hover:scale-105">
+                            <img src="https://img.sanishtech.com/u/f0664e812ebf00faae8fce1b9cff646f.png">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ================= NEW SECTION: OUR CLIENTS (INFINITE SCROLL) ================= -->
+            <div class="py-16 px-4 relative overflow-hidden bg-white/5 backdrop-blur-sm">
+                <div class="max-w-7xl mx-auto relative z-10 text-center mb-8">
+                    <h2 class="text-3xl md:text-4xl font-bold text-white mb-2">Our <span class="text-sky-300">Clients</span></h2>
+                    <p class="text-slate-300 text-sm">Proudly serving over 19+ academic and corporate partners across the globe. Scroll over to pause.</p>
+                </div>
+
+                <!-- Marquee Container -->
+                <div class="overflow-hidden py-4 border-y border-white/20">
+                    <div class="logo-track">
+                        <!-- === FIRST SET OF 19 CLIENTS === -->
+                        <!-- Client 1 -->
+                        <div class="logo-item flex items-center justify-center">
+                            <img src="https://img.sanishtech.com/u/57a0fe27fa12146c08cfa0dc9ae47d11.png">
+                        </div>
+                        <!-- Client 2 -->
+                        <div class="logo-item flex items-center justify-center">
+                            <img src="https://img.sanishtech.com/u/6eafc0b74f5e8b610216186a47c49c82.png">
+                        </div>
+                        <!-- Client 3 -->
+                        <div class="logo-item flex items-center justify-center">
+                            <img src="https://img.sanishtech.com/u/94f763324c127263c0004c8e8ff3597b.png">
+                        </div>
+                        <!-- Client 4 -->
+                        <div class="logo-item flex items-center justify-center">
+                            <img src="https://img.sanishtech.com/u/f100d403504da32275182225cc7dcb57.png">
+                        </div>
+                        <!-- Client 5 -->
+                        <div class="logo-item flex items-center justify-center">
+                            <img src="https://img.sanishtech.com/u/a6c1044c17786e6196a4721967c06990.png">
+                        </div>
+                        <!-- Client 6 -->
+                        <div class="logo-item flex items-center justify-center">
+                            <img src="https://img.sanishtech.com/u/7803bf988cde56a2dfd687becb3cf960.png">
+                        </div>
+                        <!-- Client 7 -->
+                        <div class="logo-item flex items-center justify-center">
+                            <img src="https://img.sanishtech.com/u/4606290085612c1960ea6617cb9ece03.png">
+                        </div>
+                        <!-- Client 8 -->
+                        <div class="logo-item flex items-center justify-center">
+                            <img src="https://img.sanishtech.com/u/7532366306ebf3cbefd3d45dc7b2ef93.png">
+                        </div>
+                        <!-- Client 9 -->
+                        <div class="logo-item flex items-center justify-center">
+                            <img src="https://img.sanishtech.com/u/51477eb6d1919570fa9a94972afc9532.png">
+                        </div>
+                        <!-- Client 10 -->
+                        <div class="logo-item flex items-center justify-center">
+                            <img src="https://img.sanishtech.com/u/5982d83817ce8bcdaf46367c1b10da82.png">
+                        </div>
+                        <!-- Client 11 -->
+                        <div class="logo-item flex items-center justify-center">
+                            <img src="https://img.sanishtech.com/u/425517104203412260dde41fd1021444.png">
+                        </div>
+                        <!-- Client 12 -->
+                        <div class="logo-item flex items-center justify-center">
+                            <img src="https://img.sanishtech.com/u/2e7577b4bfd35c0b62b0cb5b78b12dfe.png">
+                        </div>
+                        <!-- Client 13 -->
+                        <div class="logo-item flex items-center justify-center">
+                            <img src="https://img.sanishtech.com/u/84c29f9f379610aa3018428ec70ea571.png">
+                        </div>
+                        <!-- Client 14 -->
+                        <div class="logo-item flex items-center justify-center">
+                            <img src="https://img.sanishtech.com/u/624dc82ef509c92f83b62d76bb2e0775.png">
+                        </div>
+                        <!-- Client 15 -->
+                        <div class="logo-item flex items-center justify-center">
+                            <img src="https://img.sanishtech.com/u/1260c13e3ee82a7a069e4bb5847203c9.png">
+                        </div>
+                        <!-- Client 16 -->
+                        <div class="logo-item flex items-center justify-center">
+                            <img src="https://img.sanishtech.com/u/a17d831d66b7906dc29c61a6a1579cee.png">
+                        </div>
+                        <!-- Client 17 -->
+                        <div class="logo-item flex items-center justify-center">
+                            <img src="https://img.sanishtech.com/u/f7a76d314460477bfa9033c54bf80b8a.png">
+                        </div>
+                        <!-- Client 18 -->
+                        <div class="logo-item flex items-center justify-center">
+                            <img src="https://img.sanishtech.com/u/20515a139cb0281e33be2c822b118d54.png">
+                        </div>
+                        <!-- Client 19 -->
+                        <div class="logo-item flex items-center justify-center">
+                            <img src="https://img.sanishtech.com/u/c1a025c226eb300a00736f331dc09811.png">
+                        </div>
+
+                        <!-- === DUPLICATE SET FOR INFINITE LOOP === -->
+                        <!-- Client 1 -->
+                        <div class="logo-item flex items-center justify-center">
+                            <img src="https://img.sanishtech.com/u/57a0fe27fa12146c08cfa0dc9ae47d11.png" alt="Client 01" class="max-w-full max-h-full object-contain filter grayscale opacity-70 hover:opacity-100 hover:grayscale-0 transition duration-300">
+                        </div>
+                        <!-- Client 2 -->
+                        <div class="logo-item flex items-center justify-center">
+                            <img src="https://img.sanishtech.com/u/6eafc0b74f5e8b610216186a47c49c82.png" alt="Client 02" class="max-w-full max-h-full object-contain filter grayscale opacity-70 hover:opacity-100 hover:grayscale-0 transition duration-300">
+                        </div>
+                        <!-- Client 3 -->
+                        <div class="logo-item flex items-center justify-center">
+                            <img src="https://img.sanishtech.com/u/94f763324c127263c0004c8e8ff3597b.png" alt="Client 03" class="max-w-full max-h-full object-contain filter grayscale opacity-70 hover:opacity-100 hover:grayscale-0 transition duration-300">
+                        </div>
+                        <!-- Client 4 -->
+                        <div class="logo-item flex items-center justify-center">
+                            <img src="https://img.sanishtech.com/u/f100d403504da32275182225cc7dcb57.png" alt="Client 04" class="max-w-full max-h-full object-contain filter grayscale opacity-70 hover:opacity-100 hover:grayscale-0 transition duration-300">
+                        </div>
+                        <!-- Client 5 -->
+                        <div class="logo-item flex items-center justify-center">
+                            <img src="https://img.sanishtech.com/u/a6c1044c17786e6196a4721967c06990.png" alt="Client 05" class="max-w-full max-h-full object-contain filter grayscale opacity-70 hover:opacity-100 hover:grayscale-0 transition duration-300">
+                        </div>
+                        <!-- Client 6 -->
+                        <div class="logo-item flex items-center justify-center">
+                            <img src="https://img.sanishtech.com/u/7803bf988cde56a2dfd687becb3cf960.png" alt="Client 06" class="max-w-full max-h-full object-contain filter grayscale opacity-70 hover:opacity-100 hover:grayscale-0 transition duration-300">
+                        </div>
+                        <!-- Client 7 -->
+                        <div class="logo-item flex items-center justify-center">
+                            <img src="https://img.sanishtech.com/u/4606290085612c1960ea6617cb9ece03.png" alt="Client 07" class="max-w-full max-h-full object-contain filter grayscale opacity-70 hover:opacity-100 hover:grayscale-0 transition duration-300">
+                        </div>
+                        <!-- Client 8 -->
+                        <div class="logo-item flex items-center justify-center">
+                            <img src="https://img.sanishtech.com/u/7532366306ebf3cbefd3d45dc7b2ef93.png" alt="Client 08" class="max-w-full max-h-full object-contain filter grayscale opacity-70 hover:opacity-100 hover:grayscale-0 transition duration-300">
+                        </div>
+                        <!-- Client 9 -->
+                        <div class="logo-item flex items-center justify-center">
+                            <img src="https://img.sanishtech.com/u/51477eb6d1919570fa9a94972afc9532.png" alt="Client 09" class="max-w-full max-h-full object-contain filter grayscale opacity-70 hover:opacity-100 hover:grayscale-0 transition duration-300">
+                        </div>
+                        <!-- Client 10 -->
+                        <div class="logo-item flex items-center justify-center">
+                            <img src="https://img.sanishtech.com/u/5982d83817ce8bcdaf46367c1b10da82.png" alt="Client 10" class="max-w-full max-h-full object-contain filter grayscale opacity-70 hover:opacity-100 hover:grayscale-0 transition duration-300">
+                        </div>
+                        <!-- Client 11 -->
+                        <div class="logo-item flex items-center justify-center">
+                            <img src="https://img.sanishtech.com/u/425517104203412260dde41fd1021444.png" alt="Client 11" class="max-w-full max-h-full object-contain filter grayscale opacity-70 hover:opacity-100 hover:grayscale-0 transition duration-300">
+                        </div>
+                        <!-- Client 12 -->
+                        <div class="logo-item flex items-center justify-center">
+                            <img src="https://img.sanishtech.com/u/2e7577b4bfd35c0b62b0cb5b78b12dfe.png" alt="Client 12" class="max-w-full max-h-full object-contain filter grayscale opacity-70 hover:opacity-100 hover:grayscale-0 transition duration-300">
+                        </div>
+                        <!-- Client 13 -->
+                        <div class="logo-item flex items-center justify-center">
+                            <img src="https://img.sanishtech.com/u/84c29f9f379610aa3018428ec70ea571.png" alt="Client 13" class="max-w-full max-h-full object-contain filter grayscale opacity-70 hover:opacity-100 hover:grayscale-0 transition duration-300">
+                        </div>
+                        <!-- Client 14 -->
+                        <div class="logo-item flex items-center justify-center">
+                            <img src="https://img.sanishtech.com/u/624dc82ef509c92f83b62d76bb2e0775.png" alt="Client 14" class="max-w-full max-h-full object-contain filter grayscale opacity-70 hover:opacity-100 hover:grayscale-0 transition duration-300">
+                        </div>
+                        <!-- Client 15 -->
+                        <div class="logo-item flex items-center justify-center">
+                            <img src="https://img.sanishtech.com/u/1260c13e3ee82a7a069e4bb5847203c9.png" alt="Client 15" class="max-w-full max-h-full object-contain filter grayscale opacity-70 hover:opacity-100 hover:grayscale-0 transition duration-300">
+                        </div>
+                        <!-- Client 16 -->
+                        <div class="logo-item flex items-center justify-center">
+                            <img src="https://img.sanishtech.com/u/a17d831d66b7906dc29c61a6a1579cee.png" alt="Client 16" class="max-w-full max-h-full object-contain filter grayscale opacity-70 hover:opacity-100 hover:grayscale-0 transition duration-300">
+                        </div>
+                        <!-- Client 17 -->
+                        <div class="logo-item flex items-center justify-center">
+                            <img src="https://img.sanishtech.com/u/f7a76d314460477bfa9033c54bf80b8a.png" alt="Client 17" class="max-w-full max-h-full object-contain filter grayscale opacity-70 hover:opacity-100 hover:grayscale-0 transition duration-300">
+                        </div>
+                        <!-- Client 18 -->
+                        <div class="logo-item flex items-center justify-center">
+                            <img src="https://img.sanishtech.com/u/20515a139cb0281e33be2c822b118d54.png" alt="Client 18" class="max-w-full max-h-full object-contain filter grayscale opacity-70 hover:opacity-100 hover:grayscale-0 transition duration-300">
+                        </div>
+                        <!-- Client 19 -->
+                        <div class="logo-item flex items-center justify-center">
+                            <img src="https://img.sanishtech.com/u/c1a025c226eb300a00736f331dc09811.png" alt="Client 19" class="max-w-full max-h-full object-contain filter grayscale opacity-70 hover:opacity-100 hover:grayscale-0 transition duration-300">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ================= NEW SECTION: CORE TEAM INTRO (UPDATED FOR INTERACTIVITY) ================= -->
+            <div class="py-24 px-4 relative overflow-hidden">
+                <div class="max-w-7xl mx-auto relative z-10">
+                    <div class="text-center mb-16 reveal">
+                        <h2 class="text-3xl md:text-5xl font-extrabold text-white mb-4 drop-shadow-xl">
+                            Leadership Driving <span class="text-primary">Innovation</span>
+                        </h2>
+                        <p class="text-slate-300 text-lg max-w-2xl mx-auto font-medium">
+                            The core team shaping OptCELL Global's deep-tech vision and operational excellence. Click on a member to read their full statement.
+                        </p>
+                    </div>
+
+                    <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+                        <!-- Member 1: A R Shalini -->
+                        <!-- ADDED: onclick handler to open modal -->
+                        <div class="group bg-slate-900/40 backdrop-blur-md border border-white/10 p-8 rounded-2xl hover:bg-slate-900/60 hover:border-primary/50 transition-all duration-300 hover:-translate-y-2 shadow-lg tilt-card reveal flex flex-col items-center text-center cursor-pointer" onclick="openLeaderModal('shalini')">
+                            <div class="w-24 h-24 rounded-full overflow-hidden border-2 border-primary mb-6 shadow-lg group-hover:scale-105 transition-transform duration-300">
+                                <img src="https://img.sanishtech.com/u/cc085d22c76786707dcbfa7be91671a6.jpg">
+                            </div>
+                            <h3 class="text-xl font-bold text-white mb-1">A R Shalini</h3>
+                            <p class="text-primary text-xs font-bold uppercase tracking-wide mb-4 h-8 flex items-center justify-center">Strategic Operations & R&D Strategy</p>
+                            
+                            <!-- QUOTE REDUCED FOR CARD PREVIEW -->
+                            <p class="text-slate-400 text-xs italic leading-relaxed mb-6 flex-grow">
+                                “At the intersection of strategy and innovation, we don’t just plan the future—we build it...”
+                            </p>
+                            
+                            <span class="text-white hover:text-primary transition-colors text-2xl mt-auto"><i class="fab fa-linkedin"></i></span>
+                        </div>
+                        
+                        <!-- Member 2: Amareshwar Karatagi -->
+                        <div class="group bg-slate-900/40 backdrop-blur-md border border-white/10 p-8 rounded-2xl hover:bg-slate-900/60 hover:border-primary/50 transition-all duration-300 hover:-translate-y-2 shadow-lg tilt-card reveal flex flex-col items-center text-center cursor-pointer" onclick="openLeaderModal('amareshwar')">
+                            <div class="w-24 h-24 rounded-full overflow-hidden border-2 border-green-500 mb-6 shadow-lg group-hover:scale-105 transition-transform duration-300">
+                                <img src="https://img.sanishtech.com/u/f77fbf7f2ab4ab9f602bd498dc5a75fb.jpg">
+                            </div>
+                            <h3 class="text-xl font-bold text-white mb-1">Amareshwar Karatagi</h3>
+                            <p class="text-primary text-xs font-bold uppercase tracking-wide mb-4 h-8 flex items-center justify-center">Engineering, Innovation & Gov Partnerships</p>
+                            
+                            <!-- QUOTE REDUCED FOR CARD PREVIEW -->
+                            <p class="text-slate-400 text-xs italic leading-relaxed mb-6 flex-grow">
+                                “Innovation thrives when bold engineering meets powerful collaboration...”
+                            </p>
+
+                            <span class="text-white hover:text-primary transition-colors text-2xl mt-auto"><i class="fab fa-linkedin"></i></span>
+                        </div>
+
+                        <!-- Member 3: Rushit Jani -->
+                        <div class="group bg-slate-900/40 backdrop-blur-md border border-white/10 p-8 rounded-2xl hover:bg-slate-900/60 hover:border-primary/50 transition-all duration-300 hover:-translate-y-2 shadow-lg tilt-card reveal flex flex-col items-center text-center cursor-pointer" onclick="openLeaderModal('rushit')">
+                            <div class="w-24 h-24 rounded-full overflow-hidden border-2 border-primary mb-6 shadow-lg group-hover:scale-105 transition-transform duration-300">
+                                <img src="https://img.sanishtech.com/u/558ede9472539a3e0f8c03d4694251b4.jpg">
+                            </div>
+                            <h3 class="text-xl font-bold text-white mb-1">Rushit Jani</h3>
+                            <p class="text-primary text-xs font-bold uppercase tracking-wide mb-4 h-8 flex items-center justify-center">Technology, AI/ML Systems & Digital Transformation</p>
+                            
+                            <!-- QUOTE REDUCED FOR CARD PREVIEW -->
+                            <p class="text-slate-400 text-xs italic leading-relaxed mb-6 flex-grow">
+                                “In a world driven by data and digital change, we are the architects of a smarter tomorrow...”
+                            </p>
+
+                            <span class="text-white hover:text-primary transition-colors text-2xl mt-auto"><i class="fab fa-linkedin"></i></span>
+                        </div>
+
+                        <!-- Member 4: Stavan Pandya -->
+                        <div class="group bg-slate-900/40 backdrop-blur-md border border-white/10 p-8 rounded-2xl hover:bg-slate-900/60 hover:border-primary/50 transition-all duration-300 hover:-translate-y-2 shadow-lg tilt-card reveal flex flex-col items-center text-center cursor-pointer" onclick="openLeaderModal('stavan')">
+                            <div class="w-24 h-24 rounded-full overflow-hidden border-2 border-primary mb-6 shadow-lg group-hover:scale-105 transition-transform duration-300">
+                                <img src="https://img.sanishtech.com/u/6a89b6e65ebde2b82e85adbf5b2169ba.png">
+                            </div>
+                            <h3 class="text-xl font-bold text-white mb-1">Stavan Pandya</h3>
+                            <p class="text-primary text-xs font-bold uppercase tracking-wide mb-4 h-8 flex items-center justify-center">Product Engineering & Innovation</p>
+                            
+                            <!-- QUOTE REDUCED FOR CARD PREVIEW -->
+                            <p class="text-slate-400 text-xs italic leading-relaxed mb-6 flex-grow">
+                                “Great products don’t just meet needs—they inspire change...”
+                            </p>
+
+                            <span class="text-white hover:text-primary transition-colors text-2xl mt-auto"><i class="fab fa-linkedin"></i></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ================= NEW SECTION: VISION & CTA ================= -->
+            <div class="py-24 px-4 relative overflow-hidden">
+                <div class="max-w-4xl mx-auto relative z-10 text-center">
+                    <!-- 1. OUR VISION -->
+                    <div class="mb-24 reveal">
+                        <div class="inline-flex items-center justify-center w-12 h-12 rounded-lg border-2 border-primary text-primary mb-6 shadow-[0_0_15px_rgba(37,99,235,0.3)] bg-slate-900/50 backdrop-blur-sm">
+                            <i class="fas fa-columns text-2xl"></i>
+                        </div>
+                        <h2 class="text-4xl md:text-5xl font-extrabold text-white mb-6 drop-shadow-xl">
+                            Our <span class="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-500">Vision</span>
+                        </h2>
+                        <p class="text-slate-100 text-lg md:text-xl leading-relaxed font-light max-w-3xl mx-auto drop-shadow-md shadow-black">
+                            To create a collaborative ecosystem where students, institutions, startups, and industry leaders converge to drive innovation in deep tech and core engineering. We believe in empowering the next generation through hands-on R&D, world-class infrastructure, and meaningful industry partnerships.
+                        </p>
+                    </div>
+
+                    <!-- 2. CTA: JOURNEY -->
+                    <div class="reveal">
+                        <h2 class="text-4xl md:text-6xl font-extrabold text-white mb-6 tracking-tight drop-shadow-xl">
+                            Ready to Start Your <span class="text-transparent bg-clip-text bg-gradient-to-r from-blue-500 to-purple-500 drop-shadow-none">Journey?</span>
+                        </h2>
+                        <p class="text-slate-200 text-lg mb-10 drop-shadow-md">
+                            Join OptCELL Global's internship programs and accelerate your career in deep tech and engineering
+                        </p>
+                        <button onclick="navigateTo('programs')" class="group relative inline-flex items-center justify-center px-10 py-4 text-lg font-bold text-white transition-all duration-200 bg-gradient-to-r from-blue-600 to-purple-600 rounded-full hover:shadow-[0_0_20px_rgba(124,58,237,0.5)] hover:scale-105 focus:outline-none ring-offset-2 focus:ring-2 ring-purple-500 shadow-lg">
+                            <span>Apply Now for Internship</span>
+                            <i class="fas fa-arrow-right ml-2 group-hover:translate-x-1 transition-transform"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+        </div> <!-- End of #home -->
+
+        <!-- ================= PROGRAMS PAGE (MERGED) ================= -->
+        <div id="programs" class="page-section hidden py-16 px-4">
+            <!-- Header -->
+            <header class="text-center mb-12">
+                <h1 class="text-4xl sm:text-5xl font-extrabold mb-3 text-white drop-shadow-md">
+                    Our <span class="bg-blue-600/30 backdrop-blur-sm px-2 rounded-lg text-white border border-blue-400/30">Internship Programs</span>
+                </h1>
+                <p class="text-xl text-gray-100 max-w-2xl mx-auto drop-shadow-sm font-medium">
+                    Join 90-day Deep Tech tracks designed for 80% hands-on project training to transform you into an industry-ready engineer.
+                </p>
+            </header>
+
+            <!-- R&D Features -->
+            <section class="mb-16 px-4 sm:px-8">
+                <div class="max-w-4xl mx-auto p-6 md:p-10 bg-white/95 backdrop-blur-sm dark:bg-slate-800/95 rounded-xl shadow-2xl">
+                    <h2 class="text-3xl font-bold text-slate-800 dark:text-white mb-6 text-center">Why the IP Product R&D Track Stands Apart</h2>
+
+                    <div class="grid md:grid-cols-2 gap-6 text-lg text-gray-700 dark:text-gray-300">
+                        <div class="flex items-start space-x-3">
+                            <span class="font-bold text-primary dark:text-sky-400 text-xl">1.</span>
+                            <p><span class="font-semibold text-gray-900 dark:text-white">Elite R&D Exposure:</span> Work on cutting-edge research projects with patent potential.</p>
+                        </div>
+                        <div class="flex items-start space-x-3">
+                            <span class="font-bold text-primary dark:text-sky-400 text-xl">2.</span>
+                            <p><span class="font-semibold text-gray-900 dark:text-white">Innovation Ecosystem:</span> Access to government partnerships and industry collaborations.</p>
+                        </div>
+                        <div class="flex items-start space-x-3">
+                            <span class="font-bold text-primary dark:text-sky-400 text-xl">3.</span>
+                            <p><span class="font-semibold text-gray-900 dark:text-white">Limited Seats:</span> Only top 50 students selected through rigorous interviews.</p>
+                        </div>
+                        <div class="flex items-start space-x-3">
+                            <span class="font-bold text-primary dark:text-sky-400 text-xl">4.</span>
+                            <p><span class="font-semibold text-gray-900 dark:text-white">Industry Mentors:</span> Learn from experts with deep tech and core engineering expertise.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- All Tracks Heading -->
+            <section class="max-w-6xl mx-auto mb-8 px-4 sm:px-8">
+                <h2 class="text-3xl sm:text-4xl font-extrabold text-white text-center drop-shadow-md">
+                    All R&D Tracks
+                </h2>
+            </section>
+
+            <!-- Three Cards Section -->
+            <main class="max-w-6xl mx-auto mb-16 px-4 sm:px-8 flex-grow">
+                <div class="grid gap-8 lg:grid-cols-3 md:grid-cols-2 items-stretch">
+
+                    <!-- Card 1 -->
+                    <div class="program-card">
+                        <div class="card-header deep-tech-header">
+                            <div class="featured-badge">FEATURED</div>
+                            <span class="header-icon">⭐</span>
+                            <h2 class="card-title">IP Product & R&D Deep Tech Track</h2>
+                            <p class="card-subtitle">Advanced Research & Patent-Level Innovation</p>
+                        </div>
+
+                        <div class="card-content">
+                            <div class="price-row">
+                                <span class="price-new">₹30,000</span>
+                                <span class="price-old">₹1,20,000</span>
+                            </div>
+
+                            <p class="details-row">Duration: <span class="font-semibold">3 Months</span></p>
+                            <p class="details-row">Seats: <span class="font-semibold">50 Students, Interview-Based</span></p>
+
+                            <ul class="feature-list space-y-2">
+                                <li class="feature-item">Patent & IP Development</li>
+                                <li class="feature-item">Advanced AI/ML & Quantum Computing</li>
+                                <li class="feature-item">Direct Industry Mentor Access</li>
+                                <li class="feature-item">Publication Opportunities</li>
+                                <li class="feature-item">Exclusive Placement Pipeline</li>
+                            </ul>
+                        </div>
+
+                        <div class="card-footer">
+                            <button onclick="navigateTo('contact')" class="apply-btn">Apply Now</button>
+                        </div>
+                    </div>
+
+                    <!-- Card 2 -->
+                    <div class="program-card">
+                        <div class="card-header advanced-header">
+                            <span class="header-icon">⚡</span>
+                            <h2 class="card-title">Industry Advanced-Level Internship</h2>
+                            <p class="card-subtitle">Master Industrial Systems & Live Projects</p>
+                        </div>
+
+                        <div class="card-content">
+                            <div class="price-row">
+                                <span class="price-new">₹15,000</span>
+                                <span class="price-old">₹37,500</span>
+                            </div>
+
+                            <p class="details-row">Duration: <span class="font-semibold">3 Months</span></p>
+                            <p class="details-row">Seats: <span class="font-semibold">Limited Seats</span></p>
+
+                            <ul class="feature-list space-y-2">
+                                <li class="feature-item">Power Electronics & Drives</li>
+                                <li class="feature-item">Industry 5.0 & Automation</li>
+                                <li class="feature-item">Live Industrial Projects</li>
+                                <li class="feature-item">Entrepreneurship Training</li>
+                                <li class="feature-item">High Placement Priority</li>
+                            </ul>
+                        </div>
+
+                        <div class="card-footer">
+                            <button onclick="navigateTo('contact')" class="apply-btn">Apply Now</button>
+                        </div>
+                    </div>
+
+                    <!-- Card 3 -->
+                    <div class="program-card">
+                        <div class="card-header entry-level-header">
+                            <span class="header-icon">👥</span>
+                            <h2 class="card-title">Industry Entry-Level Internship</h2>
+                            <p class="card-subtitle">For Undergraduate & Beginner Engineers</p>
+                        </div>
+
+                        <div class="card-content">
+                            <div class="price-row">
+                                <span class="price-new">₹7,500</span>
+                                <span class="price-old">₹18,750</span>
+                            </div>
+
+                            <p class="details-row">Duration: <span class="font-semibold">3 Months</span></p>
+                            <p class="details-row">Seats: <span class="font-semibold">150 Students</span></p>
+
+                            <ul class="feature-list space-y-2">
+                                <li class="feature-item">Hands-On Core Tech Training</li>
+                                <li class="feature-item">Embedded Systems Basics</li>
+                                <li class="feature-item">PLC/SCADA/DCS Fundamentals</li>
+                                <li class="feature-item">Real-Time Project Work</li>
+                                <li class="feature-item">Official Industry Certification</li>
+                            </ul>
+                        </div>
+
+                        <div class="card-footer">
+                            <button onclick="navigateTo('contact')" class="apply-btn">Apply Now</button>
+                        </div>
+                    </div>
+
+                </div>
+            </main>
+
+            <!-- What All Programs Offer -->
+            <section class="max-w-6xl mx-auto mb-16 px-4 sm:px-8">
+                <h2 class="text-3xl font-extrabold text-white text-center mb-10 drop-shadow-md">What All Programs Offer</h2>
+
+                <div class="grid md:grid-cols-3 gap-8">
+                    <div class="offer-box">
+                        <div class="offer-icon bg-blue-100 dark:bg-blue-900"><svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.75 17L9 20l-1 1h8l-1-1-0.75-3M3 13h18M5 17h14M3 21h18"/></svg></div>
+                        <h3 class="offer-title">80% Practical Training</h3>
+                        <p class="offer-desc">Focus on real-world implementation, code reviews, and project deployment.</p>
+                    </div>
+
+                    <div class="offer-box">
+                        <div class="offer-icon bg-blue-100 dark:bg-blue-900"><svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6V4m0 2a2 2 0 002 2h-4a2 2 0 002-2m-4 0h4m-4 6V9m4-3a2 2 0 002 2h-4a2 2 0 002-2m-4 0h4m-4 6v-3m4 3v-3m-4 3H5a2 2 0 01-2-2V9a2 2 0 012-2h14a2 2 0 012 2v7a2 2 0 01-2 2h-3"/></svg></div>
+                        <h3 class="offer-title">Live Industry Projects</h3>
+                        <p class="offer-desc">Contribute to AI, 6G, EV, or Quantum development streams.</p>
+                    </div>
+
+                    <div class="offer-box">
+                        <div class="offer-icon bg-blue-100 dark:bg-blue-900"><svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20v-2a3 3 0 00-5.356-1.857M17 20H7m0 0v-2a3 3 0 015.356-1.857M7 20h5m5.356-1.857A11.955 11.955 0 0112 2.944c2.812 0 5.42 1.054 7.424 2.964M4.644 18.143A11.955 11.955 0 0012 21.056c-2.812 0-5.42-1.054-7.424-2.964"/></svg></div>
+                        <h3 class="offer-title">Expert Mentorship</h3>
+                        <p class="offer-desc">Get guidance from senior engineers and deep tech professionals.</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Final CTA -->
+            <section class="max-w-6xl mx-auto mb-16 p-8 rounded-xl shadow-2xl text-center bg-white/95 backdrop-blur-sm dark:bg-slate-800/95">
+                <h2 class="text-2xl font-bold text-slate-800 dark:text-white mb-2">Ready to Apply?</h2>
+                <p class="text-slate-600 dark:text-slate-300 mb-6">Take the next step in your engineering career. Limited seats — apply now.</p>
+
+                <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                    <button onclick="navigateTo('contact')" class="bg-secondary hover:bg-secondary-hover text-white font-bold py-3 px-8 rounded-lg transition transform hover:scale-105">
+                        Apply Now
+                    </button>
+
+                    <button onclick="navigateTo('contact')" class="border-2 border-secondary text-secondary font-bold py-3 px-8 rounded-lg hover:bg-secondary hover:text-white transition">
+                        Contact Us
+                    </button>
+                </div>
+            </section>
+        </div>
+        
+        <!-- ABOUT PAGE -->
+        <div id="about" class="page-section hidden py-16 px-4 relative z-10">
+            <div class="max-w-7xl mx-auto pt-12">
+                
+                <!-- Header Section -->
+                <div class="text-center mb-16">
+                    <div class="w-16 h-16 bg-white/10 backdrop-blur-sm rounded-full flex items-center justify-center mx-auto mb-6 text-white text-3xl shadow-lg">
+                        <i class="fas fa-laptop-code"></i>
+                    </div>
+                    <h1 class="text-4xl md:text-6xl font-extrabold text-white mb-6 drop-shadow-xl">
+                        OptCELL <span class="text-sky-300">Global</span>
+                    </h1>
+                    <p class="text-slate-200 text-lg leading-relaxed max-w-4xl mx-auto mb-8">
+                        OptCELL GLOBAL is your trusted partner in innovation and sustainability. We collaborate with businesses, educational institutions, and entrepreneurs to foster a thriving ecosystem for evolving ideas and solutions.
+                    </p>
+                    <p class="text-slate-300 text-base max-w-3xl mx-auto mb-12 italic">
+                        "Our Mission is to ignite innovation and catalyze exponential growth through dynamic collaborations across Startups, Multinational Corporations, Universities, Government Initiatives, R&D Institutions, and Financial entities."
+                    </p>
+
+                    <!-- Mission & Vision Grid -->
+                    <div class="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto">
+                        <!-- Mission -->
+                        <div class="bg-white/95 backdrop-blur-sm dark:bg-slate-800/95 p-8 rounded-2xl shadow-xl text-left border-l-4 border-primary hover:transform hover:-translate-y-1 transition duration-300">
+                            <h2 class="text-2xl font-bold text-primary dark:text-sky-400 mb-4 flex items-center gap-3">
+                                <i class="fas fa-bullseye text-3xl"></i> Our Mission
+                            </h2>
+                            <p class="text-slate-600 dark:text-slate-300 leading-relaxed">
+                                To create a collaborative innovation ecosystem where students, institutions, startups, and industry leaders converge to solve real-world challenges through deep tech and core engineering.
+                            </p>
+                        </div>
+
+                        <!-- Vision -->
+                        <div class="bg-white/95 backdrop-blur-sm dark:bg-slate-800/95 p-8 rounded-2xl shadow-xl text-left border-l-4 border-secondary hover:transform hover:-translate-y-1 transition duration-300">
+                            <h2 class="text-2xl font-bold text-secondary mb-4 flex items-center gap-3">
+                                <i class="fas fa-eye text-3xl"></i> Our Vision
+                            </h2>
+                            <p class="text-slate-600 dark:text-slate-300 leading-relaxed">
+                                To be the leading platform for collaborative growth, empowering the next generation of engineers and innovators while driving breakthrough solutions in deep tech domains.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Core Values Section -->
+                <div class="mb-20">
+                    <div class="text-center mb-12">
+                        <h2 class="text-3xl md:text-4xl font-bold text-white mb-4">Our <span class="text-secondary">Core Values</span></h2>
+                        <div class="h-1 w-16 bg-white/30 mx-auto rounded-full"></div>
+                    </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                        <!-- Value 1 -->
+                        <div class="bg-white dark:bg-slate-800 p-6 rounded-xl shadow-lg text-center hover:shadow-2xl transition duration-300 transform hover:scale-105">
+                            <div class="w-16 h-16 bg-primary/10 text-primary dark:text-sky-400 rounded-full flex items-center justify-center mx-auto mb-4 text-2xl">
+                                <i class="fas fa-lightbulb"></i>
+                            </div>
+                            <h3 class="text-lg font-bold text-slate-800 dark:text-white mb-2">Innovation First</h3>
+                            <p class="text-sm text-slate-500 dark:text-slate-400">Driving breakthrough solutions in deep tech and core engineering.</p>
+                        </div>
+
+                        <!-- Value 2 -->
+                        <div class="bg-white dark:bg-slate-800 p-6 rounded-xl shadow-lg text-center hover:shadow-2xl transition duration-300 transform hover:scale-105">
+                            <div class="w-16 h-16 bg-primary/10 text-primary dark:text-sky-400 rounded-full flex items-center justify-center mx-auto mb-4 text-2xl">
+                                <i class="fas fa-users-gear"></i>
+                            </div>
+                            <h3 class="text-lg font-bold text-slate-800 dark:text-white mb-2">Collaborative Growth</h3>
+                            <p class="text-sm text-slate-500 dark:text-slate-400">Building ecosystems that connect students, industry, and institutions.</p>
+                        </div>
+
+                        <!-- Value 3 -->
+                        <div class="bg-white dark:bg-slate-800 p-6 rounded-xl shadow-lg text-center hover:shadow-2xl transition duration-300 transform hover:scale-105">
+                            <div class="w-16 h-16 bg-primary/10 text-primary dark:text-sky-400 rounded-full flex items-center justify-center mx-auto mb-4 text-2xl">
+                                <i class="fas fa-medal"></i>
+                            </div>
+                            <h3 class="text-lg font-bold text-slate-800 dark:text-white mb-2">Excellence</h3>
+                            <p class="text-sm text-slate-500 dark:text-slate-400">Maintaining highest standards in R&D and training programs.</p>
+                        </div>
+
+                        <!-- Value 4 -->
+                        <div class="bg-white dark:bg-slate-800 p-6 rounded-xl shadow-lg text-center hover:shadow-2xl transition duration-300 transform hover:scale-105">
+                            <div class="w-16 h-16 bg-primary/10 text-primary dark:text-sky-400 rounded-full flex items-center justify-center mx-auto mb-4 text-2xl">
+                                <i class="fas fa-shield-halved"></i>
+                            </div>
+                            <h3 class="text-lg font-bold text-slate-800 dark:text-white mb-2">Partnership</h3>
+                            <p class="text-sm text-slate-500 dark:text-slate-400">Creating meaningful collaborations across sectors.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Partnerships Section -->
+                <div class="mb-20">
+                    <div class="text-center mb-12">
+                        <h2 class="text-3xl md:text-4xl font-bold text-white mb-2">Strategic <span class="text-secondary">Partnerships</span></h2>
+                        <p class="text-slate-300">Collaborating with leading institutions, government bodies, and industry partners</p>
+                    </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <!-- Partner Card 1 -->
+                        <div class="bg-white/10 backdrop-blur-md border border-white/20 p-6 rounded-xl hover:bg-white/20 transition duration-300">
+                            <h3 class="text-xl font-bold text-sky-300 mb-2">Government Initiatives</h3>
+                            <p class="text-slate-200 text-sm">Active participation in government-backed innovation programs and skill development initiatives.</p>
+                        </div>
+
+                        <!-- Partner Card 2 -->
+                        <div class="bg-white/10 backdrop-blur-md border border-white/20 p-6 rounded-xl hover:bg-white/20 transition duration-300">
+                            <h3 class="text-xl font-bold text-sky-300 mb-2">VTU VRIF-TCOE</h3>
+                            <p class="text-slate-200 text-sm">Strategic partnership for internship programs and academic collaboration.</p>
+                        </div>
+
+                        <!-- Partner Card 3 -->
+                        <div class="bg-white/10 backdrop-blur-md border border-white/20 p-6 rounded-xl hover:bg-white/20 transition duration-300">
+                            <h3 class="text-xl font-bold text-sky-300 mb-2">Industry Partners</h3>
+                            <p class="text-slate-200 text-sm">Deep connections with leading corporations for real world project exposure.</p>
+                        </div>
+
+                        <!-- Partner Card 4 -->
+                        <div class="bg-white/10 backdrop-blur-md border border-white/20 p-6 rounded-xl hover:bg-white/20 transition duration-300">
+                            <h3 class="text-xl font-bold text-sky-300 mb-2">Startup Ecosystem</h3>
+                            <p class="text-slate-200 text-sm">Supporting innovation-driven startups through mentorship and infrastructure.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- GALLERY SECTION START -->
+                <div class="pt-20">
+                    <div class="text-center mb-12 relative">
+                        <h2 class="text-3xl md:text-4xl font-bold text-white mb-2">Our <span class="text-secondary">Innovation Gallery</span></h2>
+                        <p class="text-slate-300">A visual journey through our R&D labs, facilities, and collaborative events.</p>
+                    </div>
+                    
+                    <div id="about-gallery" class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+                        <!-- Gallery content inserted by JS -->
+                    </div>
+                </div>
+                <!-- GALLERY SECTION END -->
+
+            </div>
+        
+        <!-- INFRASTRUCTURE PAGE (UPDATED CONTENT) -->
+            <div id="infrastructure" class="page-section hidden py-16 px-4 relative z-10">
+                <!-- Hero -->
+                <div class="max-w-7xl mx-auto pt-12 mb-16 text-center">
+                    <h1 class="text-4xl md:text-6xl font-extrabold text-white mb-6 drop-shadow-xl reveal">
+                        World-Class <span class="text-sky-300">Infrastructure</span>
+                    </h1>
+                    <p class="text-slate-200 text-lg leading-relaxed max-w-4xl mx-auto mb-8 reveal delay-100">
+                        State-of-the-art facilities designed for innovation, research, and collaborative growth. From advanced R&D laboratories to modern training zones, every space is optimized for excellence.
+                    </p>
+                </div>
+
+                <!-- Facility 1: Innovation Hall -->
+                <div class="max-w-7xl mx-auto mb-20 reveal">
+                    <div class="flex flex-col md:flex-row items-center gap-12 bg-white/95 backdrop-blur-sm dark:bg-slate-800/95 rounded-2xl p-8 shadow-xl border-l-8 border-primary">
+                        <div class="w-full md:w-1/2 space-y-6 order-2 md:order-1">
+                            <div class="flex items-center gap-4">
+                                <div class="w-16 h-16 rounded-full bg-primary/10 flex items-center justify-center text-primary dark:text-sky-400 text-3xl shadow-inner">
+                                    <i class="far fa-lightbulb"></i>
+                                </div>
+                                <h2 class="text-3xl font-bold text-slate-800 dark:text-white">Innovation Hall</h2>
+                            </div>
+                            <p class="text-slate-600 dark:text-slate-300 text-lg leading-relaxed">State-of-the-art collaboration spaces designed for brainstorming, ideation, and team projects. Fosters a creative environment for breakthrough ideas.</p>
+                            
+                            <h3 class="text-lg font-bold text-slate-700 dark:text-slate-200 border-b border-slate-200 dark:border-slate-600 pb-2 mb-3">Key Features:</h3>
+                            <ul class="space-y-3">
+                                <li class="flex items-center text-slate-700 dark:text-slate-300"><i class="fas fa-check-circle text-secondary mr-3 text-lg"></i>Holographic display systems</li>
+                                <li class="flex items-center text-slate-700 dark:text-slate-300"><i class="fas fa-check-circle text-secondary mr-3 text-lg"></i>Modern meeting spaces</li>
+                                <li class="flex items-center text-slate-700 dark:text-slate-300"><i class="fas fa-check-circle text-secondary mr-3 text-lg"></i>Collaborative workstations</li>
+                                <li class="flex items-center text-slate-700 dark:text-slate-300"><i class="fas fa-check-circle text-secondary mr-3 text-lg"></i>Digital whiteboards</li>
+                                <li class="flex items-center text-slate-700 dark:text-slate-300"><i class="fas fa-check-circle text-secondary mr-3 text-lg"></i>Presentation facilities</li>
+                            </ul>
+                        </div>
+                        <div class="w-full md:w-1/2 order-1 md:order-2 h-80 overflow-hidden rounded-xl shadow-2xl relative group">
+                            <img src="https://images.unsplash.com/photo-1497366216548-37526070297c?q=80&w=1000&auto=format&fit=crop" alt="Innovation Hall" class="w-full h-full object-cover transform group-hover:scale-110 transition duration-700">
+                            <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Facility 2: R&D Laboratory -->
+                <div class="max-w-7xl mx-auto mb-20 reveal">
+                    <div class="flex flex-col md:flex-row items-center gap-12 bg-white/95 backdrop-blur-sm dark:bg-slate-800/95 rounded-2xl p-8 shadow-xl border-r-8 border-secondary">
+                        <div class="w-full md:w-1/2 h-80 overflow-hidden rounded-xl shadow-2xl relative group order-1">
+                            <img src="https://images.unsplash.com/photo-1581093588401-fbb62a02f120?q=80&w=1000&auto=format&fit=crop" alt="R&D Laboratory" class="w-full h-full object-cover transform group-hover:scale-110 transition duration-700">
+                            <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
+                        </div>
+                        <div class="w-full md:w-1/2 space-y-6 order-2">
+                            <div class="flex items-center gap-4 justify-end md:justify-start">
+                                <h2 class="text-3xl font-bold text-slate-800 dark:text-white order-2 md:order-1">R&D Laboratory</h2>
+                                <div class="w-16 h-16 rounded-full bg-secondary/10 flex items-center justify-center text-secondary text-3xl shadow-inner order-1 md:order-2">
+                                    <i class="fas fa-microscope"></i>
+                                </div>
+                            </div>
+                            <p class="text-slate-600 dark:text-slate-300 text-lg leading-relaxed md:text-left text-right">Advanced testing and development facilities equipped with cutting-edge technology for deep tech research and prototyping.</p>
+                            
+                            <h3 class="text-lg font-bold text-slate-700 dark:text-slate-200 border-b border-slate-200 dark:border-slate-600 pb-2 mb-3 md:text-left text-right">Key Features:</h3>
+                            <ul class="space-y-3 md:text-left text-right">
+                                <li class="flex items-center justify-end md:justify-start text-slate-700 dark:text-slate-300"><i class="fas fa-check-circle text-primary mr-3 text-lg md:inline hidden"></i>Precision testing equipment<i class="fas fa-check-circle text-primary ml-3 text-lg md:hidden inline"></i></li>
+                                <li class="flex items-center justify-end md:justify-start text-slate-700 dark:text-slate-300"><i class="fas fa-check-circle text-primary mr-3 text-lg md:inline hidden"></i>Advanced measurement tools<i class="fas fa-check-circle text-primary ml-3 text-lg md:hidden inline"></i></li>
+                                <li class="flex items-center justify-end md:justify-start text-slate-700 dark:text-slate-300"><i class="fas fa-check-circle text-primary mr-3 text-lg md:inline hidden"></i>Prototype development stations<i class="fas fa-check-circle text-primary ml-3 text-lg md:hidden inline"></i></li>
+                                <li class="flex items-center justify-end md:justify-start text-slate-700 dark:text-slate-300"><i class="fas fa-check-circle text-primary mr-3 text-lg md:inline hidden"></i>Quality assurance facilities<i class="fas fa-check-circle text-primary ml-3 text-lg md:hidden inline"></i></li>
+                                <li class="flex items-center justify-end md:justify-start text-slate-700 dark:text-slate-300"><i class="fas fa-check-circle text-primary mr-3 text-lg md:inline hidden"></i>Data analysis systems<i class="fas fa-check-circle text-primary ml-3 text-lg md:hidden inline"></i></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Facility 3: Training Zones -->
+                <div class="max-w-7xl mx-auto mb-20 reveal">
+                    <div class="flex flex-col md:flex-row items-center gap-12 bg-white/95 backdrop-blur-sm dark:bg-slate-800/95 rounded-2xl p-8 shadow-xl border-l-8 border-primary">
+                        <div class="w-full md:w-1/2 space-y-6 order-2 md:order-1">
+                            <div class="flex items-center gap-4">
+                                <div class="w-16 h-16 rounded-full bg-primary/10 flex items-center justify-center text-primary dark:text-sky-400 text-3xl shadow-inner">
+                                    <i class="fas fa-graduation-cap"></i>
+                                </div>
+                                <h2 class="text-3xl font-bold text-slate-800 dark:text-white">Training Zones</h2>
+                            </div>
+                            <p class="text-slate-600 dark:text-slate-300 text-lg leading-relaxed">Modern learning environments designed for hands-on practical training and skill development. Where theory meets practice.</p>
+                            
+                            <h3 class="text-lg font-bold text-slate-700 dark:text-slate-200 border-b border-slate-200 dark:border-slate-600 pb-2 mb-3">Key Features:</h3>
+                            <ul class="space-y-3">
+                                <li class="flex items-center text-slate-700 dark:text-slate-300"><i class="fas fa-check-circle text-secondary mr-3 text-lg"></i>Computer labs with latest software</li>
+                                <li class="flex items-center text-slate-700 dark:text-slate-300"><i class="fas fa-check-circle text-secondary mr-3 text-lg"></i>Practical workstations</li>
+                                <li class="flex items-center text-slate-700 dark:text-slate-300"><i class="fas fa-check-circle text-secondary mr-3 text-lg"></i>Interactive learning tools</li>
+                                <li class="flex items-center text-slate-700 dark:text-slate-300"><i class="fas fa-check-circle text-secondary mr-3 text-lg"></i>Video conferencing facilities</li>
+                                <li class="flex items-center text-slate-700 dark:text-slate-300"><i class="fas fa-check-circle text-secondary mr-3 text-lg"></i>Project presentation areas</li>
+                            </ul>
+                        </div>
+                        <div class="w-full md:w-1/2 order-1 md:order-2 h-80 overflow-hidden rounded-xl shadow-2xl relative group">
+                            <img src="https://images.unsplash.com/photo-1524178232363-1fb2b075b655?q=80&w=1000&auto=format&fit=crop" alt="Training Zones" class="w-full h-full object-cover transform group-hover:scale-110 transition duration-700">
+                            <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Facility 4: Test Bench Facilities -->
+                <div class="max-w-7xl mx-auto mb-20 reveal">
+                    <div class="flex flex-col md:flex-row items-center gap-12 bg-white/95 backdrop-blur-sm dark:bg-slate-800/95 rounded-2xl p-8 shadow-xl border-r-8 border-secondary">
+                        <div class="w-full md:w-1/2 h-80 overflow-hidden rounded-xl shadow-2xl relative group order-1">
+                            <img src="https://images.unsplash.com/photo-1581092335397-9583eb92d232?q=80&w=1000&auto=format&fit=crop" alt="Test Bench Facilities" class="w-full h-full object-cover transform group-hover:scale-110 transition duration-700">
+                            <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
+                        </div>
+                        <div class="w-full md:w-1/2 space-y-6 order-2">
+                            <div class="flex items-center gap-4 justify-end md:justify-start">
+                                <h2 class="text-3xl font-bold text-slate-800 dark:text-white order-2 md:order-1">Test Bench Facilities</h2>
+                                <div class="w-16 h-16 rounded-full bg-secondary/10 flex items-center justify-center text-secondary text-3xl shadow-inner order-1 md:order-2">
+                                    <i class="fas fa-layer-group"></i>
+                                </div>
+                            </div>
+                            <p class="text-slate-600 dark:text-slate-300 text-lg leading-relaxed md:text-left text-right">Specialized testing and validation areas for engineering projects and prototypes. Ensuring quality and precision.</p>
+                            
+                            <h3 class="text-lg font-bold text-slate-700 dark:text-slate-200 border-b border-slate-200 dark:border-slate-600 pb-2 mb-3 md:text-left text-right">Key Features:</h3>
+                            <ul class="space-y-3 md:text-left text-right">
+                                <li class="flex items-center justify-end md:justify-start text-slate-700 dark:text-slate-300"><i class="fas fa-check-circle text-primary mr-3 text-lg md:inline hidden"></i>Precision testing equipment<i class="fas fa-check-circle text-primary ml-3 text-lg md:hidden inline"></i></li>
+                                <li class="flex items-center justify-end md:justify-start text-slate-700 dark:text-slate-300"><i class="fas fa-check-circle text-primary mr-3 text-lg md:inline hidden"></i>Advanced measurement tools<i class="fas fa-check-circle text-primary ml-3 text-lg md:hidden inline"></i></li>
+                                <li class="flex items-center justify-end md:justify-start text-slate-700 dark:text-slate-300"><i class="fas fa-check-circle text-primary mr-3 text-lg md:inline hidden"></i>Prototype development stations<i class="fas fa-check-circle text-primary ml-3 text-lg md:hidden inline"></i></li>
+                                <li class="flex items-center justify-end md:justify-start text-slate-700 dark:text-slate-300"><i class="fas fa-check-circle text-primary mr-3 text-lg md:inline hidden"></i>Quality assurance facilities<i class="fas fa-check-circle text-primary ml-3 text-lg md:hidden inline"></i></li>
+                                <li class="flex items-center justify-end md:justify-start text-slate-700 dark:text-slate-300"><i class="fas fa-check-circle text-primary mr-3 text-lg md:inline hidden"></i>Data analysis systems<i class="fas fa-check-circle text-primary ml-3 text-lg md:hidden inline"></i></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Facility 5: Co-Working Spaces -->
+                <div class="max-w-7xl mx-auto mb-20 reveal">
+                    <div class="flex flex-col md:flex-row items-center gap-12 bg-white/95 backdrop-blur-sm dark:bg-slate-800/95 rounded-2xl p-8 shadow-xl border-l-8 border-primary">
+                        <div class="w-full md:w-1/2 space-y-6 order-2 md:order-1">
+                            <div class="flex items-center gap-4">
+                                <div class="w-16 h-16 rounded-full bg-primary/10 flex items-center justify-center text-primary dark:text-sky-400 text-3xl shadow-inner">
+                                    <i class="fas fa-laptop-code"></i>
+                                </div>
+                                <h2 class="text-3xl font-bold text-slate-800 dark:text-white">Co-Working Spaces</h2>
+                            </div>
+                            <p class="text-slate-600 dark:text-slate-300 text-lg leading-relaxed">Flexible, open-plan workspaces designed to foster networking and productivity for startups and students.</p>
+                            
+                            <h3 class="text-lg font-bold text-slate-700 dark:text-slate-200 border-b border-slate-200 dark:border-slate-600 pb-2 mb-3">Key Features:</h3>
+                            <ul class="space-y-3">
+                                <li class="flex items-center text-slate-700 dark:text-slate-300"><i class="fas fa-check-circle text-secondary mr-3 text-lg"></i>High-speed fiber internet</li>
+                                <li class="flex items-center text-slate-700 dark:text-slate-300"><i class="fas fa-check-circle text-secondary mr-3 text-lg"></i>Dedicated desks & hot desks</li>
+                                <li class="flex items-center text-slate-700 dark:text-slate-300"><i class="fas fa-check-circle text-secondary mr-3 text-lg"></i>Private meeting pods</li>
+                                <li class="flex items-center text-slate-700 dark:text-slate-300"><i class="fas fa-check-circle text-secondary mr-3 text-lg"></i>Creative lounge areas</li>
+                                <li class="flex items-center text-slate-700 dark:text-slate-300"><i class="fas fa-check-circle text-secondary mr-3 text-lg"></i>24/7 access & security</li>
+                            </ul>
+                        </div>
+                        <div class="w-full md:w-1/2 order-1 md:order-2 h-80 overflow-hidden rounded-xl shadow-2xl relative group">
+                            <img src="https://images.unsplash.com/photo-1497215728101-856f4ea42174?q=80&w=1000&auto=format&fit=crop" alt="Co-Working Spaces" class="w-full h-full object-cover transform group-hover:scale-110 transition duration-700">
+                            <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Facility 6: Auditorium -->
+                <div class="max-w-7xl mx-auto mb-20 reveal">
+                    <div class="flex flex-col md:flex-row items-center gap-12 bg-white/95 backdrop-blur-sm dark:bg-slate-800/95 rounded-2xl p-8 shadow-xl border-r-8 border-secondary">
+                        <div class="w-full md:w-1/2 h-80 overflow-hidden rounded-xl shadow-2xl relative group order-1">
+                            <img src="https://images.unsplash.com/photo-1516450360452-631a46d133eb?q=80&w=1000&auto=format&fit=crop" alt="Auditorium" class="w-full h-full object-cover transform group-hover:scale-110 transition duration-700">
+                            <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
+                        </div>
+                        <div class="w-full md:w-1/2 space-y-6 order-2">
+                            <div class="flex items-center gap-4 justify-end md:justify-start">
+                                <h2 class="text-3xl font-bold text-slate-800 dark:text-white order-2 md:order-1">Auditorium</h2>
+                                <div class="w-16 h-16 rounded-full bg-secondary/10 flex items-center justify-center text-secondary text-3xl shadow-inner order-1 md:order-2">
+                                    <i class="fas fa-microphone-lines"></i>
+                                </div>
+                            </div>
+                            <p class="text-slate-600 dark:text-slate-300 text-lg leading-relaxed md:text-left text-right">A world-class venue for seminars, conferences, and large-scale academic events. Perfect for knowledge sharing.</p>
+                            
+                            <h3 class="text-lg font-bold text-slate-700 dark:text-slate-200 border-b border-slate-200 dark:border-slate-600 pb-2 mb-3 md:text-left text-right">Key Features:</h3>
+                            <ul class="space-y-3 md:text-left text-right">
+                                <li class="flex items-center justify-end md:justify-start text-slate-700 dark:text-slate-300"><i class="fas fa-check-circle text-primary mr-3 text-lg md:inline hidden"></i>120+ Seating capacity<i class="fas fa-check-circle text-primary ml-3 text-lg md:hidden inline"></i></li>
+                                <li class="flex items-center justify-end md:justify-start text-slate-700 dark:text-slate-300"><i class="fas fa-check-circle text-primary mr-3 text-lg md:inline hidden"></i>Acoustic soundproofing<i class="fas fa-check-circle text-primary ml-3 text-lg md:hidden inline"></i></li>
+                                <li class="flex items-center justify-end md:justify-start text-slate-700 dark:text-slate-300"><i class="fas fa-check-circle text-primary mr-3 text-lg md:inline hidden"></i>High-definition projection<i class="fas fa-check-circle text-primary ml-3 text-lg md:hidden inline"></i></li>
+                                <li class="flex items-center justify-end md:justify-start text-slate-700 dark:text-slate-300"><i class="fas fa-check-circle text-primary mr-3 text-lg md:inline hidden"></i>Live streaming capabilities<i class="fas fa-check-circle text-primary ml-3 text-lg md:hidden inline"></i></li>
+                                <li class="flex items-center justify-end md:justify-start text-slate-700 dark:text-slate-300"><i class="fas fa-check-circle text-primary mr-3 text-lg md:inline hidden"></i>Green room & backstage<i class="fas fa-check-circle text-primary ml-3 text-lg md:hidden inline"></i></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Stats Section -->
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-6 max-w-5xl mx-auto mb-20 reveal">
+                    <div class="bg-white/10 backdrop-blur-sm border border-white/20 p-6 rounded-xl text-center hover:bg-white/20 transition duration-300">
+                        <span class="block text-4xl font-extrabold text-white mb-2">6</span>
+                        <span class="text-sky-300 font-bold uppercase tracking-wider text-sm">Major Facilities</span>
+                    </div>
+                    <div class="bg-white/10 backdrop-blur-sm border border-white/20 p-6 rounded-xl text-center hover:bg-white/20 transition duration-300">
+                        <span class="block text-4xl font-extrabold text-white mb-2">100+</span>
+                        <span class="text-sky-300 font-bold uppercase tracking-wider text-sm">Workstations</span>
+                    </div>
+                    <div class="bg-white/10 backdrop-blur-sm border border-white/20 p-6 rounded-xl text-center hover:bg-white/20 transition duration-300">
+                        <span class="block text-4xl font-extrabold text-white mb-2">24/7</span>
+                        <span class="text-sky-300 font-bold uppercase tracking-wider text-sm">Access Available</span>
+                    </div>
+                    <div class="bg-white/10 backdrop-blur-sm border border-white/20 p-6 rounded-xl text-center hover:bg-white/20 transition duration-300">
+                        <span class="block text-4xl font-extrabold text-white mb-2">∞</span>
+                        <span class="text-sky-300 font-bold uppercase tracking-wider text-sm">Innovation Potential</span>
+                    </div>
+                </div>
+
+                <!-- Final CTA -->
+                <section class="max-w-4xl mx-auto p-8 rounded-xl shadow-2xl text-center bg-white/95 backdrop-blur-sm dark:bg-slate-800/95 reveal">
+                    <h2 class="text-3xl font-bold text-slate-800 dark:text-white mb-4">Experience Our <span class="text-primary">Facilities</span></h2>
+                    <p class="text-slate-600 dark:text-slate-300 mb-8 text-lg">Visit OptCELL Global to see our world-class infrastructure firsthand and understand how we're shaping the future of engineering education.</p>
+                    <button onclick="navigateTo('contact')" class="bg-secondary hover:bg-secondary-hover text-white font-bold py-4 px-10 rounded-full shadow-lg transition transform hover:scale-105">
+                        Schedule a Visit
+                    </button>
+                </section>
+
+            </div>
+
+        <!-- CONTACT PAGE -->
+        <div id="contact" class="page-section hidden py-24 px-4 relative z-10">
+            <div class="max-w-7xl mx-auto">
+                <!-- Hero -->
+                <div class="text-center mb-16">
+                    <h1 class="text-4xl md:text-5xl font-extrabold text-white mb-4 drop-shadow-xl">
+                        Get in <span class="text-secondary">Touch</span>
+                    </h1>
+                    <p class="text-slate-300 text-lg max-w-2xl mx-auto">
+                        Have questions about our programs or want to schedule a campus visit? We are here to assist you.
+                    </p>
+                </div>
+
+                <div class="grid lg:grid-cols-3 gap-8">
+                    <!-- Left Column: Form (Spans 2 cols) -->
+                    <div class="lg:col-span-2 bg-white/95 backdrop-blur-sm dark:bg-slate-800/95 rounded-2xl p-8 shadow-2xl border border-white/20">
+                        <h2 class="text-2xl font-bold text-slate-800 dark:text-white mb-2">Send a Message</h2>
+                        <p class="text-slate-500 dark:text-slate-400 mb-8">Fill out the form below and our team will get back to you within 24 hours.</p>
+                        
+                        <form id="contact-form-real" class="space-y-6">
+                            <div class="grid md:grid-cols-2 gap-6">
+                                <div>
+                                    <label class="block text-sm font-bold text-slate-700 dark:text-slate-300 mb-2">Full Name</label>
+                                    <input type="text" class="w-full px-4 py-3 rounded-lg border border-slate-200 dark:border-slate-600 bg-slate-50 dark:bg-slate-700/50 dark:text-white focus:ring-2 focus:ring-primary outline-none transition" placeholder="e.g. John Doe" required>
+                                </div>
+                                <div>
+                                    <label class="block text-sm font-bold text-slate-700 dark:text-slate-300 mb-2">Email Address</label>
+                                    <input type="email" class="w-full px-4 py-3 rounded-lg border border-slate-200 dark:border-slate-600 bg-slate-50 dark:bg-slate-700/50 dark:text-white focus:ring-2 focus:ring-primary outline-none transition" placeholder="john@example.com" required>
+                                </div>
+                            </div>
+                            
+                            <div>
+                                <label class="block text-sm font-bold text-slate-700 dark:text-slate-300 mb-2">Message</label>
+                                <textarea rows="6" class="w-full px-4 py-3 rounded-lg border border-slate-200 dark:border-slate-600 bg-slate-50 dark:bg-slate-700/50 dark:text-white focus:ring-2 focus:ring-primary outline-none transition" placeholder="How can we help you?" required></textarea>
+                            </div>
+                            
+                            <button type="submit" class="w-full bg-primary hover:bg-primary-dark text-white font-bold py-4 rounded-lg shadow-lg flex justify-center items-center gap-2 transform hover:scale-[1.02] transition-all">
+                                Send Message
+                                <i class="fas fa-paper-plane"></i>
+                            </button>
+                        </form>
+                    </div>
+
+                    <!-- Right Column: Info & Map -->
+                    <div class="space-y-6">
+                        <!-- Contact Info Card -->
+                        <div class="bg-white/95 backdrop-blur-sm dark:bg-slate-800/95 rounded-2xl p-8 shadow-xl border border-white/20">
+                            <h3 class="text-xl font-bold text-slate-800 dark:text-white mb-6 border-b border-slate-200 dark:border-slate-700 pb-4">Contact Info</h3>
+                            
+                            <div class="space-y-6">
+                                <!-- Email -->
+                                <div class="flex items-start gap-4">
+                                    <div class="w-10 h-10 rounded-full bg-blue-100 dark:bg-blue-900/50 flex items-center justify-center text-primary shrink-0">
+                                        <i class="fas fa-envelope"></i>
+                                    </div>
+                                    <div>
+                                        <h4 class="font-bold text-slate-800 dark:text-white text-sm">Email</h4>
+                                        <p class="text-slate-500 dark:text-slate-400 text-sm mt-1">info@optcell.in</p>
+                                        <p class="text-slate-500 dark:text-slate-400 text-sm">support@optcell.in</p>
+                                    </div>
+                                </div>
+
+                                <!-- Phone -->
+                                <div class="flex items-start gap-4">
+                                    <div class="w-10 h-10 rounded-full bg-green-100 dark:bg-green-900/50 flex items-center justify-center text-green-600 shrink-0">
+                                        <i class="fas fa-phone"></i>
+                                    </div>
+                                    <div>
+                                        <h4 class="font-bold text-slate-800 dark:text-white text-sm">Phone</h4>
+                                        <p class="text-slate-500 dark:text-slate-400 text-sm mt-1">+91 90358 74229</p>
+                                    </div>
+                                </div>
+
+                                <!-- Address -->
+                                <div class="flex items-start gap-4">
+                                    <div class="w-10 h-10 rounded-full bg-orange-100 dark:bg-orange-900/50 flex items-center justify-center text-secondary shrink-0">
+                                        <i class="fas fa-map-marker-alt"></i>
+                                    </div>
+                                    <div>
+                                        <h4 class="font-bold text-slate-800 dark:text-white text-sm">Address</h4>
+                                        <p class="text-slate-500 dark:text-slate-400 text-sm mt-1 leading-relaxed">
+                                            OptCELL Global<br>
+                                            Innovation Park, Bangalore<br>
+                                            Karnataka, India
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Quick Links Card (Simplified) -->
+                        <div class="bg-primary/10 backdrop-blur-sm rounded-2xl p-6 border border-primary/20">
+                            <h3 class="text-lg font-bold text-white mb-4">Quick Actions</h3>
+                            <div class="space-y-2">
+                                <button onclick="navigateTo('programs')" class="w-full text-left px-4 py-3 bg-white/10 hover:bg-white/20 rounded-lg text-white text-sm font-medium transition flex justify-between items-center group">
+                                    Apply for Internship <span class="group-hover:translate-x-1 transition-transform">&rarr;</span>
+                                </button>
+                                <button onclick="navigateTo('infrastructure')" class="w-full text-left px-4 py-3 bg-white/10 hover:bg-white/20 rounded-lg text-white text-sm font-medium transition flex justify-between items-center group">
+                                    Explore Infrastructure <span class="group-hover:translate-x-1 transition-transform">&rarr;</span>
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- Map Placeholder -->
+                        <div class="h-48 rounded-2xl overflow-hidden shadow-lg relative group">
+                            <!-- Using an image or iframe here. I'll use a static map image placeholder to match the theme -->
+                            <img src="https://images.unsplash.com/photo-1524661135-423995f22d0b?q=80&w=1000&auto=format&fit=crop" class="w-full h-full object-cover filter brightness-75 group-hover:brightness-100 transition duration-500">
+                            <div class="absolute inset-0 flex items-center justify-center pointer-events-none">
+                                <span class="bg-white/90 text-slate-900 px-4 py-2 rounded-full text-xs font-bold shadow-lg">View on Google Maps</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-[#050A1E] text-slate-400 py-10 mt-auto border-t border-white/10 relative z-20">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <!-- Reduced gap from gap-12 to gap-8 -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-8">
+                
+                <!-- Column 1: Company Info -->
+                <div>
+                    <div class="flex items-center gap-2 mb-4">
+                        <i class="fas fa-building text-slate-300 text-lg"></i>
+                        <h3 class="text-white font-bold text-base tracking-wider">OPTCELL GLOBAL</h3>
+                    </div>
+                    <p class="text-xs leading-relaxed mb-4">
+                        Empowering the next generation of deep tech innovators through industry-aligned R&D programs.
+                    </p>
+                </div>
+
+                <!-- Column 2: Quick Links -->
+                <div>
+                    <div class="flex items-center gap-2 mb-4">
+                        <i class="fas fa-bolt text-secondary text-base"></i>
+                        <h3 class="text-white font-bold text-base tracking-wider">QUICK LINKS</h3>
+                    </div>
+                    <ul class="space-y-2 text-xs">
+                        <li><a href="#" onclick="navigateTo('home')" class="hover:text-white transition-colors">Home</a></li>
+                        <li><a href="#" onclick="navigateTo('programs')" class="hover:text-white transition-colors">Programme</a></li>
+                        <li><a href="#" onclick="navigateTo('about')" class="hover:text-white transition-colors">About</a></li>
+                        <li><a href="#" onclick="navigateTo('infrastructure')" class="hover:text-white transition-colors">Infrastructure</a></li>
+                    </ul>
+                </div>
+
+                <!-- Column 3: Programme -->
+                <div>
+                    <div class="flex items-center gap-2 mb-4">
+                        <i class="fas fa-rocket text-pink-500 text-base"></i>
+                        <h3 class="text-white font-bold text-base tracking-wider">PROGRAMME</h3>
+                    </div>
+                    <ul class="space-y-2 text-xs">
+                        <li><a href="#" onclick="navigateTo('programs')" class="hover:text-white transition-colors">IP Product R&D Track</a></li>
+                        <li><a href="#" onclick="navigateTo('programs')" class="hover:text-white transition-colors">Advanced Internship</a></li>
+                        <li><a href="#" onclick="navigateTo('programs')" class="hover:text-white transition-colors">Entry-Level Internship</a></li>
+                    </ul>
+                </div>
+
+                <!-- Column 4: Connect -->
+                <div>
+                    <div class="flex items-center gap-2 mb-4">
+                        <i class="fas fa-envelope-open-text text-blue-400 text-base"></i>
+                        <h3 class="text-white font-bold text-base tracking-wider">CONNECT</h3>
+                    </div>
+                    <div class="space-y-3 text-xs">
+                        <div class="bg-white/5 p-2 rounded-lg border border-white/10">
+                            <p class="text-white">info@optcell.in</p>
+                        </div>
+                        <div class="bg-white/5 p-2 rounded-lg border border-white/10">
+                            <p class="text-white">+91 90358 74229</p>
+                        </div>
+                        <div class="bg-white/5 p-2 rounded-lg border border-white/10">
+                            <p class="leading-relaxed">1st Main Rd, RHCS Layout,<br>Annapoorneshwari Nagar,<br>Naagarabhaavi, Bengaluru,<br>Karnataka 560091</p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            
+            <!-- Bottom Bar -->
+            <div class="border-t border-white/10 pt-6 text-center text-[10px] text-slate-500">
+                <p>&copy; 2025 OptCELL Global. All rights reserved. <span class="ml-2">Made with <i class="fas fa-heart text-blue-600 mx-1"></i> in India</span></p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- FIXED APPLY NOW BUTTON (Updated to Deep Blue Theme) -->
+    <a href="#" onclick="navigateTo('programs')" class="fixed bottom-6 right-6 z-[100] group">
+        <!-- Glow Effect -->
+        <div class="absolute inset-0 bg-blue-500 rounded-full blur opacity-40 group-hover:opacity-70 transition-opacity duration-500 animate-pulse"></div>
+        
+        <!-- Button (Primary Theme Gradient) -->
+        <button class="relative bg-gradient-to-r from-primary to-blue-600 hover:from-blue-600 hover:to-blue-500 text-white font-bold py-4 px-8 rounded-full shadow-2xl flex items-center gap-2 transform group-hover:scale-105 transition-all duration-300 border-2 border-white/20">
+            <span>Apply Now</span>
+            <i class="fas fa-paper-plane text-sm group-hover:translate-x-1 transition-transform"></i>
+        </button>
+    </a>
+
+    <!-- Scripts -->
+    <script>
+        // Define functions immediately to be available for inline handlers
+        window.navigateTo = function(pageId) {
+            // Logic handled inside DOMContentLoaded via event dispatch
+            document.dispatchEvent(new CustomEvent('navigate-to', { detail: pageId }));
+        };
+        
+        window.toggleMobileMenu = function() {
+            const menu = document.getElementById('mobile-menu');
+            if(menu) menu.classList.toggle('hidden');
+        };
+        
+        // Gallery Admin Functions defined globally
+        window.openGalleryAdmin = function() {
+            document.getElementById('gallery-admin-modal').classList.add('active');
+            renderGalleryAdminList();
+        }
+
+        const initialGalleryData = [
+            { id: 1, url: 'https://images.unsplash.com/photo-1542382590521-3957f495576a?q=80&w=600&auto=format&fit=crop', caption: 'Lab Testing and Development' },
+            { id: 2, url: 'https://images.unsplash.com/photo-1579403124614-197f69d8187e?q=80&w=600&auto=format&fit=crop', caption: 'Team Collaboration Session' },
+            { id: 3, url: 'https://images.unsplash.com/photo-1550439062-609e1d87532e?q=80&w=600&auto=format&fit=crop', caption: 'Deep Tech Coding & AI' },
+            { id: 4, url: 'https://images.unsplash.com/photo-1582213197607-3e3e0980c651?q=80&w=600&auto=format&fit=crop', caption: 'Student Training Workshop' },
+        ];
+
+        function getGalleryData() {
+            try {
+                const data = localStorage.getItem('optcellGallery');
+                return data ? JSON.parse(data) : initialGalleryData;
+            } catch (e) {
+                console.error("Error loading gallery data:", e);
+                return initialGalleryData;
+            }
+        }
+
+        function saveGalleryData(data) {
+            try {
+                localStorage.setItem('optcellGallery', JSON.stringify(data));
+                return true;
+            } catch (e) {
+                console.error("Error saving gallery data:", e);
+                return false;
+            }
+        }
+
+        function renderGallery() {
+            const galleryEl = document.getElementById('about-gallery');
+            if (!galleryEl) return;
+
+            const data = getGalleryData();
+            galleryEl.innerHTML = data.map(item => `
+                <div class="relative h-48 rounded-xl overflow-hidden shadow-lg group">
+                    <img src="${item.url}" alt="${item.caption}" onerror="this.onerror=null;this.src='https://placehold.co/400x300/0056b3/ffffff?text=Image+Error';" class="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-500">
+                    <div class="absolute inset-x-0 bottom-0 p-3 bg-black/70 text-white text-xs font-medium truncate">
+                        ${item.caption}
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function renderGalleryAdminList() {
+            const listEl = document.getElementById('gallery-editor-list');
+            const data = getGalleryData();
+            listEl.innerHTML = data.map(item => `
+                <div class="flex items-center gap-4 bg-white dark:bg-slate-700 p-3 rounded-lg shadow-md border border-gray-200 dark:border-slate-600">
+                    <img src="${item.url}" alt="${item.caption}" onerror="this.onerror=null;this.src='https://placehold.co/60x60/0056b3/ffffff?text=Err';" class="w-12 h-12 object-cover rounded-md flex-shrink-0">
+                    <div class="flex-grow min-w-0">
+                        <p class="font-semibold text-slate-800 dark:text-white truncate">${item.caption}</p>
+                        <p class="text-xs text-slate-500 dark:text-slate-400 truncate">${item.url}</p>
+                    </div>
+                    <button onclick="removeGalleryItem(${item.id})" class="bg-red-500 hover:bg-red-600 text-white p-2 rounded-full text-sm shrink-0" title="Delete">
+                        <i class="fas fa-trash"></i>
+                    </button>
+                </div>
+            `).join('');
+        }
+
+        window.removeGalleryItem = function(idToRemove) {
+            let data = getGalleryData();
+            const newData = data.filter(item => item.id !== idToRemove);
+            if (saveGalleryData(newData)) {
+                showToast("Photo removed.", "success");
+                renderGalleryAdminList();
+                renderGallery();
+            } else {
+                showToast("Error removing photo.", "error");
+            }
+        }
+
+        // --- NEW: Team Data Structure ---
+        const teamData = {
+            shalini: {
+                name: "A R Shalini",
+                title: "Strategic Operations & R&D Strategy",
+                image: "https://img.sanishtech.com/u/cc085d22c76786707dcbfa7be91671a6.jpg",
+                quote: "“At the intersection of strategy and innovation, we don’t just plan the future—we build it. I invite you to join us as we transform R&D into a strategic engine that powers meaningful change across industries. Together, we will streamline operations, accelerate insights and unlock possibilities that redefine how businesses evolve. Let’s design tomorrow’s breakthroughs today.”",
+                linkedin: "https://www.linkedin.com/in/a-r-shalini-837867237/"
+            },
+            amareshwar: {
+                name: "Amareshwar Karatagi",
+                title: "Engineering, Innovation & Gov Partnerships",
+                image: "https://img.sanishtech.com/u/c105374805945b8e3456f8cb3f15950a.jpg",
+                quote: "“Innovation thrives when bold engineering meets powerful collaboration. I am proud to lead our engineering and partnership efforts as we shape pioneering solutions alongside government and industry alike. With every project, we strive not just to meet expectations—but to exceed them, forging connections that fuel societal progress. Join us in engineering what’s next.”",
+                linkedin: "https://www.linkedin.com/in/amarkaratagi/"
+            },
+            rushit: {
+                name: "Rushit Jani",
+                title: "Technology, AI/ML Systems & Digital Transformation",
+                image: "https://img.sanishtech.com/u/6c851e8de4713b81384132cbac1a1778.jpg",
+                quote: "“In a world driven by data and digital change, we are the architects of a smarter tomorrow. At the helm of our AI/ML and digital transformation ambitions, I’m committed to translating insight into action—delivering systems that anticipate, adapt and evolve. Let’s journey into the future together, empowered by technology that transforms vision into reality.”",
+                linkedin: "https://www.linkedin.com/in/rushit-jani/"
+            },
+            stavan: {
+                name: "Stavan Pandya",
+                title: "Product Engineering & Innovation",
+                image: "https://img.sanishtech.com/u/6a89b6e65ebde2b82e85adbf5b2169ba.png",
+                quote: "“Great products don’t just meet needs—they inspire change. In leading our product engineering and innovation domain, I believe in crafting experiences that resonate and elevate. From blueprint to launch, we engineer with empathy, precision and purpose. Discover how we turn ideas into impact, and let’s build something extraordinary together.”",
+                linkedin: "https://www.linkedin.com/in/stavan-pandya-b0a4a0296/"
+            }
+        };
+
+        // --- NEW: Modal Logic ---
+        window.openLeaderModal = function(memberId) {
+            const member = teamData[memberId];
+            const modal = document.getElementById('leader-modal');
+            
+            if (!member || !modal) return;
+
+            // Populate modal content
+            document.getElementById('leader-modal-image').src = member.image;
+            document.getElementById('leader-modal-image').alt = member.name;
+            document.getElementById('leader-modal-name').innerText = member.name;
+            document.getElementById('leader-modal-title').innerText = member.title;
+            
+            // Remove wrapping quotes from quote for modal display
+            const rawQuote = member.quote.replace(/^“|”$/g, '').trim();
+            document.getElementById('leader-modal-quote').innerText = rawQuote;
+            
+            document.getElementById('leader-modal-linkedin').href = member.linkedin;
+
+            modal.classList.add('active');
+        }
+        
+        document.addEventListener('DOMContentLoaded', () => {
+            // === Variables ===
+            const modal = document.getElementById('admin-modal');
+            const dateInput = document.getElementById('admin-date-input');
+            const btnCancel = document.getElementById('btn-cancel-modal');
+            const btnSave = document.getElementById('btn-save-modal');
+            const btnAdminOpen = document.getElementById('btn-admin-open');
+            const realContactForm = document.getElementById('contact-form-real');
+            const toast = document.getElementById('toast');
+            
+            // Gallery Admin Elements
+            const galleryAdminModal = document.getElementById('gallery-admin-modal');
+            const btnCancelGallery = document.getElementById('btn-cancel-gallery-modal');
+            const addGalleryForm = document.getElementById('add-gallery-item-form');
+            const btnGalleryAdminToggle = document.getElementById('btn-gallery-admin');
+            
+            // Leader Modal Element
+            const btnCloseLeaderModal = document.getElementById('btn-close-leader-modal');
+
+
+            let deadline = new Date();
+            deadline.setDate(deadline.getDate() + 14); // Default 14 days
+
+            // === Navigation Implementation (Updated to show/hide gallery admin button) ===
+            window.navigateTo = function(pageId) {
+                document.querySelectorAll('.page-section').forEach(el => el.classList.add('hidden'));
+                const target = document.getElementById(pageId);
+                
+                // Toggle Gallery Admin Button Visibility
+                if(btnGalleryAdminToggle) {
+                    if (pageId === 'about') {
+                        btnGalleryAdminToggle.classList.remove('hidden');
+                    } else {
+                        btnGalleryAdminToggle.classList.add('hidden');
+                    }
+                }
+
+                if(pageId === 'home') {
+                    const homeSection = document.getElementById('home');
+                    if(homeSection) homeSection.classList.remove('hidden');
+                    window.scrollTo(0,0);
+                } else {
+                    if(target) target.classList.remove('hidden');
+                    window.scrollTo(0,0);
+                }
+                
+                // Highlight Nav
+                document.querySelectorAll('.nav-item').forEach(el => {
+                    el.classList.remove('scale-125', 'text-secondary', 'font-extrabold', 'border-b-2', 'border-secondary');
+                    el.classList.add('text-white/90', 'font-medium');
+                });
+                const activeNav = document.getElementById('nav-' + pageId);
+                if(activeNav) {
+                    activeNav.classList.remove('text-white/90', 'font-medium');
+                    activeNav.classList.add('scale-125', 'text-secondary', 'font-extrabold', 'border-b-2', 'border-secondary');
+                }
+                document.getElementById('mobile-menu').classList.add('hidden');
+            };
+            
+            // Initial render of the gallery
+            renderGallery();
+
+            // === Smart Scroll ===
+            let lastScrollTop = 0;
+            const navWrapper = document.getElementById('main-nav-wrapper');
+            window.addEventListener('scroll', () => {
+                let scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+                if(scrollTop > lastScrollTop) navWrapper.classList.add('-translate-y-full');
+                else navWrapper.classList.remove('-translate-y-full');
+                lastScrollTop = scrollTop <= 0 ? 0 : scrollTop;
+            });
+
+            // === Slider ===
+            const track = document.getElementById('slider-track');
+            let currentSlide = 0;
+            setInterval(() => {
+                if (track) {
+                    currentSlide = (currentSlide + 1) % 4;
+                    track.style.transform = `translateX(-${currentSlide * 100}%)`;
+                }
+            }, 5000);
+
+            // === Timer ===
+            function updateTimer() {
+                const daysEl = document.getElementById('timer-days');
+                const hoursEl = document.getElementById('timer-hours');
+                const minutesEl = document.getElementById('timer-minutes');
+                const secondsEl = document.getElementById('timer-seconds');
+
+                // Strict Null Check
+                if (!daysEl || !hoursEl || !minutesEl || !secondsEl) return;
+
+                const t = deadline - new Date().getTime();
+                if (t < 0) return;
+                const d = Math.floor(t / (1000 * 60 * 60 * 24));
+                const h = Math.floor((t % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                const m = Math.floor((t % (1000 * 60 * 60)) / (1000 * 60));
+                const s = Math.floor((t % (1000 * 60)) / 1000);
+
+                daysEl.innerText = d < 10 ? '0'+d : d;
+                hoursEl.innerText = h < 10 ? '0'+h : h;
+                minutesEl.innerText = m < 10 ? '0'+m : m;
+                secondsEl.innerText = s < 10 ? '0'+s : s;
+            }
+            setInterval(updateTimer, 1000);
+            updateTimer();
+
+            // === Admin Modal (Deadline) ===
+            if(btnAdminOpen) {
+                btnAdminOpen.addEventListener('click', () => {
+                    modal.classList.add('active');
+                    dateInput.value = deadline.toISOString().split('T')[0];
+                });
+            }
+            if(btnCancel) btnCancel.addEventListener('click', () => modal.classList.remove('active'));
+            if(btnSave) {
+                btnSave.addEventListener('click', () => {
+                    const val = dateInput.value;
+                    if(val) {
+                        deadline = new Date(val + "T23:59:59");
+                        modal.classList.remove('active');
+                        showToast("Deadline updated successfully!", "success");
+                        updateTimer();
+                    } else {
+                        showToast("Invalid Date", "error");
+                    }
+                });
+            }
+            
+            // === Gallery Admin Logic ===
+            if (btnCancelGallery) btnCancelGallery.addEventListener('click', () => galleryAdminModal.classList.remove('active'));
+
+            if (addGalleryForm) {
+                addGalleryForm.addEventListener('submit', (e) => {
+                    e.preventDefault();
+                    const url = document.getElementById('new-photo-url').value.trim();
+                    const caption = document.getElementById('new-photo-caption').value.trim();
+                    
+                    if (url && caption) {
+                        let data = getGalleryData();
+                        const newId = data.length > 0 ? Math.max(...data.map(item => item.id)) + 1 : 1;
+                        data.push({ id: newId, url, caption });
+                        
+                        if (saveGalleryData(data)) {
+                            showToast("Photo added successfully!", "success");
+                            addGalleryForm.reset();
+                            renderGalleryAdminList();
+                            renderGallery();
+                        } else {
+                            showToast("Failed to save photo.", "error");
+                        }
+                    } else {
+                        showToast("Please fill both fields.", "error");
+                    }
+                });
+            }
+            
+            // === Leader Modal Close Listener ===
+            if (btnCloseLeaderModal) {
+                btnCloseLeaderModal.addEventListener('click', () => {
+                    document.getElementById('leader-modal').classList.remove('active');
+                });
+            }
+
+
+            // === Toast ===
+            window.showToast = function(msg, type) {
+                const title = document.getElementById('toast-title');
+                const message = document.getElementById('toast-message');
+                const icon = document.getElementById('toast-icon');
+                const toastEl = document.getElementById('toast');
+                
+                title.innerText = type === 'error' ? 'Error' : 'Success!';
+                message.innerText = msg;
+                
+                // Reset classes first to ensure transition works
+                toastEl.className = `fixed bottom-8 right-8 px-6 py-4 rounded-xl shadow-2xl z-[100] transform transition-all duration-500 flex items-center gap-3 text-white translate-y-20 opacity-0 ${type === 'error' ? 'bg-red-500' : 'bg-green-500'}`;
+                icon.className = type === 'error' ? 'fas fa-exclamation-circle text-2xl' : 'fas fa-check-circle text-2xl';
+
+                // Trigger animation
+                setTimeout(() => {
+                    toastEl.classList.remove('translate-y-20', 'opacity-0');
+                }, 10);
+
+                setTimeout(() => {
+                    toastEl.classList.add('translate-y-20', 'opacity-0');
+                }, 3000);
+            }
+
+            // Contact Form Submission Handlers
+            if(realContactForm) {
+                realContactForm.addEventListener('submit', (e) => {
+                    e.preventDefault();
+                    showToast("Message sent successfully!", "success");
+                    realContactForm.reset();
+                });
+            }
+
+            // Init Highlight
+            const homeNav = document.getElementById('nav-home');
+            if(homeNav) {
+                homeNav.classList.remove('text-white/90', 'font-medium');
+                homeNav.classList.add('scale-125', 'text-secondary', 'font-extrabold', 'border-b-2', 'border-secondary');
+            }
+
+            // === Dark Mode Toggle (Fixed) ===
+            window.toggleDarkMode = function() {
+                const html = document.documentElement;
+                if (html.classList.contains('dark')) {
+                    html.classList.remove('dark');
+                    localStorage.theme = 'light';
+                } else {
+                    html.classList.add('dark');
+                    localStorage.theme = 'dark';
+                }
+            };
+
+            // Check for saved user preference
+            if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+                document.documentElement.classList.add('dark')
+            } else {
+                document.documentElement.classList.remove('dark')
+            }
+            
+            // === Scroll Reveal Observer ===
+            const observerOptions = { threshold: 0.1 };
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('active');
+                    }
+                });
+            }, observerOptions);
+
+            document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+        });
+    </script>
+</body>
+</html>

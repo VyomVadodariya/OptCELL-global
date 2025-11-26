@@ -1,0 +1,618 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Optscell R&D Tracks Portal</title>
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&family=Montserrat:wght@400;500;700;900&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- Tailwind CSS (Used for layout structure) -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <style>
+        /* =========================================
+           1. VARIABLES & RESET
+           ========================================= */
+        :root {
+            --primary: #4285F4;
+            --primary-accent: #00d2ff; /* Cyan */
+            --text-main: #ffffff;
+            --text-muted: #e0e7ff;
+            --glass-border: rgba(255, 255, 255, 0.3);
+            --card-bg-dark: rgba(0, 0, 0, 0.2);
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif; /* Primary Font from CSS */
+            background-color: #4285F4;
+            color: var(--text-main);
+            line-height: 1.6;
+            overflow-x: hidden;
+            min-height: 100vh;
+        }
+
+        /* Helper for body text if needed */
+        .font-inter { font-family: 'Inter', sans-serif; }
+
+        /* =========================================
+           2. ANIMATIONS
+           ========================================= */
+        @keyframes textShine {
+            to { background-position: 200% center; }
+        }
+
+        @keyframes pulseIcon {
+            0% { transform: scale(1); text-shadow: 0 0 20px var(--primary-accent); }
+            50% { transform: scale(1.1); text-shadow: 0 0 40px var(--primary-accent); }
+            100% { transform: scale(1); text-shadow: 0 0 20px var(--primary-accent); }
+        }
+
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+            100% { transform: translateY(0px); }
+        }
+
+        /* =========================================
+           3. HERO SECTION ADAPTATION
+           ========================================= */
+        .hero-container {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid var(--glass-border);
+            border-radius: 30px;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.15);
+            transition: transform 0.4s ease, box-shadow 0.4s ease;
+        }
+
+        .hero-container:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 30px 70px rgba(0, 0, 0, 0.25);
+        }
+
+        .gradient-text-anim {
+            background: linear-gradient(
+                to right,
+                #ffffff 0%,
+                #93c5fd 25%,
+                #ffffff 50%,
+                #93c5fd 75%,
+                #ffffff 100%
+            );
+            background-size: 200% auto;
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            color: transparent;
+            animation: textShine 4s linear infinite;
+            filter: drop-shadow(0 0 10px rgba(255, 255, 255, 0.3));
+        }
+
+        /* =========================================
+           4. FEATURE BOX (Glassmorphism)
+           ========================================= */
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.95); /* High opacity for readability */
+            backdrop-filter: blur(15px);
+            border-radius: 20px;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.2);
+            border: 1px solid rgba(255,255,255,0.4);
+            color: #1e3a8a; /* Dark blue text for contrast on white */
+        }
+        
+        .feature-num {
+            background: var(--primary);
+            color: white;
+            width: 30px;
+            height: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            font-weight: bold;
+            flex-shrink: 0;
+        }
+
+        /* =========================================
+           5. CARD STYLES (Mapped from Old CSS)
+           ========================================= */
+        
+        /* Base Card Structure */
+        .program-card {
+            position: relative;
+            border-radius: 30px;
+            padding: 2px; /* For border gradient simulation */
+            display: flex;
+            flex-direction: column;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            height: 100%;
+        }
+
+        .program-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .card-inner {
+            background: rgba(0, 0, 0, 0.25);
+            backdrop-filter: blur(10px);
+            border-radius: 28px;
+            padding: 2rem;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* --- VARIANT 1: INNOVATION (Cyan) --- */
+        .card-cyan {
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.1), rgba(0, 210, 255, 0.2));
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.2);
+            border: 1px solid rgba(0, 210, 255, 0.3);
+        }
+        .card-cyan .card-title {
+            background: linear-gradient(to right, #ffffff, var(--primary-accent));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .card-cyan .header-icon {
+            color: var(--primary-accent);
+            text-shadow: 0 0 20px var(--primary-accent);
+            animation: pulseIcon 2s infinite;
+        }
+        /* Tech Corners for Cyan Card */
+        .card-cyan .card-inner::before,
+        .card-cyan .card-inner::after {
+            content: ''; position: absolute; width: 20px; height: 20px;
+            border: 2px solid var(--primary-accent); transition: all 0.3s ease;
+            pointer-events: none; /* FIX: Prevents corners from blocking clicks on hover */
+        }
+        .card-cyan .card-inner::before { top: 0; left: 0; border-right: none; border-bottom: none; border-radius: 20px 0 0 0; }
+        .card-cyan .card-inner::after { bottom: 0; right: 0; border-left: none; border-top: none; border-radius: 0 0 20px 0; }
+        .card-cyan:hover .card-inner::before, .card-cyan:hover .card-inner::after { width: 100%; height: 100%; opacity: 0.1; }
+
+        /* --- VARIANT 2: R&D LAB (Purple/Fuchsia) --- */
+        .card-purple {
+            background: linear-gradient(135deg, rgba(168, 85, 247, 0.1), rgba(217, 70, 239, 0.1));
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.2);
+            border: 1px solid rgba(217, 70, 239, 0.4);
+        }
+        .card-purple .card-inner {
+            /* Grid Pattern */
+            background-image:
+                linear-gradient(rgba(217, 70, 239, 0.05) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(217, 70, 239, 0.05) 1px, transparent 1px);
+            background-size: 20px 20px;
+        }
+        .card-purple .card-title {
+            background: linear-gradient(to right, #ffffff, #e0a2ea);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .card-purple .header-icon { color: #d946ef; text-shadow: 0 0 15px #d946ef; }
+        .card-purple .feature-list li::before { color: #d946ef !important; }
+
+        /* --- VARIANT 3: TRAINING ZONE (Green) --- */
+        .card-green {
+            background: linear-gradient(135deg, rgba(16, 185, 129, 0.1), rgba(52, 211, 153, 0.1));
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.2);
+            border: 1px solid rgba(52, 211, 153, 0.4);
+        }
+        .card-green .card-inner::before {
+            content: ''; position: absolute; left: 0; top: 20%;
+            height: 60%; width: 4px; background: #34d399;
+            box-shadow: 0 0 10px #34d399; border-radius: 0 4px 4px 0;
+        }
+        .card-green .card-title {
+            background: linear-gradient(to right, #ffffff, #34d399);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .card-green .header-icon { color: #34d399; text-shadow: 0 0 15px #34d399; }
+        .card-green .feature-list li::before { color: #34d399 !important; }
+
+        /* =========================================
+           6. CONTENT STYLING
+           ========================================= */
+        .card-title {
+            font-size: 1.8rem;
+            font-weight: 800;
+            line-height: 1.2;
+            margin: 15px 0 5px;
+            text-transform: uppercase;
+        }
+        .card-subtitle {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            margin-bottom: 20px;
+            font-weight: 500;
+        }
+        
+        .price-row {
+            display: flex;
+            align-items: baseline;
+            gap: 12px;
+            margin-bottom: 15px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
+        .price-new { font-size: 2rem; font-weight: 700; color: white; }
+        .price-old { font-size: 1.1rem; text-decoration: line-through; color: #9ca3af; }
+
+        .feature-list { list-style: none; margin-top: 20px; }
+        .feature-list li {
+            position: relative;
+            padding-left: 25px;
+            margin-bottom: 10px;
+            color: #e2e8f0;
+            font-size: 0.95rem;
+        }
+        .feature-list li::before {
+            content: '\f00c';
+            font-family: "Font Awesome 6 Free";
+            font-weight: 900;
+            color: var(--primary-accent);
+            position: absolute;
+            left: 0;
+            top: 3px;
+        }
+
+        .featured-badge {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: var(--primary-accent);
+            color: #000;
+            font-weight: 800;
+            font-size: 0.7rem;
+            padding: 4px 10px;
+            border-radius: 20px;
+            text-transform: uppercase;
+            box-shadow: 0 0 15px var(--primary-accent);
+        }
+
+        /* Buttons */
+        .apply-btn {
+            display: inline-block;
+            min-width: 160px; /* Consistent minimum width */
+            text-align: center;
+            background: white;
+            color: var(--primary);
+            padding: 15px 25px;
+            border-radius: 50px;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            border: 2px solid white;
+            cursor: pointer;
+            z-index: 10; /* Ensure buttons sit above any potential overlap */
+            position: relative;
+        }
+        
+        /* HOVER STATE: BRIGHT ORANGE (Forces update for all buttons, including IP Product) */
+        .apply-btn:hover {
+            background: #FF6B00 !important; /* Force Bright Orange */
+            border-color: #FF6B00 !important;
+            color: white !important;
+            box-shadow: 0 0 25px rgba(255, 107, 0, 0.7) !important;
+            transform: scale(1.05);
+        }
+        
+        /* Outline button variant (Left here in case needed later, but removed from HTML use) */
+        .apply-btn-outline {
+            background: transparent;
+            color: white;
+        }
+        .apply-btn-outline:hover {
+            background: white !important;
+            color: var(--primary) !important;
+            border-color: white !important;
+            box-shadow: 0 0 20px rgba(255,255,255,0.4) !important;
+        }
+
+        /* Offer Boxes */
+        .offer-box {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 30px;
+            border-radius: 20px;
+            text-align: center;
+            transition: transform 0.3s;
+        }
+        .offer-box:hover {
+            transform: translateY(-5px);
+            background: rgba(255, 255, 255, 0.1);
+        }
+        .offer-icon {
+            display: inline-flex;
+            justify-content: center;
+            align-items: center;
+            width: 60px; height: 60px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 50%;
+            margin-bottom: 20px;
+            color: white;
+        }
+
+        /* CTA Section */
+        .cta-box {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 20px;
+        }
+
+        /* Footer */
+        footer {
+            background: #000;
+            padding: 80px 5% 30px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            margin-top: auto;
+        }
+        .footer-col h4 { color: white; margin-bottom: 20px; font-size: 1.1rem; text-transform: uppercase; letter-spacing: 1px; }
+        .footer-col ul li { margin-bottom: 10px; }
+        .footer-col a { color: #9ca3af; text-decoration: none; transition: 0.3s; }
+        .footer-col a:hover { color: white; padding-left: 5px; }
+
+    </style>
+</head>
+
+<body class="flex flex-col">
+
+    <!-- Header -->
+    <header class="pt-16 pb-12 px-4 sm:px-8">
+        <div class="max-w-4xl mx-auto text-center hero-container p-10">
+            <h1 class="text-4xl sm:text-5xl font-black mb-4 text-white uppercase tracking-tight">
+                Our <span class="gradient-text-anim">Internship Programs</span>
+            </h1>
+            <p class="text-lg sm:text-xl text-blue-100 max-w-2xl mx-auto font-inter">
+                Join 90-day Deep Tech tracks designed for 80% hands-on project training to transform you into an industry-ready engineer.
+            </p>
+        </div>
+    </header>
+
+    <!-- R&D Features (Glass Panel) -->
+    <section class="mb-20 px-4 sm:px-8">
+        <div class="max-w-5xl mx-auto p-8 md:p-12 glass-panel">
+            <h2 class="text-2xl md:text-3xl font-extrabold mb-8 text-center text-blue-900 uppercase tracking-wide">
+                Why the IP Product R&D Track Stands Apart
+            </h2>
+
+            <div class="grid md:grid-cols-2 gap-8 text-lg">
+                <div class="flex items-start space-x-4">
+                    <span class="feature-num">1</span>
+                    <p class="text-gray-700 font-inter"><span class="font-bold text-blue-900">Elite R&D Exposure:</span> Work on cutting-edge research projects with patent potential.</p>
+                </div>
+
+                <div class="flex items-start space-x-4">
+                    <span class="feature-num">2</span>
+                    <p class="text-gray-700 font-inter"><span class="font-bold text-blue-900">Innovation Ecosystem:</span> Access to government partnerships and industry collaborations.</p>
+                </div>
+
+                <div class="flex items-start space-x-4">
+                    <span class="feature-num">3</span>
+                    <p class="text-gray-700 font-inter"><span class="font-bold text-blue-900">Limited Seats:</span> Only top 50 students selected through rigorous interviews.</p>
+                </div>
+
+                <div class="flex items-start space-x-4">
+                    <span class="feature-num">4</span>
+                    <p class="text-gray-700 font-inter"><span class="font-bold text-blue-900">Industry Mentors:</span> Learn from experts with deep tech and core engineering expertise.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- All Tracks Heading -->
+    <section class="max-w-6xl mx-auto mb-10 px-4 sm:px-8 text-center">
+        <h2 class="text-3xl sm:text-4xl font-black text-white uppercase tracking-widest relative inline-block">
+            All R&D Tracks
+            <div class="h-1 w-1/2 bg-white mx-auto mt-4 rounded-full opacity-50"></div>
+        </h2>
+    </section>
+
+    <!-- Three Cards Section -->
+    <main class="max-w-7xl mx-auto mb-20 px-4 sm:px-8 flex-grow">
+        <div class="grid gap-10 lg:grid-cols-3 md:grid-cols-2 items-stretch">
+
+            <!-- Card 1: IP Product (Cyan Theme - Innovation Hall) -->
+            <div class="program-card card-cyan">
+                <div class="card-inner">
+                    <div class="featured-badge">Featured</div>
+                    <div class="text-center sm:text-left">
+                        <span class="header-icon text-4xl mb-4 inline-block"><i class="fa-solid fa-microchip"></i></span>
+                        <h2 class="card-title">IP Product & R&D Deep Tech</h2>
+                        <p class="card-subtitle">Advanced Research & Patent-Level Innovation</p>
+                    </div>
+
+                    <div class="mt-4">
+                        <div class="price-row">
+                            <span class="price-new">₹30,000</span>
+                            <span class="price-old">₹1,20,000</span>
+                        </div>
+
+                        <p class="text-sm text-blue-100 mb-1">Duration: <span class="font-bold text-white">3 Months</span></p>
+                        <p class="text-sm text-blue-100">Seats: <span class="font-bold text-white">50 (Interview Based)</span></p>
+
+                        <ul class="feature-list space-y-2">
+                            <li>Patent & IP Development</li>
+                            <li>Advanced AI/ML & Quantum Computing</li>
+                            <li>Direct Industry Mentor Access</li>
+                            <li>Publication Opportunities</li>
+                            <li>Exclusive Placement Pipeline</li>
+                        </ul>
+                    </div>
+
+                    <div class="mt-8 text-center">
+                        <button class="apply-btn w-full">Apply Now</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card 2: Advanced (Purple Theme - R&D Lab) -->
+            <div class="program-card card-purple">
+                <div class="card-inner">
+                    <div class="text-center sm:text-left">
+                        <span class="header-icon text-4xl mb-4 inline-block"><i class="fa-solid fa-bolt"></i></span>
+                        <h2 class="card-title">Industry Advanced Internship</h2>
+                        <p class="card-subtitle">Master Industrial Systems & Live Projects</p>
+                    </div>
+
+                    <div class="mt-4">
+                        <div class="price-row">
+                            <span class="price-new">₹15,000</span>
+                            <span class="price-old">₹37,500</span>
+                        </div>
+
+                        <p class="text-sm text-purple-200 mb-1">Duration: <span class="font-bold text-white">3 Months</span></p>
+                        <p class="text-sm text-purple-200">Seats: <span class="font-bold text-white">Limited</span></p>
+
+                        <ul class="feature-list space-y-2">
+                            <li>Power Electronics & Drives</li>
+                            <li>Industry 5.0 & Automation</li>
+                            <li>Live Industrial Projects</li>
+                            <li>Entrepreneurship Training</li>
+                            <li>High Placement Priority</li>
+                        </ul>
+                    </div>
+
+                    <div class="mt-8 text-center">
+                        <button class="apply-btn w-full">Apply Now</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card 3: Entry Level (Green Theme - Training Zone) -->
+            <div class="program-card card-green">
+                <div class="card-inner">
+                    <div class="text-center sm:text-left">
+                        <span class="header-icon text-4xl mb-4 inline-block"><i class="fa-solid fa-user-graduate"></i></span>
+                        <h2 class="card-title">Industry Entry-Level Internship</h2>
+                        <p class="card-subtitle">For Undergraduate & Beginner Engineers</p>
+                    </div>
+
+                    <div class="mt-4">
+                        <div class="price-row">
+                            <span class="price-new">₹7,500</span>
+                            <span class="price-old">₹18,750</span>
+                        </div>
+
+                        <p class="text-sm text-green-200 mb-1">Duration: <span class="font-bold text-white">3 Months</span></p>
+                        <p class="text-sm text-green-200">Seats: <span class="font-bold text-white">150 Students</span></p>
+
+                        <ul class="feature-list space-y-2">
+                            <li>Hands-On Core Tech Training</li>
+                            <li>Embedded Systems Basics</li>
+                            <li>PLC/SCADA/DCS Fundamentals</li>
+                            <li>Real-Time Project Work</li>
+                            <li>Official Industry Certification</li>
+                        </ul>
+                    </div>
+
+                    <div class="mt-8 text-center">
+                        <button class="apply-btn w-full">Apply Now</button>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+    <!-- What All Programs Offer -->
+    <section class="max-w-6xl mx-auto mb-20 px-4 sm:px-8">
+        <h2 class="text-3xl font-bold text-center text-white mb-10">What All Programs Offer</h2>
+
+        <div class="grid md:grid-cols-3 gap-6">
+            <div class="offer-box">
+                <div class="offer-icon"><i class="fa-solid fa-screwdriver-wrench text-2xl"></i></div>
+                <h3 class="text-xl font-bold text-white mb-2">80% Practical Training</h3>
+                <p class="text-gray-300 text-sm">Focus on real-world implementation, code reviews, and project deployment.</p>
+            </div>
+
+            <div class="offer-box">
+                <div class="offer-icon"><i class="fa-solid fa-network-wired text-2xl"></i></div>
+                <h3 class="text-xl font-bold text-white mb-2">Live Industry Projects</h3>
+                <p class="text-gray-300 text-sm">Contribute to AI, 6G, EV, or Quantum development streams.</p>
+            </div>
+
+            <div class="offer-box">
+                <div class="offer-icon"><i class="fa-solid fa-chalkboard-user text-2xl"></i></div>
+                <h3 class="text-xl font-bold text-white mb-2">Expert Mentorship</h3>
+                <p class="text-gray-300 text-sm">Get guidance from senior engineers and deep tech professionals.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Final CTA -->
+    <section class="max-w-4xl mx-auto mb-20 px-4">
+        <div class="cta-box p-10 text-center">
+            <h2 class="text-3xl font-black text-white mb-4">Ready to Apply?</h2>
+            <p class="text-blue-100 mb-8 max-w-lg mx-auto">Take the next step in your engineering career. Limited seats available for the upcoming cohort.</p>
+
+            <div class="flex flex-col sm:flex-row justify-center gap-4">
+                <!-- Both buttons now use apply-btn for White BG -> Orange Hover -->
+                <button class="apply-btn">
+                    Apply Now
+                </button>
+                <button class="apply-btn">
+                    Contact Us
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10">
+            <div class="footer-col">
+                <h4 class="text-white text-lg font-bold mb-4">OptCELL Global</h4>
+                <p class="text-gray-400 text-sm leading-relaxed">Empowering the next generation of deep tech innovators through industry-aligned R&D programs.</p>
+            </div>
+            
+            <div class="footer-col">
+                <h4>Quick Links</h4>
+                <ul class="text-sm text-gray-400">
+                    <li><a href="#">Home</a></li>
+                    <li><a href="#">Programme</a></li>
+                    <li><a href="#">About</a></li>
+                    <li><a href="#">Infrastructure</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-col">
+                <h4>Programme</h4>
+                <ul class="text-sm text-gray-400">
+                    <li><a href="#">IP Product R&D Track</a></li>
+                    <li><a href="#">Advanced Internship</a></li>
+                    <li><a href="#">Entry-Level Internship</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-col">
+                <h4>Connect</h4>
+                <ul class="text-sm text-gray-400">
+                    <li><i class="fa-solid fa-envelope mr-2"></i> info@optcell.in</li>
+                    <li><i class="fa-solid fa-phone mr-2"></i> +91 90358 74229</li>
+                    <li class="flex items-start mt-2">
+                        <i class="fa-solid fa-location-dot mr-2 mt-1"></i>
+                        <span>1st Main Rd, RHCS Layout,<br>Annapoorneshwari Nagar,<br>Bengaluru, KA 560091</span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="text-center mt-12 pt-6 border-t border-gray-800 text-gray-500 text-xs">
+            &copy; 2025 OptCELL Global. All rights reserved.
+        </div>
+    </footer>
+
+</body>
+</html>
