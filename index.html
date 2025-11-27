@@ -1,0 +1,6913 @@
+<!DOCTYPE html>
+
+<html lang="en" class="light">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>OptCELL Global - Empowering Collaborative Growth</title>
+
+    
+
+    <!-- Tailwind CSS -->
+
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    
+
+    <!-- Tailwind Configuration -->
+
+    <script>
+
+        tailwind.config = {
+
+            darkMode: 'class',
+
+            theme: {
+
+                extend: {
+
+                    colors: {
+
+                        primary: {
+
+                            DEFAULT: '#0056b3', // Deep Blue
+
+                            light: '#007bff',
+
+                            dark: '#004494',
+
+                        },
+
+                        secondary: {
+
+                            DEFAULT: '#ff8c00', // Orange
+
+                            hover: '#e07b00',
+
+                        },
+
+                        sky: {
+
+                            50: '#f0f9ff',
+
+                            100: '#e0f2fe',
+
+                            900: '#0c4a6e',
+
+                        }
+
+                    },
+
+                    fontFamily: {
+
+                        sans: ['Montserrat', 'sans-serif'],
+
+                    }
+
+                }
+
+            }
+
+        }
+
+    </script>
+
+    
+
+    <!-- Font Awesome -->
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    
+
+    <!-- Google Fonts -->
+
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+
+
+
+    <style>
+
+        /* =========================================
+
+            GLOBAL & HOMEPAGE STYLES
+
+            ========================================= */
+
+        body { font-family: 'Montserrat', sans-serif; }
+
+        
+
+        /* Carousel Slider Animation */
+
+        .slider-container {
+
+            display: flex;
+
+            transition: transform 1s ease-in-out;
+
+            height: 100%;
+
+            width: 100%;
+
+        }
+
+        
+
+        .slide {
+
+            min-width: 100%;
+
+            height: 100%;
+
+            position: relative;
+
+        }
+
+
+
+        .slide img {
+
+            width: 100%;
+
+            height: 100%;
+
+            object-fit: cover;
+
+        }
+
+
+
+        /* Overlay gradient */
+
+        .slide-overlay {
+
+            position: absolute;
+
+            inset: 0;
+
+            background: linear-gradient(to right, rgba(0, 86, 179, 0.85), rgba(0, 86, 179, 0.4));
+
+        }
+
+
+
+        .fade-in-up { animation: fadeInUp 0.8s ease-out forwards; opacity: 0; transform: translateY(20px); }
+
+        .delay-100 { animation-delay: 0.1s; }
+
+        .delay-200 { animation-delay: 0.2s; }
+
+        .delay-300 { animation-delay: 0.3s; }
+
+
+
+        @keyframes fadeInUp {
+
+            to { opacity: 1; transform: translateY(0); }
+
+        }
+
+
+
+        /* Fixed Modal Styling using Visibility */
+
+        .modal {
+
+            opacity: 0;
+
+            visibility: hidden;
+
+            transition: opacity 0.3s ease-in-out, visibility 0.3s ease-in-out;
+
+        }
+
+        .modal.active {
+
+            opacity: 1;
+
+            visibility: visible;
+
+        }
+
+        
+
+        /* Toast Animations */
+
+        .toast-enter { transform: translateY(0) !important; opacity: 1 !important; }
+
+
+
+        /* --- Global Background Color for Body (for all sections) --- */
+
+        .bg-tech-doodle {
+
+            background-color: #4285F4; /* Updated to requested color */
+
+            background-size: cover;
+
+            background-repeat: no-repeat;
+
+            background-position: center center;
+
+            background-attachment: fixed;
+
+        }
+
+        
+
+        /* --- PROGRAMS PAGE CUSTOM STYLES (Merged from user input) --- */
+
+        
+
+        /* General Program Page Adaptations */
+
+        .program-page-content {
+
+            /* Removed redundant background-color: #4285F4; */
+
+            color: #ffffff;
+
+            line-height: 1.6;
+
+            padding-top: 5rem;
+
+        }
+
+
+
+        /* Variables for Program Page */
+
+        :root {
+
+            --primary-programs: #4285F4;
+
+            --primary-accent-programs: #00d2ff; /* Cyan */
+
+            --text-main-programs: #ffffff;
+
+            --text-muted-programs: #e0e7ff;
+
+            --glass-border-programs: rgba(255, 255, 255, 0.3);
+
+            --card-bg-dark-programs: rgba(0, 0, 0, 0.2);
+
+            /* Infrastructure Variables */
+
+            --primary-infra: #4285F4;
+
+            --primary-accent: #00d2ff; 
+
+            --text-main: #ffffff;
+
+            --text-muted: #e0e7ff; 
+
+            --glass-border: rgba(255, 255, 255, 0.3);
+
+            --card-text-dark: #334155; 
+
+            --card-text-heading: #0f172a;
+
+            /* Contact Page Variables */
+
+            --brand-blue: #4285F4;
+
+        }
+
+
+
+        /* Program Page Animations */
+
+        @keyframes textShine {
+
+            to { background-position: 200% center; }
+
+        }
+
+
+
+        @keyframes pulseIcon {
+
+            0% { transform: scale(1); text-shadow: 0 0 20px var(--primary-accent-programs); }
+
+            50% { transform: scale(1.1); text-shadow: 0 0 40px var(--primary-accent-programs); }
+
+            100% { transform: scale(1); text-shadow: 0 0 20px var(--primary-accent-programs); }
+
+        }
+
+
+
+        /* Hero Section Adaptation */
+
+        .hero-container {
+
+            background: rgba(255, 255, 255, 0.1);
+
+            backdrop-filter: blur(10px);
+
+            -webkit-backdrop-filter: blur(10px);
+
+            border: 1px solid var(--glass-border-programs);
+
+            border-radius: 30px;
+
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.15);
+
+            transition: transform 0.4s ease, box-shadow 0.4s ease;
+
+        }
+
+
+
+        .hero-container:hover {
+
+            transform: translateY(-5px);
+
+            box-shadow: 0 30px 70px rgba(0, 0, 0, 0.25);
+
+        }
+
+
+
+        .gradient-text-anim {
+
+            background: linear-gradient(
+
+                to right,
+
+                #ffffff 0%,
+
+                #93c5fd 25%,
+
+                #ffffff 50%,
+
+                #93c5fd 75%,
+
+                #ffffff 100%
+
+            );
+
+            background-size: 200% auto;
+
+            -webkit-background-clip: text;
+
+            background-clip: text;
+
+            -webkit-text-fill-color: transparent;
+
+            color: transparent;
+
+            animation: textShine 4s linear infinite;
+
+            filter: drop-shadow(0 0 10px rgba(255, 255, 255, 0.3));
+
+        }
+
+
+
+        /* Feature Box (Glassmorphism) */
+
+        .glass-panel {
+
+            background: rgba(255, 255, 255, 0.95); /* High opacity for readability */
+
+            backdrop-filter: blur(15px);
+
+            border-radius: 20px;
+
+            box-shadow: 0 15px 40px rgba(0,0,0,0.2);
+
+            border: 1px solid rgba(255,255,255,0.4);
+
+            color: #1e3a8a; /* Dark blue text for contrast on white */
+
+        }
+
+        
+
+        .feature-num {
+
+            background: var(--primary-programs);
+
+            color: white;
+
+            width: 30px;
+
+            height: 30px;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            border-radius: 50%;
+
+            font-weight: bold;
+
+            flex-shrink: 0;
+
+        }
+
+
+
+        /* Card Styles */
+
+        .program-card {
+
+            position: relative;
+
+            border-radius: 30px;
+
+            padding: 2px;
+
+            display: flex;
+
+            flex-direction: column;
+
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+
+            height: 100%;
+
+        }
+
+
+
+        .program-card:hover {
+
+            transform: translateY(-10px);
+
+        }
+
+
+
+        .card-inner {
+
+            background: rgba(0, 0, 0, 0.25);
+
+            backdrop-filter: blur(10px);
+
+            border-radius: 28px;
+
+            padding: 2rem;
+
+            height: 100%;
+
+            display: flex;
+
+            flex-direction: column;
+
+            position: relative;
+
+            overflow: hidden;
+
+        }
+
+
+
+        /* Card Variant 1: INNOVATION (Cyan) */
+
+        .card-cyan {
+
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.1), rgba(0, 210, 255, 0.2));
+
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.2);
+
+            border: 1px solid rgba(0, 210, 255, 0.3);
+
+        }
+
+        .card-cyan .card-title {
+
+            background: linear-gradient(to right, #ffffff, var(--primary-accent-programs));
+
+            -webkit-background-clip: text;
+
+            -webkit-text-fill-color: transparent;
+
+        }
+
+        .card-cyan .header-icon {
+
+            color: var(--primary-accent-programs);
+
+            text-shadow: 0 0 20px var(--primary-accent-programs);
+
+            animation: pulseIcon 2s infinite;
+
+        }
+
+        .card-cyan .card-inner::before,
+
+        .card-cyan .card-inner::after {
+
+            content: ''; position: absolute; width: 20px; height: 20px;
+
+            border: 2px solid var(--primary-accent-programs); transition: all 0.3s ease;
+
+            pointer-events: none;
+
+        }
+
+        .card-cyan .card-inner::before { top: 0; left: 0; border-right: none; border-bottom: none; border-radius: 20px 0 0 0; }
+
+        .card-cyan .card-inner::after { bottom: 0; right: 0; border-left: none; border-top: none; border-radius: 0 0 20px 0; }
+
+        .card-cyan:hover .card-inner::before, .card-cyan:hover .card-inner::after { width: 100%; height: 100%; opacity: 0.1; }
+
+
+
+        /* Card Variant 2: R&D LAB (Purple/Fuchsia) */
+
+        .card-purple {
+
+            background: linear-gradient(135deg, rgba(168, 85, 247, 0.1), rgba(217, 70, 239, 0.1));
+
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.2);
+
+            border: 1px solid rgba(217, 70, 239, 0.4);
+
+        }
+
+        .card-purple .card-inner {
+
+            background-image:
+
+                linear-gradient(rgba(217, 70, 239, 0.05) 1px, transparent 1px),
+
+                linear-gradient(90deg, rgba(217, 70, 239, 0.05) 1px, transparent 1px);
+
+            background-size: 20px 20px;
+
+        }
+
+        .card-purple .card-title {
+
+            background: linear-gradient(to right, #ffffff, #e0a2ea);
+
+            -webkit-background-clip: text;
+
+            -webkit-text-fill-color: transparent;
+
+        }
+
+        .card-purple .header-icon { color: #d946ef; text-shadow: 0 0 15px #d946ef; }
+
+        .card-purple .feature-list li::before { color: #d946ef !important; }
+
+
+
+        /* Card Variant 3: TRAINING ZONE (Green) */
+
+        .card-green {
+
+            background: linear-gradient(135deg, rgba(16, 185, 129, 0.1), rgba(52, 211, 153, 0.1));
+
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.2);
+
+            border: 1px solid rgba(52, 211, 153, 0.4);
+
+        }
+
+        .card-green .card-inner::before {
+
+            content: ''; position: absolute; left: 0; top: 20%;
+
+            height: 60%; width: 4px; background: #34d399;
+
+            box-shadow: 0 0 10px #34d399; border-radius: 0 4px 4px 0;
+
+        }
+
+        .card-green .card-title {
+
+            background: linear-gradient(to right, #ffffff, #34d399);
+
+            -webkit-background-clip: text;
+
+            -webkit-text-fill-color: transparent;
+
+        }
+
+        .card-green .header-icon { color: #34d399; text-shadow: 0 0 15px #34d399; }
+
+        .card-green .feature-list li::before { color: #34d399 !important; }
+
+
+
+        /* Program Card Content Styling */
+
+        .program-card .card-title {
+
+            font-size: 1.8rem;
+
+            font-weight: 800;
+
+            line-height: 1.2;
+
+            margin: 15px 0 5px;
+
+            text-transform: uppercase;
+
+        }
+
+        .program-card .card-subtitle {
+
+            font-size: 0.9rem;
+
+            color: var(--text-muted-programs);
+
+            margin-bottom: 20px;
+
+            font-weight: 500;
+
+        }
+
+        
+
+        .program-card .price-row {
+
+            display: flex;
+
+            align-items: baseline;
+
+            gap: 12px;
+
+            margin-bottom: 15px;
+
+            padding-bottom: 15px;
+
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+
+        }
+
+        .program-card .price-new { font-size: 2rem; font-weight: 700; color: white; }
+
+        .program-card .price-old { font-size: 1.1rem; text-decoration: line-through; color: #9ca3af; }
+
+
+
+        .program-card .feature-list { list-style: none; margin-top: 20px; }
+
+        .program-card .feature-list li {
+
+            position: relative;
+
+            padding-left: 25px;
+
+            margin-bottom: 10px;
+
+            color: #e2e8f0;
+
+            font-size: 0.95rem;
+
+        }
+
+        
+
+        .program-card .featured-badge {
+
+            position: absolute;
+
+            top: 20px;
+
+            right: 20px;
+
+            background: var(--primary-accent-programs);
+
+            color: #000;
+
+            font-weight: 800;
+
+            font-size: 0.7rem;
+
+            padding: 4px 10px;
+
+            border-radius: 20px;
+
+            text-transform: uppercase;
+
+            box-shadow: 0 0 15px var(--primary-accent-programs);
+
+            z-index: 10;
+
+        }
+
+        
+
+        /* Buttons - Overriding generic .apply-btn to match Program Page style */
+
+        .program-page-content .apply-btn {
+
+            background: white;
+
+            color: var(--primary-programs);
+
+            padding: 15px 25px;
+
+            border-radius: 50px;
+
+            font-weight: 800;
+
+            text-transform: uppercase;
+
+            letter-spacing: 1px;
+
+            transition: all 0.3s ease;
+
+            border: 2px solid white;
+
+            cursor: pointer;
+
+        }
+
+        
+
+        .program-page-content .apply-btn:hover {
+
+            background: #FF6B00 !important; /* Force Bright Orange */
+
+            border-color: #FF6B00 !important;
+
+            color: white !important;
+
+            box-shadow: 0 0 25px rgba(255, 107, 0, 0.7) !important;
+
+            transform: scale(1.05);
+
+        }
+
+
+
+        /* Offer Boxes */
+
+        .offer-box {
+
+            background: rgba(255, 255, 255, 0.05);
+
+            border: 1px solid rgba(255, 255, 255, 0.1);
+
+            padding: 30px;
+
+            border-radius: 20px;
+
+            text-align: center;
+
+            transition: transform 0.3s;
+
+        }
+
+        .offer-box:hover {
+
+            transform: translateY(-5px);
+
+            background: rgba(255, 255, 255, 0.1);
+
+        }
+
+        .offer-icon {
+
+            display: inline-flex;
+
+            justify-content: center;
+
+            align-items: center;
+
+            width: 60px; height: 60px;
+
+            background: rgba(255,255,255,0.1);
+
+            border-radius: 50%;
+
+            margin-bottom: 20px;
+
+            color: white;
+
+        }
+
+
+
+        /* CTA Section */
+
+        .cta-box {
+
+            background: rgba(255, 255, 255, 0.05);
+
+            border: 1px solid rgba(255, 255, 255, 0.2);
+
+            border-radius: 20px;
+
+        }
+
+        
+
+        /* --- General Card Styling (From original file, for Infrastructure/About pages) --- */
+
+        .program-card {
+
+            background: rgba(255, 255, 255, 0.95);
+
+            border-radius: 1rem;
+
+            overflow: hidden;
+
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+
+            display: flex;
+
+            flex-direction: column;
+
+            height: 100%;
+
+        }
+
+        .dark .program-card {
+
+            background: rgba(30, 41, 59, 0.95);
+
+            color: white;
+
+        }
+
+        .program-card:hover {
+
+            transform: translateY(-5px);
+
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+
+        }
+
+
+
+        /* --- Infinite Marquee CSS --- */
+
+        .logo-track {
+
+            display: flex;
+
+            white-space: nowrap;
+
+            animation: marquee 7.5s linear infinite;
+
+            will-change: transform;
+
+        }
+
+        .logo-track:hover {
+
+            animation-play-state: paused;
+
+        }
+
+        .logo-item {
+
+            padding: 0 2rem;
+
+            display: inline-block;
+
+            flex-shrink: 0;
+
+            min-width: calc((100% / 19) * 2);
+
+            height: 80px;
+
+        }
+
+        @keyframes marquee {
+
+            0% { transform: translateX(0); }
+
+            100% { transform: translateX(-50%); }
+
+        }
+
+
+
+        /* =========================================
+
+            INFRASTRUCTURE PAGE CUSTOM CSS
+
+            ========================================= */
+
+        
+
+        /* Apply blue background only within the infrastructure section */
+
+        #infrastructure .infra-page-content {
+
+            /* Removed redundant background-color: var(--primary-infra); */
+
+            color: var(--text-main);
+
+            line-height: 1.6;
+
+        }
+
+        
+
+        /* Infrastructure Animations */
+
+        .anim-load {
+
+            opacity: 0;
+
+            transform: translateY(40px);
+
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+
+        }
+
+
+
+        .anim-load.visible {
+
+            opacity: 1;
+
+            transform: translateY(0);
+
+        }
+
+
+
+        .delay-1 { transition-delay: 0.1s; }
+
+        .delay-2 { transition-delay: 0.2s; }
+
+        .delay-3 { transition-delay: 0.3s; }
+
+        .delay-4 { transition-delay: 0.4s; }
+
+        .delay-5 { transition-delay: 0.5s; }
+
+
+
+        @keyframes shine { 
+
+            100% { left: 125%; } 
+
+        }
+
+
+
+        /* Hero Section */
+
+        #infrastructure .hero {
+
+            text-align: center;
+
+            padding: 100px 40px 80px;
+
+            max-width: 1100px; 
+
+            width: 90%; 
+
+            margin: 40px auto 80px; 
+
+            
+
+            /* Clean Glass Effect */
+
+            background: rgba(255, 255, 255, 0.1);
+
+            backdrop-filter: blur(10px);
+
+            -webkit-backdrop-filter: blur(10px);
+
+            
+
+            border: 1px solid var(--glass-border);
+
+            border-radius: 30px;
+
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.15); 
+
+            transition: transform 0.4s ease, box-shadow 0.4s ease;
+
+        }
+
+
+
+        #infrastructure .hero:hover {
+
+            transform: translateY(-5px);
+
+            box-shadow: 0 30px 70px rgba(0, 0, 0, 0.25);
+
+        }
+
+
+
+        #infrastructure .hero h1 {
+
+            font-size: 3.5rem;
+
+            font-weight: 900;
+
+            margin-bottom: 25px;
+
+            text-transform: uppercase;
+
+            line-height: 1;
+
+            color: #ffffff;
+
+            text-shadow: 0 5px 15px rgba(0,0,0,0.2); 
+
+            letter-spacing: -2px;
+
+        }
+
+
+
+        #infrastructure .hero h1 span {
+
+            display: block;
+
+            margin-top: 5px;
+
+            font-size: 4.5rem;
+
+            font-weight: 900;
+
+            letter-spacing: 2px;
+
+            
+
+            background: linear-gradient(
+
+                to right, 
+
+                #ffffff 0%, 
+
+                #93c5fd 25%, 
+
+                #ffffff 50%, 
+
+                #93c5fd 75%, 
+
+                #ffffff 100%
+
+            );
+
+            background-size: 200% auto;
+
+            -webkit-background-clip: text;
+
+            background-clip: text;
+
+            -webkit-text-fill-color: transparent; 
+
+            color: transparent;
+
+            
+
+            animation: textShine 4s linear infinite;
+
+            -webkit-text-stroke: 1px rgba(255,255,255,0.1);
+
+            filter: drop-shadow(0 0 10px rgba(255, 255, 255, 0.3));
+
+        }
+
+
+
+        #infrastructure .hero .subtitle {
+
+            color: #f1f5f9;
+
+            font-size: 1.3rem;
+
+            font-weight: 500;
+
+            margin-bottom: 30px;
+
+            max-width: 800px;
+
+            margin-left: auto;
+
+            margin-right: auto;
+
+            letter-spacing: 0.5px;
+
+        }
+
+
+
+        /* General Layout */
+
+        .infra-page-content .container {
+
+            max-width: 1200px;
+
+            margin: 0 auto;
+
+            padding: 0 20px;
+
+        }
+
+
+
+        .facility-row {
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: space-between;
+
+            margin: 120px 0;
+
+            gap: 60px;
+
+        }
+
+
+
+        .facility-row.reverse { flex-direction: row-reverse; }
+
+        .text-block { flex: 1; }
+
+
+
+        .icon-title {
+
+            display: flex; align-items: center; gap: 20px; margin-bottom: 20px;
+
+        }
+
+        .icon-title i {
+
+            font-size: 2.2rem;
+
+            /* Default icon color will be overridden by specific cards */ 
+
+            color: #fff; 
+
+        }
+
+        .icon-title h2 { font-size: 2.2rem; font-weight: 700; }
+
+
+
+        .section-desc {
+
+            /* Updated for visibility on white cards: Dark Grey */
+
+            color: var(--card-text-dark); 
+
+            margin-bottom: 30px;
+
+            border-left: 4px solid #4285F4; 
+
+            padding-left: 20px;
+
+            font-size: 1.1rem;
+
+        }
+
+
+
+        .text-block h3 {
+
+            color: #0f172a; /* Dark text for clarity on light card background */
+
+            font-size: 0.9rem; margin-bottom: 15px; 
+
+            text-transform: uppercase; letter-spacing: 2px; font-weight: 700;
+
+        }
+
+
+
+        .feature-list { list-style: none; }
+
+        .feature-list li {
+
+            position: relative; padding-left: 30px; margin-bottom: 12px;
+
+            /* Updated for visibility on white cards: Dark Grey */
+
+            color: var(--card-text-dark); 
+
+            transition: transform 0.3s;
+
+        }
+
+        .feature-list li::before {
+
+            content: '\f00c'; font-family: "Font Awesome 6 Free"; font-weight: 900;
+
+            color: #4285F4; position: absolute; left: 0; font-size: 0.9rem; top: 4px;
+
+        }
+
+        .feature-list li:hover {
+
+            transform: translateX(10px); 
+
+        }
+
+
+
+        /* Standard Image Styling */
+
+        .image-block { flex: 1; height: 380px; }
+
+        .img-wrapper {
+
+            width: 100%; height: 100%; border-radius: 20px; overflow: hidden;
+
+            border: 2px solid rgba(0, 0, 0, 0.1); /* Lighter border for white cards */
+
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.1); 
+
+            position: relative;
+
+            cursor: pointer;
+
+        }
+
+        .img-wrapper img {
+
+            width: 100%; height: 100%; object-fit: cover;
+
+            transition: transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+
+        }
+
+        .img-wrapper:hover img { transform: scale(1.1); }
+
+        .img-wrapper::before {
+
+            content: '';
+
+            position: absolute;
+
+            top: 0; left: -75%;
+
+            z-index: 2;
+
+            display: block;
+
+            width: 50%; height: 100%;
+
+            background: linear-gradient(to right, rgba(255,255,255,0) 0%, rgba(255,255,255,0.4) 100%);
+
+            transform: skewX(-25deg);
+
+        }
+
+        .img-wrapper:hover::before { animation: shine 0.75s; }
+
+
+
+        /* SPECIAL CARD: INNOVATION HALL (WHITE) */
+
+        #innovation-highlight {
+
+            position: relative;
+
+            padding: 40px;
+
+            border-radius: 30px;
+
+            background: #ffffff;
+
+            border-left: 1px solid rgba(66, 133, 244, 0.2);
+
+            border-top: 1px solid rgba(66, 133, 244, 0.2);
+
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
+
+        }
+
+
+
+        /* Inner Text Block - Light Grey for Contrast */
+
+        #innovation-highlight .text-block {
+
+            background: #f8fafc; /* Very Light Grey */
+
+            padding: 30px;
+
+            border-radius: 15px;
+
+            position: relative;
+
+            overflow: hidden;
+
+            border: 1px solid rgba(147, 197, 253, 0.5);
+
+        }
+
+
+
+        #innovation-highlight .section-desc { color: #334155; }
+
+        #innovation-highlight .feature-list li { color: #334155; }
+
+
+
+        /* Tech Brackets */
+
+        #innovation-highlight .text-block::before,
+
+        #innovation-highlight .text-block::after {
+
+            content: ''; position: absolute; width: 25px; height: 25px;
+
+            border: 2px solid var(--primary-accent); transition: all 0.3s ease;
+
+        }
+
+        #innovation-highlight .text-block::before { top: 0; left: 0; border-right: none; border-bottom: none; }
+
+        #innovation-highlight .text-block::after { bottom: 0; right: 0; border-left: none; border-top: none; }
+
+
+
+        #innovation-highlight .icon-title h2 {
+
+            font-size: 2.5rem;
+
+            /* Gradient visible on white */
+
+            background: linear-gradient(to right, #2563eb, #00d2ff);
+
+            -webkit-background-clip: text;
+
+            -webkit-text-fill-color: transparent;
+
+            font-weight: 900;
+
+        }
+
+
+
+        #innovation-highlight .icon-title i {
+
+            color: var(--primary-accent);
+
+            text-shadow: 0 0 20px rgba(0, 210, 255, 0.4);
+
+            animation: pulseIcon 2s infinite;
+
+        }
+
+
+
+        #innovation-highlight .img-wrapper {
+
+            border-color: var(--primary-accent);
+
+            box-shadow: 0 0 30px rgba(0, 210, 255, 0.2);
+
+        }
+
+
+
+        /* CARD: R&D LABORATORY (WHITE) */
+
+        #rnd-lab {
+
+            position: relative;
+
+            padding: 40px;
+
+            border-radius: 30px;
+
+            background: #ffffff;
+
+            border-right: 1px solid rgba(168, 85, 247, 0.3);
+
+            border-bottom: 1px solid rgba(168, 85, 247, 0.3);
+
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
+
+        }
+
+
+
+        #rnd-lab .text-block {
+
+            background: #faf5ff; /* Very Light Purple tint */
+
+            padding: 30px;
+
+            border-radius: 15px;
+
+            position: relative;
+
+            border: 1px solid rgba(217, 70, 239, 0.3); 
+
+            background-image: 
+
+                linear-gradient(rgba(217, 70, 239, 0.05) 1px, transparent 1px),
+
+                linear-gradient(90deg, rgba(217, 70, 239, 0.05) 1px, transparent 1px);
+
+            background-size: 20px 20px;
+
+        }
+
+
+
+        #rnd-lab .section-desc, 
+
+        #rnd-lab .feature-list li { color: #4a044e; } /* Dark Purple Text */
+
+
+
+        #rnd-lab .icon-title h2 {
+
+            font-size: 2.5rem;
+
+            background: linear-gradient(to right, #9333ea, #e0a2ea);
+
+            -webkit-background-clip: text;
+
+            -webkit-text-fill-color: transparent;
+
+            font-weight: 900;
+
+        }
+
+
+
+        #rnd-lab .icon-title i { color: #d946ef; text-shadow: 0 0 15px #d946ef; }
+
+        #rnd-lab .text-block h3 { color: #c026d3; }
+
+        #rnd-lab .feature-list li::before { color: #d946ef; }
+
+
+
+        #rnd-lab .img-wrapper {
+
+            border-color: #d946ef;
+
+            box-shadow: 0 0 30px rgba(217, 70, 239, 0.2);
+
+        }
+
+
+
+        /* CARD: TRAINING ZONES (WHITE) */
+
+        #training-zone {
+
+            position: relative;
+
+            padding: 40px;
+
+            border-radius: 30px;
+
+            background: #ffffff;
+
+            border-left: 1px solid rgba(16, 185, 129, 0.3);
+
+            border-top: 1px solid rgba(16, 185, 129, 0.3);
+
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
+
+        }
+
+
+
+        #training-zone .text-block {
+
+            background: #f0fdf4; /* Very Light Green tint */
+
+            padding: 30px;
+
+            border-radius: 15px;
+
+            position: relative;
+
+            border: 1px solid rgba(52, 211, 153, 0.3); 
+
+        }
+
+
+
+        #training-zone .section-desc, 
+
+        #training-zone .feature-list li { color: #064e3b; } /* Dark Green Text */
+
+
+
+        #training-zone .text-block::before {
+
+            content: ''; position: absolute; left: 0; top: 20%;
+
+            height: 60%; width: 4px; background: #34d399;
+
+            box-shadow: 0 0 10px #34d399; border-radius: 0 4px 4px 0;
+
+        }
+
+
+
+        #training-zone .icon-title h2 {
+
+            font-size: 2.5rem;
+
+            background: linear-gradient(to right, #059669, #34d399);
+
+            -webkit-background-clip: text;
+
+            -webkit-text-fill-color: transparent;
+
+            font-weight: 900;
+
+        }
+
+
+
+        #training-zone .icon-title i { color: #10b981; }
+
+        #training-zone .text-block h3 { color: #059669; }
+
+        #training-zone .feature-list li::before { color: #34d399; }
+
+
+
+        #training-zone .img-wrapper {
+
+            border: 1px solid rgba(52, 211, 153, 0.5);
+
+            box-shadow: 0 0 30px rgba(16, 185, 129, 0.2);
+
+        }
+
+
+
+        /* CARD: CO-WORKING SPACES (WHITE) */
+
+        #coworking-space {
+
+            position: relative;
+
+            padding: 40px;
+
+            border-radius: 30px;
+
+            background: #ffffff;
+
+            border-left: 1px solid rgba(245, 158, 11, 0.3);
+
+            border-top: 1px solid rgba(245, 158, 11, 0.3);
+
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
+
+        }
+
+
+
+        #coworking-space .text-block {
+
+            background: #fffbeb; /* Very Light Amber tint */
+
+            padding: 25px; 
+
+            border-radius: 15px;
+
+            position: relative;
+
+            border: 1px solid rgba(245, 158, 11, 0.5); 
+
+            align-self: center; 
+
+            max-width: 520px;  
+
+        }
+
+
+
+        #coworking-space .section-desc, 
+
+        #coworking-space .feature-list li { color: #78350f; } /* Dark Amber/Brown Text */
+
+
+
+        #coworking-space .status-badge {
+
+            display: inline-flex; align-items: center; gap: 8px;
+
+            background: rgba(245, 158, 11, 0.1);
+
+            padding: 4px 10px; border-radius: 20px;
+
+            border: 1px solid rgba(245, 158, 11, 0.4);
+
+            font-size: 0.75rem; color: #d97706; font-weight: 700;
+
+            margin-bottom: 15px; text-transform: uppercase; letter-spacing: 1px;
+
+        }
+
+
+
+        #coworking-space .status-dot {
+
+            width: 6px; height: 6px; background: #fbbf24; border-radius: 50%;
+
+            box-shadow: 0 0 5px #fbbf24; animation: blinkStatus 1.5s infinite;
+
+        }
+
+
+
+        @keyframes blinkStatus { 0% { opacity: 1; } 50% { opacity: 0.4; } 100% { opacity: 1; } }
+
+
+
+        #coworking-space .icon-title h2 {
+
+            font-size: 2.2rem;
+
+            background: linear-gradient(to right, #b45309, #f59e0b);
+
+            -webkit-background-clip: text;
+
+            -webkit-text-fill-color: transparent;
+
+            font-weight: 900;
+
+        }
+
+
+
+        #coworking-space .icon-title i { color: #f59e0b; }
+
+        #coworking-space .text-block h3 { color: #d97706; font-size: 0.85rem; }
+
+        #coworking-space .feature-list li::before { color: #f59e0b; }
+
+
+
+        #coworking-space .img-wrapper {
+
+            border: 1px solid rgba(245, 158, 11, 0.4);
+
+            animation: breatheGlow 4s ease-in-out infinite;
+
+        }
+
+        @keyframes breatheGlow {
+
+            0% { box-shadow: 0 0 20px rgba(245, 158, 11, 0.1); }
+
+            50% { box-shadow: 0 0 50px rgba(245, 158, 11, 0.4); }
+
+            100% { box-shadow: 0 0 20px rgba(245, 158, 11, 0.1); }
+
+        }
+
+
+
+        /* CARD: TEST BENCH FACILITIES (WHITE) */
+
+        #test-bench {
+
+            position: relative;
+
+            padding: 40px;
+
+            border-radius: 30px;
+
+            background: #ffffff;
+
+            border-right: 1px solid rgba(239, 68, 68, 0.3);
+
+            border-bottom: 1px solid rgba(239, 68, 68, 0.3);
+
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
+
+        }
+
+
+
+        #test-bench .text-block {
+
+            background: #fef2f2; /* Very Light Red tint */
+
+            background-image: 
+
+                linear-gradient(rgba(239, 68, 68, 0.1) 1px, transparent 1px),
+
+                linear-gradient(90deg, rgba(239, 68, 68, 0.1) 1px, transparent 1px);
+
+            background-size: 20px 20px;
+
+            padding: 25px;
+
+            border-radius: 15px;
+
+            border: 1px solid rgba(239, 68, 68, 0.2);
+
+            align-self: center; max-width: 520px;
+
+        }
+
+
+
+        #test-bench .section-desc, 
+
+        #test-bench .feature-list li { color: #7f1d1d; } /* Dark Red Text */
+
+
+
+        #test-bench .tech-badge {
+
+            display: inline-flex; align-items: center; gap: 8px;
+
+            background: rgba(239, 68, 68, 0.1); color: #dc2626;
+
+            font-size: 0.75rem; font-weight: 700;
+
+            padding: 4px 10px; border-radius: 4px;
+
+            border: 1px solid rgba(239, 68, 68, 0.3);
+
+            margin-bottom: 15px; letter-spacing: 1px;
+
+        }
+
+
+
+        #test-bench .icon-title h2 {
+
+            font-size: 2.2rem;
+
+            background: linear-gradient(to right, #b91c1c, #ef4444);
+
+            -webkit-background-clip: text;
+
+            -webkit-text-fill-color: transparent;
+
+            font-weight: 900;
+
+        }
+
+
+
+        #test-bench .icon-title i { color: #ef4444; }
+
+        #test-bench .text-block h3 { color: #dc2626; font-size: 0.85rem; }
+
+        #test-bench .feature-list li::before { color: #ef4444; }
+
+
+
+        #test-bench .img-wrapper {
+
+            border: 1px solid rgba(239, 68, 68, 0.5);
+
+            box-shadow: 0 0 30px rgba(239, 68, 68, 0.15);
+
+        }
+
+
+
+        /* CARD: AUDITORIUM (WHITE) */
+
+        #auditorium {
+
+            position: relative;
+
+            padding: 40px;
+
+            border-radius: 30px;
+
+            background: #ffffff;
+
+            border-right: 1px solid rgba(236, 72, 153, 0.3);
+
+            border-bottom: 1px solid rgba(236, 72, 153, 0.3);
+
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
+
+        }
+
+
+
+        #auditorium .text-block {
+
+            background: #fdf2f8; /* Very Light Pink tint */
+
+            padding: 25px;
+
+            border-radius: 15px;
+
+            border: 1px solid rgba(236, 72, 153, 0.3);
+
+            align-self: center; max-width: 520px;
+
+        }
+
+
+
+        #auditorium .section-desc, 
+
+        #auditorium .feature-list li { color: #831843; } /* Dark Pink Text */
+
+
+
+        #auditorium .soundwave-container {
+
+            display: flex; align-items: center; gap: 5px; margin-bottom: 15px;
+
+            background: rgba(236, 72, 153, 0.1); padding: 8px 12px;
+
+            border-radius: 8px; width: fit-content;
+
+            border: 1px solid rgba(236, 72, 153, 0.2);
+
+        }
+
+
+
+        #auditorium .bar { width: 4px; background: #db2777; border-radius: 2px; }
+
+        #auditorium .bar-1 { height: 10px; }
+
+        #auditorium .bar-2 { height: 18px; }
+
+        #auditorium .bar-3 { height: 14px; }
+
+        #auditorium .bar-4 { height: 8px; }
+
+
+
+        #auditorium .sound-label {
+
+            margin-left: 8px; font-size: 0.75rem; font-weight: 700;
+
+            color: #db2777; letter-spacing: 1px;
+
+        }
+
+
+
+        #auditorium .icon-title h2 {
+
+            font-size: 2.2rem;
+
+            background: linear-gradient(to right, #be185d, #ec4899);
+
+            -webkit-background-clip: text;
+
+            -webkit-text-fill-color: transparent;
+
+            font-weight: 900;
+
+        }
+
+
+
+        #auditorium .icon-title i { color: #ec4899; }
+
+        #auditorium .text-block h3 { color: #be185d; font-size: 0.85rem; }
+
+        #auditorium .feature-list li::before { color: #ec4899; }
+
+
+
+        #auditorium .img-wrapper {
+
+            border: 1px solid rgba(236, 72, 153, 0.4);
+
+            box-shadow: 0 0 30px rgba(236, 72, 153, 0.2);
+
+        }
+
+
+
+        /* STATS & CTA & FOOTER */
+
+        .stats-section {
+
+            display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px;
+
+            margin: 100px 0; 
+
+            background: rgba(255, 255, 255, 0.1);
+
+            border: 1px solid rgba(255, 255, 255, 0.3); border-radius: 20px;
+
+            padding: 60px 40px; position: relative; overflow: hidden;
+
+        }
+
+        .stats-section::before {
+
+            content: ''; position: absolute; top: 0; left: 0;
+
+            width: 6px; height: 100%; background: #fff;
+
+        }
+
+        .stat-box { text-align: center; transition: transform 0.3s; }
+
+        .stat-box:hover { transform: translateY(-10px); }
+
+        .stat-box .number {
+
+            display: block; font-size: 3.5rem; font-weight: 700; color: white;
+
+            margin-bottom: 5px; 
+
+        }
+
+        .stat-box .label {
+
+            color: var(--text-muted); font-size: 0.9rem;
+
+            text-transform: uppercase; letter-spacing: 2px;
+
+        }
+
+
+
+        .cta-section {
+
+            text-align: center; padding: 100px 20px; margin-bottom: 50px;
+
+            background: rgba(255, 255, 255, 0.05);
+
+            border-radius: 20px; border: 1px solid rgba(255,255,255,0.2);
+
+        }
+
+        .cta-section h2 { font-size: 2.5rem; margin-bottom: 20px; }
+
+        .cta-section h2 span { color: white; text-decoration: underline; text-decoration-color: #bfdbfe; }
+
+        .cta-section p { max-width: 600px; margin: 0 auto 40px; color: var(--text-muted); }
+
+
+
+        .btn-primary-infra {
+
+            display: inline-block; background: white; color: var(--primary-infra);
+
+            text-decoration: none; padding: 18px 50px; font-size: 1rem;
+
+            font-weight: 800; border-radius: 50px; transition: all 0.3s ease;
+
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1); border: 2px solid white;
+
+            text-transform: uppercase; letter-spacing: 1px;
+
+        }
+
+        .btn-primary-infra:hover {
+
+            background: transparent; color: white;
+
+            transform: scale(1.05); box-shadow: 0 0 30px rgba(255, 255, 255, 0.3);
+
+        }
+
+
+
+        /* Media Queries for Infrastructure page */
+
+        @media (max-width: 900px) {
+
+            #infrastructure .hero { width: 95%; padding: 40px 20px; }
+
+            #infrastructure .hero h1 { font-size: 2.5rem; letter-spacing: -1px; }
+
+            #infrastructure .hero h1 span { font-size: 2.8rem; letter-spacing: 1px; }
+
+            
+
+            .facility-row, .facility-row.reverse { flex-direction: column; text-align: center; gap: 40px; margin: 60px 0; }
+
+            .section-desc { border-left: none; padding-left: 0; }
+
+            .icon-title { justify-content: center; }
+
+            .feature-list { text-align: left; display: inline-block; }
+
+            .stats-section { grid-template-columns: 1fr 1fr; gap: 40px; }
+
+
+
+            /* Mobile overrides for Cards */
+
+            #innovation-highlight,
+
+            #rnd-lab,
+
+            #training-zone,
+
+            #coworking-space,
+
+            #test-bench,
+
+            #auditorium { 
+
+                padding: 20px; 
+
+            }
+
+            
+
+            #coworking-space .text-block,
+
+            #test-bench .text-block,
+
+            #auditorium .text-block { 
+
+                max-width: 100%; 
+
+            }
+
+        }
+
+
+
+        /* =========================================
+
+            CONTACT PAGE CUSTOM CSS (MERGED)
+
+            ========================================= */
+
+            
+
+        /* Overrides to ensure the contact page text is dark on its white cards, but the container BG is dark blue */
+
+        #contact {
+
+            color: #333; /* Default text color for contact content, overridden on white cards */
+
+        }
+
+
+
+        .animate-enter {
+
+            opacity: 0; 
+
+            animation: fadeInUp 0.8s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+
+        }
+
+        .animate-enter.delay-0 { animation-delay: 0s; }
+
+        .animate-enter.delay-1 { animation-delay: 0.2s; }
+
+        .animate-enter.delay-2 { animation-delay: 0.4s; }
+
+        .animate-enter.delay-3 { animation-delay: 0.6s; }
+
+
+
+        @keyframes sheen {
+
+            0% { left: -100%; opacity: 0; }
+
+            5% { opacity: 1; }
+
+            100% { left: 200%; opacity: 0; }
+
+        }
+
+
+
+        /* Hero from Contact Page (Adapted to avoid conflict with Infrastructure Hero) */
+
+        #contact .hero {
+
+            text-align: center;
+
+            padding: 60px 40px;
+
+            max-width: 1100px; 
+
+            width: 100%; 
+
+            margin: 0 auto 60px;
+
+            background: rgba(255, 255, 255, 0.1);
+
+            backdrop-filter: blur(10px);
+
+            -webkit-backdrop-filter: blur(10px);
+
+            border: 1px solid var(--glass-border);
+
+            border-radius: 30px;
+
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.15); 
+
+            transition: transform 0.4s ease, box-shadow 0.4s ease;
+
+        }
+
+
+
+        #contact .hero:hover {
+
+            transform: translateY(-5px);
+
+            box-shadow: 0 30px 70px rgba(0, 0, 0, 0.25);
+
+        }
+
+
+
+        #contact .hero h1 {
+
+            font-size: 3rem;
+
+            font-weight: 900;
+
+            margin-bottom: 20px;
+
+            text-transform: uppercase;
+
+            line-height: 1.1;
+
+            color: #ffffff;
+
+            text-shadow: 0 5px 15px rgba(0,0,0,0.2); 
+
+            letter-spacing: -2px;
+
+        }
+
+
+
+        #contact .hero h1 span {
+
+            display: inline-block;
+
+            font-weight: 900;
+
+            letter-spacing: 2px;
+
+            background: linear-gradient(to right, #ffffff 0%, #93c5fd 25%, #ffffff 50%, #93c5fd 75%, #ffffff 100%);
+
+            background-size: 200% auto;
+
+            -webkit-background-clip: text;
+
+            background-clip: text;
+
+            -webkit-text-fill-color: transparent; 
+
+            color: transparent;
+
+            animation: textShine 4s linear infinite;
+
+            filter: drop-shadow(0 0 10px rgba(255, 255, 255, 0.3));
+
+        }
+
+
+
+        #contact .hero .subtitle {
+
+            color: #f1f5f9;
+
+            font-size: 1.2rem;
+
+            font-weight: 500;
+
+            max-width: 800px;
+
+            margin-left: auto;
+
+            margin-right: auto;
+
+            letter-spacing: 0.5px;
+
+            line-height: 1.6;
+
+        }
+
+        
+
+        #contact .premium-card {
+
+            background: #ffffff;
+
+            border-radius: 24px;
+
+            box-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.2), 0 0 0 1px rgba(255, 255, 255, 0.1) inset;
+
+            border: 1px solid rgba(255, 255, 255, 0.4);
+
+            padding: 2.5rem;
+
+            position: relative;
+
+            overflow: hidden; 
+
+            transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.4s ease;
+
+        }
+
+
+
+        #contact .premium-card:hover {
+
+            transform: translateY(-8px);
+
+            box-shadow: 0 30px 60px -12px rgba(0, 0, 0, 0.3), 0 0 0 1px rgba(255, 255, 255, 0.2) inset;
+
+        }
+
+
+
+        #contact .premium-card::after {
+
+            content: '';
+
+            position: absolute;
+
+            top: 0; left: -100%;
+
+            width: 50%; height: 100%;
+
+            background: linear-gradient(to right, rgba(255,255,255,0) 0%, rgba(255,255,255,0.4) 100%);
+
+            transform: skewX(-25deg);
+
+            pointer-events: none;
+
+            z-index: 10;
+
+        }
+
+        #contact .premium-card:hover::after { animation: sheen 0.75s; }
+
+
+
+        #contact .premium-card::before {
+
+            content: '';
+
+            position: absolute;
+
+            top: 0; left: 0; right: 0;
+
+            height: 6px;
+
+            background: linear-gradient(90deg, #4285F4, #93c5fd);
+
+            z-index: 5;
+
+        }
+
+
+
+        #contact .card-title {
+
+            color: #1e293b;
+
+            font-weight: 800;
+
+            font-size: 1.5rem;
+
+            margin-bottom: 0.5rem;
+
+            letter-spacing: -0.5px;
+
+        }
+
+        
+
+        #contact .card-desc {
+
+            color: #64748b;
+
+            font-size: 0.95rem;
+
+            margin-bottom: 2rem;
+
+        }
+
+
+
+        #contact .modern-input-group label {
+
+            display: block;
+
+            font-size: 0.8rem;
+
+            font-weight: 700;
+
+            color: #475569;
+
+            margin-bottom: 0.5rem;
+
+            text-transform: uppercase;
+
+            letter-spacing: 0.5px;
+
+        }
+
+
+
+        #contact .modern-input {
+
+            width: 100%;
+
+            background: #f8fafc;
+
+            border: 2px solid #e2e8f0;
+
+            border-radius: 12px;
+
+            padding: 14px 18px;
+
+            color: #334155;
+
+            font-weight: 500;
+
+            transition: all 0.3s ease;
+
+        }
+
+        #contact .modern-input:focus {
+
+            outline: none;
+
+            background: #ffffff;
+
+            border-color: var(--brand-blue);
+
+            box-shadow: 0 0 0 4px rgba(66, 133, 244, 0.15);
+
+            transform: translateY(-2px);
+
+        }
+
+
+
+        #contact .modern-btn {
+
+            background: linear-gradient(135deg, #4285F4 0%, #2c5ebb 100%);
+
+            color: white;
+
+            font-weight: 700;
+
+            padding: 16px;
+
+            border-radius: 12px;
+
+            width: 100%;
+
+            transition: all 0.3s ease;
+
+            box-shadow: 0 10px 20px rgba(66, 133, 244, 0.3);
+
+            display: flex;
+
+            justify-content: center;
+
+            align-items: center;
+
+            gap: 10px;
+
+            border: none;
+
+            cursor: pointer;
+
+            position: relative;
+
+            overflow: hidden;
+
+        }
+
+        #contact .modern-btn:hover {
+
+            transform: translateY(-2px);
+
+            box-shadow: 0 15px 30px rgba(66, 133, 244, 0.4);
+
+            filter: brightness(1.1);
+
+        }
+
+
+
+        #contact .icon-circle {
+
+            width: 48px;
+
+            height: 48px;
+
+            border-radius: 50%;
+
+            background: #eff6ff; 
+
+            color: var(--brand-blue);
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            font-size: 1.2rem;
+
+            transition: all 0.3s ease;
+
+        }
+
+        #contact .group:hover .icon-circle {
+
+            background: var(--brand-blue);
+
+            color: white;
+
+            transform: scale(1.1) rotate(-5deg);
+
+        }
+
+
+
+        #contact .hover-link { transition: color 0.2s ease; color: #64748b; }
+
+        #contact .hover-link:hover { color: var(--brand-blue); }
+
+
+
+        #contact .action-btn {
+
+            background: white;
+
+            border: 1px solid #e2e8f0;
+
+            border-radius: 12px;
+
+            padding: 12px 20px;
+
+            width: 100%;
+
+            text-align: left;
+
+            font-weight: 600;
+
+            color: #334155;
+
+            transition: all 0.2s;
+
+            display: flex;
+
+            justify-content: space-between;
+
+            align-items: center;
+
+        }
+
+        #contact .action-btn:hover {
+
+            border-color: var(--brand-blue);
+
+            color: var(--brand-blue);
+
+            background: #f0f7ff;
+
+            transform: translateX(5px);
+
+        }
+
+
+
+        /* Media Query for Contact Hero */
+
+        @media (max-width: 768px) {
+
+            #contact .hero h1 { font-size: 2.2rem; }
+
+            #contact .hero { padding: 40px 20px; }
+
+        }
+
+
+
+        /* =========================================
+
+            ABOUT PAGE CUSTOM CSS (NEW)
+
+            ========================================= */
+
+        /* REUSING VARIABLES & RESET FROM INFRA PAGE */
+
+        :root {
+
+            --primary: #4285F4;
+
+            --primary-accent: #00d2ff; 
+
+            --text-main: #ffffff;
+
+            --text-muted: #e0e7ff; 
+
+            --glass-border: rgba(255, 255, 255, 0.3);
+
+            --card-text-dark: #334155; 
+
+            --card-text-heading: #0f172a;
+
+        }
+
+
+
+        /* ABOUT PAGE ANIMATIONS */
+
+        .anim-load {
+
+            opacity: 0;
+
+            transform: translateY(40px);
+
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+
+        }
+
+
+
+        .anim-load.visible {
+
+            opacity: 1;
+
+            transform: translateY(0);
+
+        }
+
+
+
+        .delay-1 { transition-delay: 0.1s; }
+
+        .delay-2 { transition-delay: 0.2s; }
+
+        .delay-3 { transition-delay: 0.3s; }
+
+        .delay-4 { transition-delay: 0.4s; }
+
+        .delay-5 { transition-delay: 0.5s; }
+
+
+
+        @keyframes textShine {
+
+            to { background-position: 200% center; }
+
+        }
+
+
+
+        /* ABOUT PAGE HERO SECTION (UPDATED FOR FULL SCREEN) */
+
+        #about .hero {
+
+            text-align: center;
+
+            padding: 40px;
+
+            max-width: 1100px; 
+
+            width: 90%; 
+
+            
+
+            /* Full Screen Logic */
+
+            min-height: 94vh; /* Occupy almost full viewport height */
+
+            margin: 3vh auto 80px; /* Center it vertically with margin */
+
+            display: flex;
+
+            flex-direction: column;
+
+            justify-content: center;
+
+            align-items: center;
+
+            
+
+            background: rgba(255, 255, 255, 0.1);
+
+            backdrop-filter: blur(10px);
+
+            -webkit-backdrop-filter: blur(10px);
+
+            
+
+            border: 1px solid var(--glass-border);
+
+            border-radius: 30px;
+
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.15); 
+
+            transition: transform 0.4s ease, box-shadow 0.4s ease;
+
+            position: relative; /* For scroll indicator */
+
+        }
+
+
+
+        #about .hero:hover {
+
+            transform: translateY(-5px);
+
+            box-shadow: 0 30px 70px rgba(0, 0, 0, 0.25);
+
+        }
+
+
+
+        #about .hero h1 {
+
+            font-size: 3.5rem;
+
+            font-weight: 900;
+
+            margin-bottom: 25px;
+
+            text-transform: uppercase;
+
+            line-height: 1;
+
+            color: #ffffff;
+
+            text-shadow: 0 5px 15px rgba(0,0,0,0.2); 
+
+            letter-spacing: -2px;
+
+        }
+
+
+
+        #about .hero h1 span {
+
+            display: block;
+
+            margin-top: 5px;
+
+            font-size: 4.5rem;
+
+            
+
+            background: linear-gradient(
+
+                to right, 
+
+                #ffffff 0%, 
+
+                #93c5fd 25%, 
+
+                #ffffff 50%, 
+
+                #93c5fd 75%, 
+
+                #ffffff 100%
+
+            );
+
+            background-size: 200% auto;
+
+            -webkit-background-clip: text;
+
+            background-clip: text;
+
+            -webkit-text-fill-color: transparent; 
+
+            
+
+            animation: textShine 4s linear infinite;
+
+            filter: drop-shadow(0 0 10px rgba(255, 255, 255, 0.3));
+
+        }
+
+
+
+        #about .hero .subtitle {
+
+            color: #f1f5f9;
+
+            font-size: 1.3rem;
+
+            font-weight: 500;
+
+            margin-bottom: 30px;
+
+            max-width: 800px;
+
+            margin-left: auto;
+
+            margin-right: auto;
+
+            letter-spacing: 0.5px;
+
+        }
+
+
+
+        /* Scroll Down Indicator */
+
+        .scroll-down {
+
+            position: absolute;
+
+            bottom: 30px;
+
+            left: 50%;
+
+            transform: translateX(-50%);
+
+            color: rgba(255, 255, 255, 0.7);
+
+            font-size: 2rem;
+
+            animation: bounce 2s infinite;
+
+            cursor: pointer;
+
+        }
+
+
+
+        @keyframes bounce {
+
+            0%, 20%, 50%, 80%, 100% {transform: translateX(-50%) translateY(0);}
+
+            40% {transform: translateX(-50%) translateY(-10px);}
+
+            60% {transform: translateX(-50%) translateY(-5px);}
+
+        }
+
+
+
+        /* ABOUT PAGE LAYOUT UTILS */
+
+        #about .container {
+
+            max-width: 1200px;
+
+            margin: 0 auto;
+
+            padding: 0 20px;
+
+        }
+
+
+
+        /* Generic White Card Style */
+
+        .white-card {
+
+            background: #ffffff;
+
+            border-radius: 30px;
+
+            padding: 40px;
+
+            margin-bottom: 60px;
+
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
+
+            position: relative;
+
+        }
+
+
+
+        /* ABOUT PAGE SECTION: INTRO (Who We Are) */
+
+        #about-intro {
+
+            border-left: 1px solid rgba(66, 133, 244, 0.2);
+
+            border-top: 1px solid rgba(66, 133, 244, 0.2);
+
+        }
+
+
+
+        .intro-content {
+
+            color: var(--card-text-dark);
+
+            font-size: 1.1rem;
+
+            line-height: 1.8;
+
+        }
+
+
+
+        .intro-content p {
+
+            margin-bottom: 20px;
+
+        }
+
+        
+
+        .intro-content strong {
+
+            color: var(--primary);
+
+        }
+
+
+
+        /* ABOUT PAGE SECTION: MISSION & VISION */
+
+        .mv-grid {
+
+            display: grid;
+
+            grid-template-columns: 1fr 1fr;
+
+            gap: 40px;
+
+            margin-bottom: 60px;
+
+        }
+
+
+
+        .mv-card {
+
+            background: #ffffff;
+
+            border-radius: 30px;
+
+            padding: 40px;
+
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
+
+            border-top: 4px solid transparent;
+
+            transition: transform 0.3s ease;
+
+        }
+
+
+
+        .mv-card:hover {
+
+            transform: translateY(-10px);
+
+        }
+
+
+
+        .mv-header {
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 15px;
+
+            margin-bottom: 20px;
+
+        }
+
+
+
+        .mv-header i {
+
+            font-size: 2rem;
+
+        }
+
+
+
+        .mv-header h2 {
+
+            font-size: 1.8rem;
+
+            font-weight: 800;
+
+            color: var(--card-text-heading);
+
+        }
+
+
+
+        .mv-body p {
+
+            color: var(--card-text-dark);
+
+            font-size: 1rem;
+
+            line-height: 1.7;
+
+        }
+
+
+
+        /* Mission Specifics */
+
+        #mission-card {
+
+            border-color: #2563eb;
+
+        }
+
+        #mission-card .mv-header i {
+
+            color: #2563eb;
+
+        }
+
+
+
+        /* Vision Specifics */
+
+        #vision-card {
+
+            border-color: #00d2ff;
+
+        }
+
+        #vision-card .mv-header i {
+
+            color: #00d2ff;
+
+        }
+
+        
+
+        /* ABOUT PAGE SECTION: GALLERY (NEW) */
+
+        .gallery-section {
+
+            margin-bottom: 80px;
+
+        }
+
+        
+
+        .gallery-header {
+
+            text-align: center;
+
+            margin-bottom: 40px;
+
+        }
+
+
+
+        .gallery-header h2 {
+
+            font-size: 3rem;
+
+            color: #fff;
+
+            font-weight: 300;
+
+        }
+
+        
+
+        .gallery-header h2 span {
+
+            font-weight: 800;
+
+            color: #fff;
+
+        }
+
+        
+
+        .gallery-grid {
+
+            display: grid;
+
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+
+            gap: 20px;
+
+            margin-bottom: 20px;
+
+        }
+
+
+
+        .gallery-item {
+
+            position: relative;
+
+            border-radius: 20px;
+
+            overflow: hidden;
+
+            height: 250px;
+
+            border: 4px solid #fff;
+
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+
+            transition: transform 0.3s ease;
+
+            background: #eee;
+
+        }
+
+        
+
+        .gallery-item:hover {
+
+            transform: scale(1.03);
+
+            z-index: 2;
+
+            box-shadow: 0 20px 50px rgba(0,0,0,0.2);
+
+        }
+
+
+
+        .gallery-item img {
+
+            width: 100%;
+
+            height: 100%;
+
+            object-fit: cover;
+
+            transition: transform 0.5s ease;
+
+        }
+
+        
+
+        .gallery-item:hover img {
+
+            transform: scale(1.1);
+
+        }
+
+
+
+        .gallery-caption {
+
+            position: absolute;
+
+            bottom: 0;
+
+            left: 0;
+
+            right: 0;
+
+            background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);
+
+            padding: 20px;
+
+            color: white;
+
+            opacity: 0;
+
+            transition: opacity 0.3s;
+
+        }
+
+        
+
+        .gallery-item:hover .gallery-caption {
+
+            opacity: 1;
+
+        }
+
+
+
+        /* Admin Controls for Gallery */
+
+        .admin-controls {
+
+            display: none; /* Hidden by default */
+
+            background: #fff;
+
+            padding: 20px;
+
+            border-radius: 15px;
+
+            margin-bottom: 30px;
+
+            box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+
+            text-align: center;
+
+        }
+
+        
+
+        .admin-controls.active {
+
+            display: block;
+
+            animation: fadeIn 0.5s;
+
+        }
+
+        
+
+        .admin-input {
+
+            padding: 10px 15px;
+
+            border: 1px solid #ddd;
+
+            border-radius: 8px;
+
+            width: 60%;
+
+            margin-right: 10px;
+
+            font-family: inherit;
+
+        }
+
+        
+
+        .delete-btn {
+
+            position: absolute;
+
+            top: 10px;
+
+            right: 10px;
+
+            background: rgba(239, 68, 68, 0.9);
+
+            color: white;
+
+            border: none;
+
+            width: 30px;
+
+            height: 30px;
+
+            border-radius: 50%;
+
+            cursor: pointer;
+
+            display: none; /* Hidden unless admin */
+
+            align-items: center;
+
+            justify-content: center;
+
+            z-index: 10;
+
+        }
+
+        
+
+        .gallery-item.admin-mode .delete-btn {
+
+            display: flex;
+
+        }
+
+        
+
+        .btn-small {
+
+            padding: 10px 20px;
+
+            background: var(--primary);
+
+            color: white;
+
+            border: none;
+
+            border-radius: 8px;
+
+            cursor: pointer;
+
+            font-weight: 600;
+
+        }
+
+        
+
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(-10px); } to { opacity: 1; transform: translateY(0); } }
+
+
+
+        /* ABOUT PAGE SECTION: CORE VALUES */
+
+        .values-section {
+
+            margin-bottom: 80px;
+
+        }
+
+
+
+        .values-header {
+
+            text-align: center;
+
+            margin-bottom: 50px;
+
+        }
+
+
+
+        .values-header h2 {
+
+            font-size: 3rem;
+
+            font-weight: 300;
+
+            color: #ffffff;
+
+        }
+
+
+
+        .values-header h2 span {
+
+            font-weight: 700;
+
+            background: linear-gradient(to right, #a5b4fc, #ffffff);
+
+            -webkit-background-clip: text;
+
+            background-clip: text;
+
+            -webkit-text-fill-color: transparent;
+
+        }
+
+
+
+        .values-grid {
+
+            display: grid;
+
+            grid-template-columns: repeat(4, 1fr);
+
+            gap: 25px;
+
+        }
+
+
+
+        .value-card {
+
+            background: white;
+
+            padding: 40px 25px;
+
+            border-radius: 20px;
+
+            text-align: center;
+
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+
+            transition: all 0.3s ease;
+
+            border: 1px solid rgba(255, 255, 255, 0.8);
+
+            display: flex;
+
+            flex-direction: column;
+
+            align-items: center;
+
+        }
+
+
+
+        .value-card:hover {
+
+            transform: translateY(-10px);
+
+            box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+
+        }
+
+
+
+        .value-icon {
+
+            font-size: 3rem;
+
+            color: var(--primary);
+
+            margin-bottom: 25px;
+
+            background: linear-gradient(135deg, #2563eb, #00d2ff);
+
+            -webkit-background-clip: text;
+
+            -webkit-text-fill-color: transparent;
+
+        }
+
+
+
+        .value-title {
+
+            font-size: 1.25rem;
+
+            font-weight: 700;
+
+            margin-bottom: 15px;
+
+            color: var(--card-text-heading);
+
+        }
+
+
+
+        .value-desc {
+
+            font-size: 0.95rem;
+
+            color: #64748b;
+
+            line-height: 1.6;
+
+        }
+
+
+
+        /* ABOUT PAGE SECTION: STRATEGIC PARTNERSHIPS */
+
+        .partnerships-section {
+
+            margin-bottom: 80px;
+
+        }
+
+
+
+        .partnerships-header {
+
+            text-align: center;
+
+            margin-bottom: 50px;
+
+        }
+
+        
+
+        .partnerships-header h2 {
+
+            font-size: 2.8rem;
+
+            font-weight: 300;
+
+            color: #ffffff;
+
+            margin-bottom: 10px;
+
+        }
+
+
+
+        .partnerships-header h2 span {
+
+            font-weight: 700;
+
+            background: linear-gradient(to right, #ffffff, #a5b4fc);
+
+            -webkit-background-clip: text;
+
+            background-clip: text;
+
+            -webkit-text-fill-color: transparent;
+
+        }
+
+        
+
+        .partnerships-header p {
+
+            color: var(--text-muted);
+
+            font-size: 1.1rem;
+
+        }
+
+
+
+        .partnerships-grid {
+
+            display: grid;
+
+            grid-template-columns: repeat(2, 1fr);
+
+            gap: 30px;
+
+        }
+
+
+
+        .partner-card {
+
+            background: #ffffff;
+
+            border-radius: 20px;
+
+            padding: 35px;
+
+            border: 1px solid rgba(66, 133, 244, 0.2);
+
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+
+            transition: all 0.3s ease;
+
+        }
+
+
+
+        .partner-card:hover {
+
+            transform: translateY(-5px);
+
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+
+            border-color: var(--primary);
+
+        }
+
+
+
+        .partner-title {
+
+            color: #2563eb;
+
+            font-size: 1.3rem;
+
+            font-weight: 700;
+
+            margin-bottom: 15px;
+
+        }
+
+
+
+        .partner-desc {
+
+            color: #475569;
+
+            font-size: 1rem;
+
+            line-height: 1.6;
+
+        }
+
+
+
+        /* ABOUT PAGE MEDIA QUERIES */
+
+        @media (max-width: 900px) {
+
+            #about .hero { width: 95%; padding: 40px 20px; }
+
+            #about .hero h1 { font-size: 2.5rem; }
+
+            #about .hero h1 span { font-size: 2.8rem; }
+
+            
+
+            .mv-grid { grid-template-columns: 1fr; gap: 20px; }
+
+            
+
+            /* Values Grid Mobile */
+
+            .values-grid { grid-template-columns: 1fr; max-width: 400px; margin: 0 auto; }
+
+            
+
+            /* Partnerships Grid Mobile */
+
+            .partnerships-grid { grid-template-columns: 1fr; }
+
+            
+
+            .white-card, .mv-card { padding: 25px; }
+
+        }
+
+    </style>
+
+    
+
+    <!-- Define navigateTo early so it's available for inline onclick handlers -->
+
+    <script>
+
+        window.navigateTo = function(pageId) {
+
+            // Logic handled inside DOMContentLoaded via event dispatch
+
+            document.dispatchEvent(new CustomEvent('navigate-to', { detail: pageId }));
+
+        };
+
+        
+
+        window.toggleMobileMenu = function() {
+
+            const menu = document.getElementById('mobile-menu');
+
+            if(menu) menu.classList.toggle('hidden');
+
+        };
+
+        
+
+        window.toggleDarkMode = function() {
+
+            const html = document.documentElement;
+
+            if (html.classList.contains('dark')) {
+
+                html.classList.remove('dark');
+
+                localStorage.theme = 'light';
+
+            } else {
+
+                html.classList.add('dark');
+
+                localStorage.theme = 'dark';
+
+            }
+
+        }
+
+        
+
+        // Define openLeaderModal function globally
+
+        window.openLeaderModal = function(memberId) {
+
+            // Function definition will be implemented inside DOMContentLoaded to use teamData
+
+        };
+
+    </script>
+
+</head>
+
+<!-- APPLIED GLOBAL BACKGROUND HERE -->
+
+<body class="bg-tech-doodle text-white flex flex-col min-h-screen relative">
+
+
+
+    <!-- ADMIN SETTINGS MODAL -->
+
+    <div id="admin-modal" class="modal fixed inset-0 z-[100] flex items-center justify-center bg-black/60 backdrop-blur-sm">
+
+        <div class="bg-white dark:bg-slate-800 rounded-2xl p-8 w-full max-w-md shadow-2xl transform scale-95 transition-transform duration-300" id="modal-content">
+
+            <h3 class="text-2xl font-bold text-primary dark:text-sky-400 mb-2">Admin Settings</h3>
+
+            <p class="text-gray-600 dark:text-gray-400 mb-6 text-sm">Set the new deadline date for the application timer.</p>
+
+            
+
+            <label class="block text-xs font-bold uppercase text-gray-500 mb-2">New Deadline</label>
+
+            <input type="date" id="admin-date-input" class="w-full p-3 border rounded-lg mb-6 dark:bg-slate-700 dark:border-slate-600 dark:text-white focus:ring-2 focus:ring-primary outline-none">
+
+            
+
+            <div class="flex gap-4">
+
+                <button id="btn-cancel-modal" class="flex-1 py-3 rounded-lg border border-gray-300 text-gray-600 font-bold hover:bg-gray-100 transition">Cancel</button>
+
+                <button id="btn-save-modal" class="flex-1 py-3 rounded-lg bg-secondary text-white font-bold hover:bg-secondary-hover transition shadow-lg">Save Changes</button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+
+    <!-- LEADER PROFILE MODAL -->
+
+    <div id="leader-modal" class="modal fixed inset-0 z-[100] flex items-center justify-center bg-black/80 backdrop-blur-md px-4 py-8">
+
+        <div id="leader-modal-content" class="bg-white dark:bg-slate-900 rounded-3xl w-full max-w-4xl h-auto md:h-[60vh] max-h-full shadow-2xl transform scale-95 transition-transform duration-300 flex flex-col md:flex-row overflow-hidden relative">
+
+            
+
+            <!-- Close Button -->
+
+            <button id="btn-close-leader-modal" class="absolute top-4 right-4 z-50 text-white md:text-slate-500 hover:text-secondary dark:hover:text-secondary transition bg-black/30 md:bg-transparent p-2 rounded-full">
+
+                <i class="fas fa-times text-2xl"></i>
+
+            </button>
+
+
+
+            <!-- Left Side: Image -->
+
+            <div class="w-full md:w-1/3 flex-shrink-0 h-64 md:h-full relative overflow-hidden">
+
+                <img id="leader-modal-image" src="" alt="Leader Profile" class="w-full h-full object-cover">
+
+                <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
+
+            </div>
+
+
+
+            <!-- Right Side: Details -->
+
+            <div class="w-full md:w-2/3 p-8 flex flex-col justify-center text-slate-800 dark:text-white">
+
+                <h2 id="leader-modal-name" class="text-4xl font-extrabold text-primary dark:text-sky-400 mb-2"></h2>
+
+                <h3 id="leader-modal-title" class="text-base font-semibold text-secondary uppercase tracking-widest mb-4"></h3>
+
+                
+
+                <p id="leader-modal-quote" class="text-lg leading-relaxed text-slate-600 dark:text-slate-300 italic mb-8 flex-grow"></p>
+
+                
+
+                <a id="leader-modal-linkedin" href="#" target="_blank" class="inline-flex items-center gap-3 text-primary dark:text-sky-400 hover:text-secondary dark:hover:text-secondary-hover font-bold transition">
+
+                    <i class="fab fa-linkedin text-2xl"></i> Connect on LinkedIn
+
+                </a>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+
+    <!-- NOTIFICATION TOAST -->
+
+    <div id="toast" class="fixed bottom-8 right-8 bg-green-500 text-white px-6 py-4 rounded-xl shadow-2xl z-[100] transform translate-y-20 opacity-0 transition-all duration-500 flex items-center gap-3">
+
+        <i id="toast-icon" class="fas fa-check-circle text-2xl"></i>
+
+        <div>
+
+            <h4 id="toast-title" class="font-bold">Success!</h4>
+
+            <p class="text-xs text-green-100" id="toast-message">Operation completed successfully.</p>
+
+        </div>
+
+    </div>
+
+
+
+    <!-- Header & Navigation Wrapper -->
+
+    <div id="main-nav-wrapper" class="fixed top-0 w-full z-50 transition-transform duration-700 ease-in-out transform translate-y-0">
+
+        
+
+        <!-- 1. HEADER: Solid White Background, Blue Text -->
+
+        <header class="bg-white dark:bg-slate-900 h-20 border-b border-gray-100 dark:border-slate-800 relative z-50 shadow-sm">
+
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-full flex justify-between items-center">
+
+                
+
+                <!-- LOGO (Simple Text) -->
+
+                <div class="flex items-center cursor-pointer" onclick="navigateTo('home')">
+
+                    <span class="font-extrabold text-3xl tracking-tight text-primary dark:text-sky-400 leading-none">
+
+                        OptCELL GLOBAL
+
+                    </span>
+
+                </div>
+
+
+
+                <!-- Right Side Controls -->
+
+                <div class="flex items-center gap-4">
+
+                    <!-- Dark Mode Toggle -->
+
+                    <button onclick="toggleDarkMode()" class="p-2 rounded-full hover:bg-gray-100 dark:hover:bg-slate-800 transition text-primary dark:text-yellow-400">
+
+                        <i class="fas fa-moon dark:hidden"></i>
+
+                        <i class="fas fa-sun hidden dark:inline"></i>
+
+                    </button>
+
+
+
+                    <!-- Mobile Menu Button -->
+
+                    <button onclick="toggleMobileMenu()" class="md:hidden text-primary text-2xl focus:outline-none">
+
+                        <i class="fas fa-bars"></i>
+
+                    </button>
+
+                </div>
+
+            </div>
+
+        </header>
+
+
+
+        <!-- 2. NAVIGATION BAR: Transparent/Integrated with Photos -->
+
+        <nav class="h-12 hidden md:flex justify-center w-full relative z-40 bg-gradient-to-b from-black/50 to-transparent backdrop-blur-[2px]">
+
+            <div class="flex items-center space-x-8 px-6 h-full transition-colors">
+
+                <button id="nav-home" onclick="navigateTo('home')" class="nav-item text-white hover:text-secondary hover:scale-110 font-medium uppercase text-xs tracking-wider transition-all duration-300 transform origin-bottom shadow-black drop-shadow-md">Home</button>
+
+                <button id="nav-programs" onclick="navigateTo('programs')" class="nav-item text-white/90 hover:text-white hover:scale-110 font-medium uppercase text-xs tracking-wider transition-all duration-300 transform origin-bottom shadow-black drop-shadow-md">Programs & Internships</button>
+
+                <button id="nav-infrastructure" onclick="navigateTo('infrastructure')" class="nav-item text-white/90 hover:text-white hover:scale-110 font-medium uppercase text-xs tracking-wider transition-all duration-300 transform origin-bottom shadow-black drop-shadow-md">Infrastructure</button>
+
+                <!-- ADDED: ABOUT BUTTON -->
+
+                <button id="nav-about" onclick="navigateTo('about')" class="nav-item text-white/90 hover:text-white hover:scale-110 font-medium uppercase text-xs tracking-wider transition-all duration-300 transform origin-bottom shadow-black drop-shadow-md">About</button>
+
+                <button id="nav-contact" onclick="navigateTo('contact')" class="nav-item text-white/90 hover:text-white hover:scale-110 font-medium uppercase text-xs tracking-wider transition-all duration-300 transform origin-bottom shadow-black drop-shadow-md">Contact</button>
+
+            </div>
+
+        </nav>
+
+
+
+        <!-- Mobile Menu Dropdown -->
+
+        <div id="mobile-menu" class="hidden md:hidden bg-white dark:bg-slate-900 border-t border-gray-100 dark:border-slate-800 absolute w-full shadow-lg z-50">
+
+            <div class="px-4 pt-2 pb-4 space-y-2">
+
+                <button onclick="navigateTo('home')" class="block w-full text-left px-3 py-3 text-primary font-bold bg-blue-50 dark:bg-slate-800 rounded-md">HOME</button>
+
+                <button onclick="navigateTo('programs')" class="block w-full text-left px-3 py-3 text-gray-600 dark:text-gray-300 hover:bg-gray-50 rounded-md font-medium uppercase text-sm">Programs & Internships</button>
+
+                <button onclick="navigateTo('infrastructure')" class="block w-full text-left px-3 py-3 text-gray-600 dark:text-gray-300 hover:bg-gray-50 rounded-md font-medium uppercase text-sm">Infrastructure</button>
+
+                <!-- ADDED: ABOUT MOBILE BUTTON -->
+
+                <button onclick="navigateTo('about')" class="block w-full text-left px-3 py-3 text-gray-600 dark:text-gray-300 hover:bg-gray-50 rounded-md font-medium uppercase text-sm">About</button>
+
+                <button onclick="navigateTo('contact')" class="block w-full text-left px-3 py-3 text-gray-600 dark:text-gray-300 hover:bg-gray-50 rounded-md font-medium uppercase text-sm">Contact</button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+
+    <!-- Main Content Area -->
+
+    <main class="flex-grow pt-20 relative z-10">
+
+
+
+        <!-- ================= HOME PAGE SECTION ================= -->
+
+        <div id="home" class="page-section">
+
+            
+
+            <!-- 1. Hero Slider Section -->
+
+            <div class="min-h-[calc(100vh-80px)] relative overflow-hidden flex flex-col -mt-12 pt-12">
+
+                
+
+                <!-- Sliding Background Images -->
+
+                <div class="absolute inset-0 z-0">
+
+                    <div id="slider-track" class="slider-container">
+
+                        <!-- Slide 1: AI -->
+
+                        <div class="slide">
+
+                            <img src="https://images.unsplash.com/photo-1620712943543-bcc4688e7485?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80" alt="Artificial Intelligence">
+
+                            <div class="slide-overlay"></div>
+
+                        </div>
+
+                        <!-- Slide 2: 6G -->
+
+                        <div class="slide">
+
+                            <img src="https://images.unsplash.com/photo-1519389950473-47ba0277781c?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80" alt="6G Network">
+
+                            <div class="slide-overlay"></div>
+
+                        </div>
+
+                        <!-- Slide 3: EV -->
+
+                        <div class="slide">
+
+                            <img src="https://images.unsplash.com/photo-1593941707882-a5bba14938c7?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80" alt="EV Technology">
+
+                            <div class="slide-overlay"></div>
+
+                        </div>
+
+                        <!-- Slide 4: Quantum -->
+
+                        <div class="slide">
+
+                            <img src="https://images.unsplash.com/photo-1635070041078-e363dbe005cb?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80" alt="Quantum Computing">
+
+                            <div class="slide-overlay"></div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- Scrollable Content Overlay (CENTERED CONTENT) -->
+
+                <div class="relative z-10 flex-grow flex flex-col items-center justify-center py-20 px-4 h-full">
+
+                    <div class="max-w-7xl mx-auto text-center text-white w-full">
+
+                        
+
+                        <!-- Largest Heading -->
+
+                        <h1 class="text-3xl md:text-5xl lg:text-6xl font-extrabold mb-6 leading-tight drop-shadow-2xl fade-in-up reveal">
+
+                            Empowering Collaborative Growth<br>
+
+                            <span class="text-sky-300">Across Deep Tech & Core Engineering</span>
+
+                        </h1>
+
+                        
+
+                        <!-- Subline -->
+
+                        <div class="fade-in-up delay-100 reveal">
+
+                            <p class="text-lg md:text-2xl lg:text-3xl font-semibold text-white mb-6 inline-block drop-shadow-md">
+
+                                Government Initiatives • Startups • R&D Institutions • Financial Institutions • Academia
+
+                            </p>
+
+                        </div>
+
+                        
+
+                        <!-- Description -->
+
+                        <p class="text-sm md:text-lg text-gray-200 max-w-4xl mx-auto mb-8 font-light tracking-wide fade-in-up delay-200 drop-shadow-sm reveal">
+
+                            OptCELL Global bridges innovation and execution through collaborative R&D, and deep industry partnerships.
+
+                        </p>
+
+                        
+
+                        <!-- CTA Buttons (Updated to programs) -->
+
+                        <div class="flex flex-col sm:flex-row gap-6 justify-center fade-in-up delay-300 reveal">
+
+                            <button onclick="navigateTo('programs')" class="bg-primary hover:bg-primary-dark text-white text-lg font-bold px-10 py-4 rounded-full shadow-lg transform hover:scale-110 transition-all duration-300 border-2 border-primary hover:shadow-blue-500/50">
+
+                                View Programs & Apply
+
+                            </button>
+
+                            <button onclick="navigateTo('infrastructure')" class="bg-transparent border-2 border-white hover:bg-white hover:text-primary-dark text-white text-lg font-bold px-10 py-4 rounded-full shadow-lg transform hover:scale-110 transition-all duration-300 hover:shadow-white/50">
+
+                                Explore Infrastructure
+
+                            </button>
+
+                        </div>
+
+
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- 2. TIMER & STATS SECTION -->
+
+            <div class="py-16 px-4 relative z-20 border-t border-white/10 shadow-inner overflow-hidden reveal">
+
+                <div class="max-w-7xl mx-auto">
+
+                    
+
+                    <!-- Timer Card -->
+
+                    <div class="group bg-white/10 backdrop-blur-md border border-white/20 rounded-3xl p-8 max-w-4xl mx-auto shadow-2xl relative transition-all hover:bg-white/15">
+
+                        
+
+                        <!-- ADMIN BUTTON -->
+
+                        <button id="btn-admin-open" class="absolute top-4 right-4 text-white/40 hover:text-white opacity-0 group-hover:opacity-100 transition duration-300 bg-black/20 p-2 rounded-full backdrop-blur-sm" title="Admin: Set Deadline">
+
+                            <i class="fas fa-cog text-xl"></i>
+
+                        </button>
+
+
+
+                        <!-- Header -->
+
+                        <div class="flex items-center justify-center gap-2 mb-6 text-sky-200 font-bold uppercase tracking-widest text-sm">
+
+                            <i class="far fa-clock animate-pulse"></i> Application Deadline
+
+                        </div>
+
+                        
+
+                        <!-- Timer Grid -->
+
+                        <div class="grid grid-cols-4 gap-4 text-center divide-x divide-white/10">
+
+                            <div class="flex flex-col">
+
+                                <span id="timer-days" class="text-4xl md:text-6xl font-extrabold text-white tabular-nums drop-shadow-lg">00</span>
+
+                                <span class="text-xs md:text-sm text-sky-100 uppercase tracking-widest mt-2 font-medium">Days</span>
+
+                            </div>
+
+                            <div class="flex flex-col">
+
+                                <span id="timer-hours" class="text-4xl md:text-6xl font-extrabold text-white tabular-nums drop-shadow-lg">00</span>
+
+                                <span class="text-xs md:text-sm text-sky-100 uppercase tracking-widest mt-2 font-medium">Hours</span>
+
+                            </div>
+
+                            <div class="flex flex-col">
+
+                                <span id="timer-minutes" class="text-4xl md:text-6xl font-extrabold text-white tabular-nums drop-shadow-lg">00</span>
+
+                                <span class="text-xs md:text-sm text-sky-100 uppercase tracking-widest mt-2 font-medium">Minutes</span>
+
+                            </div>
+
+                            <div class="flex flex-col">
+
+                                <span id="timer-seconds" class="text-4xl md:text-6xl font-extrabold text-sky-300 tabular-nums drop-shadow-lg">00</span>
+
+                                <span class="text-xs md:text-sm text-sky-100 uppercase tracking-widest mt-2 font-medium">Seconds</span>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+
+                    <!-- Stats Row -->
+
+                    <div class="grid grid-cols-2 md:grid-cols-4 gap-8 mt-12 text-center text-white/90 max-w-5xl mx-auto">
+
+                        <div class="transform hover:scale-105 transition duration-300 reveal">
+
+                            <div class="text-3xl font-extrabold text-white mb-1">750+</div>
+
+                            <div class="text-xs text-sky-200 uppercase font-bold tracking-wider">Students Annually</div>
+
+                        </div>
+
+                        <div class="transform hover:scale-105 transition duration-300 reveal">
+
+                            <div class="text-3xl font-extrabold text-white mb-1">3 Months</div>
+
+                            <div class="text-xs text-sky-200 uppercase font-bold tracking-wider">Program Duration</div>
+
+                        </div>
+
+                        <div class="transform hover:scale-105 transition duration-300 reveal">
+
+                            <div class="text-3xl font-extrabold text-white mb-1">80%</div>
+
+                            <div class="text-xs text-sky-200 uppercase font-bold tracking-wider">Practical Training</div>
+
+                        </div>
+
+                        <div class="transform hover:scale-105 transition duration-300 reveal">
+
+                            <div class="text-3xl font-extrabold text-white mb-1">100%</div>
+
+                            <div class="text-xs text-sky-200 uppercase font-bold tracking-wider">Placement Support</div>
+
+                        </div>
+
+                    </div>
+
+
+
+                </div>
+
+            </div>
+
+
+
+            <!-- ================= NEW SECTION: WHY OPTCELL GLOBAL ================= -->
+
+            <div class="py-24 px-4 relative overflow-hidden">
+
+                <!-- Subtle separation gradient -->
+
+                <div class="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-white/20 to-transparent"></div>
+
+
+
+                <div class="max-w-7xl mx-auto relative z-10">
+
+                    <!-- Header -->
+
+                    <div class="text-center mb-16 reveal">
+
+                        <h2 class="text-3xl md:text-5xl font-extrabold text-white mb-4 drop-shadow-xl">
+
+                            Why <span class="text-sky-300 drop-shadow-[0_0_10px_rgba(56,189,248,0.5)]">OptCELL Global</span>
+
+                        </h2>
+
+                        <div class="h-1 w-16 bg-secondary mx-auto rounded-full shadow-lg"></div>
+
+                    </div>
+
+
+
+                    <!-- 4-Column Grid -->
+
+                    <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+
+                        
+
+                        <!-- Feature 1 -->
+
+                        <div class="group bg-slate-900/40 backdrop-blur-md border border-white/10 p-8 rounded-2xl hover:bg-slate-900/60 hover:border-sky-400/50 transition-all duration-300 hover:-translate-y-1 shadow-lg tilt-card reveal">
+
+                            <div class="w-14 h-14 bg-sky-500/10 rounded-xl flex items-center justify-center mb-6 text-sky-400 text-3xl group-hover:scale-110 transition-transform duration-300 group-hover:text-sky-300 tilt-card-content">
+
+                                <i class="fas fa-bolt"></i>
+
+                            </div>
+
+                            <h3 class="text-xl font-bold text-white mb-3 tilt-card-content">Deep Tech Exposure</h3>
+
+                            <p class="text-slate-300 text-sm leading-relaxed tilt-card-content">
+
+                                Work on cutting-edge R&D projects with real-world impact.
+
+                            </p>
+
+                        </div>
+
+
+
+                        <!-- Feature 2 -->
+
+                        <div class="group bg-slate-900/40 backdrop-blur-md border border-white/10 p-8 rounded-2xl hover:bg-slate-900/60 hover:border-sky-400/50 transition-all duration-300 hover:-translate-y-1 shadow-lg tilt-card reveal">
+
+                            <div class="w-14 h-14 bg-sky-500/10 rounded-xl flex items-center justify-center mb-6 text-sky-400 text-3xl group-hover:scale-110 transition-transform duration-300 group-hover:text-sky-300 tilt-card-content">
+
+                                <i class="fas fa-users"></i>
+
+                            </div>
+
+                            <h3 class="text-xl font-bold text-white mb-3 tilt-card-content">Expert Mentorship</h3>
+
+                            <p class="text-slate-300 text-sm leading-relaxed tilt-card-content">
+
+                                Learn from industry veterans and core engineering specialists.
+
+                            </p>
+
+                        </div>
+
+
+
+                        <!-- Feature 3 -->
+
+                        <div class="group bg-slate-900/40 backdrop-blur-md border border-white/10 p-8 rounded-2xl hover:bg-slate-900/60 hover:border-sky-400/50 transition-all duration-300 hover:-translate-y-1 shadow-lg tilt-card reveal">
+
+                            <div class="w-14 h-14 bg-sky-500/10 rounded-xl flex items-center justify-center mb-6 text-sky-400 text-3xl group-hover:scale-110 transition-transform duration-300 group-hover:text-sky-300 tilt-card-content">
+
+                                <i class="fas fa-medal"></i>
+
+                            </div>
+
+                            <h3 class="text-xl font-bold text-white mb-3 tilt-card-content">80% Practical Learning</h3>
+
+                            <p class="text-slate-300 text-sm leading-relaxed tilt-card-content">
+
+                                Hands-on projects and real-world problem solving.
+
+                            </p>
+
+                        </div>
+
+
+
+                        <!-- Feature 4 -->
+
+                        <div class="group bg-slate-900/40 backdrop-blur-md border border-white/10 p-8 rounded-2xl hover:bg-slate-900/60 hover:border-sky-400/50 transition-all duration-300 hover:-translate-y-1 shadow-lg tilt-card reveal">
+
+                            <div class="w-14 h-14 bg-sky-500/10 rounded-xl flex items-center justify-center mb-6 text-sky-400 text-3xl group-hover:scale-110 transition-transform duration-300 group-hover:text-sky-300 tilt-card-content">
+
+                                <i class="fas fa-bullseye"></i>
+
+                            </div>
+
+                            <h3 class="text-xl font-bold text-white mb-3 tilt-card-content">Government Collaboration</h3>
+
+                            <p class="text-slate-300 text-sm leading-relaxed tilt-card-content">
+
+                                Access to institutional partnerships and initiatives.
+
+                            </p>
+
+                        </div>
+
+
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            
+
+            <!-- ================= NEW SECTION: OUR PARTNERS ================= -->
+
+            <div class="py-16 px-4 relative overflow-hidden border-b border-white/10">
+
+                <div class="max-w-7xl mx-auto relative z-10">
+
+                    <div class="text-center mb-12 reveal">
+
+                        <h2 class="text-2xl md:text-4xl font-bold text-white mb-2">
+
+                            Our <span class="text-secondary">Partners</span>
+
+                        </h2>
+
+                        <div class="h-1 w-12 bg-secondary mx-auto rounded-full"></div>
+
+                    </div>
+
+                    <div class="flex flex-wrap justify-center items-center gap-8 md:gap-16 reveal">
+
+                        <div class="group p-4 bg-white rounded-xl hover:bg-white/90 transition duration-300 cursor-pointer w-32 h-20 md:w-48 md:h-24 flex items-center justify-center shadow-lg transform hover:scale-105">
+
+                            <img src="https://img.sanishtech.com/u/45f7a3b9558f6b651146caddaeec1dd0.png" onerror="this.onerror=null;this.src='https://placehold.co/100x50/f0f9ff/0056b3?text=Partner+1';">
+
+                        </div>
+
+                        <div class="group p-4 bg-white rounded-xl hover:bg-white/90 transition duration-300 cursor-pointer w-32 h-20 md:w-48 md:h-24 flex items-center justify-center shadow-lg transform hover:scale-105">
+
+                            <img src="https://img.sanishtech.com/u/982f9fb7ad08c324aab64c08fe5814a4.png" onerror="this.onerror=null;this.src='https://placehold.co/100x50/f0f9ff/0056b3?text=Partner+2';">
+
+                        </div>
+
+                        <div class="group p-4 bg-white rounded-xl hover:bg-white/90 transition duration-300 cursor-pointer w-32 h-20 md:w-48 md:h-24 flex items-center justify-center shadow-lg transform hover:scale-105">
+
+                            <img src="https://img.sanishtech.com/u/8ccb75b2bb10604e0531f98b8fd68ea4.png" onerror="this.onerror=null;this.src='https://placehold.co/100x50/f0f9ff/0056b3?text=Partner+3';">
+
+                        </div>
+
+                        <div class="group p-4 bg-white rounded-xl hover:bg-white/90 transition duration-300 cursor-pointer w-32 h-20 md:w-48 md:h-24 flex items-center justify-center shadow-lg transform hover:scale-105">
+
+                            <img src="https://img.sanishtech.com/u/9ba306b4cb9c25dfe3c0e5f09d2a2465.png" onerror="this.onerror=null;this.src='https://placehold.co/100x50/f0f9ff/0056b3?text=Partner+4';">
+
+                        </div>
+
+                        <div class="group p-4 bg-white rounded-xl hover:bg-white/90 transition duration-300 cursor-pointer w-32 h-20 md:w-48 md:h-24 flex items-center justify-center shadow-lg transform hover:scale-105">
+
+                            <img src="https://img.sanishtech.com/u/f0664e812ebf00faae8fce1b9cff646f.png" onerror="this.onerror=null;this.src='https://placehold.co/100x50/f0f9ff/0056b3?text=Partner+5';">
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- ================= NEW SECTION: OUR CLIENTS (INFINITE SCROLL) ================= -->
+
+            <div class="py-16 px-4 relative overflow-hidden bg-white/5 backdrop-blur-sm">
+
+                <div class="max-w-7xl mx-auto relative z-10 text-center mb-8">
+
+                    <h2 class="text-3xl md:text-4xl font-bold text-white mb-2">Our <span class="text-sky-300">Clients</span></h2>
+
+                    <p class="text-slate-300 text-sm">Proudly serving over 19+ academic and corporate partners across the globe. Scroll over to pause.</p>
+
+                </div>
+
+
+
+                <!-- Marquee Container -->
+
+                <div class="overflow-hidden py-4 border-y border-white/20">
+
+                    <div class="logo-track">
+
+                        <!-- === FIRST SET OF 19 CLIENTS === -->
+
+                        <!-- Client 1 -->
+
+                        <div class="logo-item flex items-center justify-center">
+
+                            <img src="https://img.sanishtech.com/u/57a0fe27fa12146c08cfa0dc9ae47d11.png" onerror="this.onerror=null;this.src='https://placehold.co/80x40/000000/ffffff?text=C1';">
+
+                        </div>
+
+                        <!-- Client 2 -->
+
+                        <div class="logo-item flex items-center justify-center">
+
+                            <img src="https://img.sanishtech.com/u/6eafc0b74f5e8b610216186a47c49c82.png" onerror="this.onerror=null;this.src='https://placehold.co/80x40/000000/ffffff?text=C2';">
+
+                        </div>
+
+                        <!-- Client 3 -->
+
+                        <div class="logo-item flex items-center justify-center">
+
+                            <img src="https://img.sanishtech.com/u/94f763324c127263c0004c8e8ff3597b.png" onerror="this.onerror=null;this.src='https://placehold.co/80x40/000000/ffffff?text=C3';">
+
+                        </div>
+
+                        <!-- Client 4 -->
+
+                        <div class="logo-item flex items-center justify-center">
+
+                            <img src="https://img.sanishtech.com/u/f100d403504da32275182225cc7dcb57.png" onerror="this.onerror=null;this.src='https://placehold.co/80x40/000000/ffffff?text=C4';">
+
+                        </div>
+
+                        <!-- Client 5 -->
+
+                        <div class="logo-item flex items-center justify-center">
+
+                            <img src="https://img.sanishtech.com/u/a6c1044c17786e6196a4721967c06990.png" onerror="this.onerror=null;this.src='https://placehold.co/80x40/000000/ffffff?text=C5';">
+
+                        </div>
+
+                        <!-- Client 6 -->
+
+                        <div class="logo-item flex items-center justify-center">
+
+                            <img src="https://img.sanishtech.com/u/7803bf988cde56a2dfd687becb3cf960.png" onerror="this.onerror=null;this.src='https://placehold.co/80x40/000000/ffffff?text=C6';">
+
+                        </div>
+
+                        <!-- Client 7 -->
+
+                        <div class="logo-item flex items-center justify-center">
+
+                            <img src="https://img.sanishtech.com/u/4606290085612c1960ea6617cb9ece03.png" onerror="this.onerror=null;this.src='https://placehold.co/80x40/000000/ffffff?text=C7';">
+
+                        </div>
+
+                        <!-- Client 8 -->
+
+                        <div class="logo-item flex items-center justify-center">
+
+                            <img src="https://img.sanishtech.com/u/7532366306ebf3cbefd3d45dc7b2ef93.png" onerror="this.onerror=null;this.src='https://placehold.co/80x40/000000/ffffff?text=C8';">
+
+                        </div>
+
+                        <!-- Client 9 -->
+
+                        <div class="logo-item flex items-center justify-center">
+
+                            <img src="https://img.sanishtech.com/u/51477eb6d1919570fa9a94972afc9532.png" onerror="this.onerror=null;this.src='https://placehold.co/80x40/000000/ffffff?text=C9';">
+
+                        </div>
+
+                        <!-- Client 10 -->
+
+                        <div class="logo-item flex items-center justify-center">
+
+                            <img src="https://img.sanishtech.com/u/5982d83817ce8bcdaf46367c1b10da82.png" onerror="this.onerror=null;this.src='https://placehold.co/80x40/000000/ffffff?text=C10';">
+
+                        </div>
+
+                        <!-- Client 11 -->
+
+                        <div class="logo-item flex items-center justify-center">
+
+                            <img src="https://img.sanishtech.com/u/425517104203412260dde41fd1021444.png" onerror="this.onerror=null;this.src='https://placehold.co/80x40/000000/ffffff?text=C11';">
+
+                        </div>
+
+                        <!-- Client 12 -->
+
+                        <div class="logo-item flex items-center justify-center">
+
+                            <img src="https://img.sanishtech.com/u/2e7577b4bfd35c0b62b0cb5b78b12dfe.png" onerror="this.onerror=null;this.src='https://placehold.co/80x40/000000/ffffff?text=C12';">
+
+                        </div>
+
+                        <!-- Client 13 -->
+
+                        <div class="logo-item flex items-center justify-center">
+
+                            <img src="https://img.sanishtech.com/u/84c29f9f379610aa3018428ec70ea571.png" onerror="this.onerror=null;this.src='https://placehold.co/80x40/000000/ffffff?text=C13';">
+
+                        </div>
+
+                        <!-- Client 14 -->
+
+                        <div class="logo-item flex items-center justify-center">
+
+                            <img src="https://img.sanishtech.com/u/624dc82ef509c92f83b62d76bb2e0775.png" onerror="this.onerror=null;this.src='https://placehold.co/80x40/000000/ffffff?text=C14';">
+
+                        </div>
+
+                        <!-- Client 15 -->
+
+                        <div class="logo-item flex items-center justify-center">
+
+                            <img src="https://img.sanishtech.com/u/1260c13e3ee82a7a069e4bb5847203c9.png" onerror="this.onerror=null;this.src='https://placehold.co/80x40/000000/ffffff?text=C15';">
+
+                        </div>
+
+                        <!-- Client 16 -->
+
+                        <div class="logo-item flex items-center justify-center">
+
+                            <img src="https://img.sanishtech.com/u/a17d831d66b7906dc29c61a6a1579cee.png" alt="Client 16" class="max-w-full max-h-full object-contain filter grayscale opacity-70 hover:opacity-100 hover:grayscale-0 transition duration-300">
+
+                        </div>
+
+                        <!-- Client 17 -->
+
+                        <div class="logo-item flex items-center justify-center">
+
+                            <img src="https://img.sanishtech.com/u/f7a76d314460477bfa9033c54bf80b8a.png" alt="Client 17" class="max-w-full max-h-full object-contain filter grayscale opacity-70 hover:opacity-100 hover:grayscale-0 transition duration-300">
+
+                        </div>
+
+                        <!-- Client 18 -->
+
+                        <div class="logo-item flex items-center justify-center">
+
+                            <img src="https://img.sanishtech.com/u/20515a139cb0281e33be2c822b118d54.png" alt="Client 18" class="max-w-full max-h-full object-contain filter grayscale opacity-70 hover:opacity-100 hover:grayscale-0 transition duration-300">
+
+                        </div>
+
+                        <!-- Client 19 -->
+
+                        <div class="logo-item flex items-center justify-center">
+
+                            <img src="https://img.sanishtech.com/u/c1a025c226eb300a00736f331dc09811.png" alt="Client 19" class="max-w-full max-h-full object-contain filter grayscale opacity-70 hover:opacity-100 hover:grayscale-0 transition duration-300">
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- ================= NEW SECTION: CORE TEAM INTRO (UPDATED FOR INTERACTIVITY) ================= -->
+
+            <div class="py-24 px-4 relative overflow-hidden">
+
+                <div class="max-w-7xl mx-auto relative z-10">
+
+                    <div class="text-center mb-16 reveal">
+
+                        <h2 class="text-3xl md:text-5xl font-extrabold text-white mb-4 drop-shadow-xl">
+
+                            Leadership Driving <span class="text-primary">Innovation</span>
+
+                        </h2>
+
+                        <p class="text-slate-300 text-lg max-w-2xl mx-auto font-medium">
+
+                            The core team shaping OptCELL Global's deep-tech vision and operational excellence. Click on a member to read their full statement.
+
+                        </p>
+
+                    </div>
+
+
+
+                    <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+
+                        <!-- Member 1: A R Shalini -->
+
+                        <!-- ADDED: onclick handler to open modal -->
+
+                        <div class="group bg-slate-900/40 backdrop-blur-md border border-white/10 p-8 rounded-2xl hover:bg-slate-900/60 hover:border-primary/50 transition-all duration-300 hover:-translate-y-2 shadow-lg tilt-card reveal flex flex-col items-center text-center cursor-pointer" onclick="openLeaderModal('shalini')">
+
+                            <div class="w-24 h-24 rounded-full overflow-hidden border-2 border-primary mb-6 shadow-lg group-hover:scale-105 transition-transform duration-300">
+
+                                <img src="https://img.sanishtech.com/u/cc085d22c76786707dcbfa7be91671a6.jpg" onerror="this.onerror=null;this.src='https://placehold.co/100x100/0056b3/ffffff?text=AR+S'">
+
+                            </div>
+
+                            <h3 class="text-xl font-bold text-white mb-1">A R Shalini</h3>
+
+                            <p class="text-primary text-xs font-bold uppercase tracking-wide mb-4 h-8 flex items-center justify-center">Strategic Operations & R&D Strategy</p>
+
+                            
+
+                            <!-- QUOTE REDUCED FOR CARD PREVIEW -->
+
+                            <p class="text-slate-400 text-xs italic leading-relaxed mb-6 flex-grow">
+
+                                “At the intersection of strategy and innovation, we don’t just plan the future—we build it...”
+
+                            </p>
+
+                            
+
+                            <span class="text-white hover:text-primary transition-colors text-2xl mt-auto"><i class="fab fa-linkedin"></i></span>
+
+                        </div>
+
+                        
+
+                        <!-- Member 2: Amareshwar Karatagi -->
+
+                        <div class="group bg-slate-900/40 backdrop-blur-md border border-white/10 p-8 rounded-2xl hover:bg-slate-900/60 hover:border-primary/50 transition-all duration-300 hover:-translate-y-2 shadow-lg tilt-card reveal flex flex-col items-center text-center cursor-pointer" onclick="openLeaderModal('amareshwar')">
+
+                            <div class="w-24 h-24 rounded-full overflow-hidden border-2 border-green-500 mb-6 shadow-lg group-hover:scale-105 transition-transform duration-300">
+
+                                <img src="https://img.sanishtech.com/u/f77fbf7f2ab4ab9f602bd498dc5a75fb.jpg" onerror="this.onerror=null;this.src='https://placehold.co/100x100/0056b3/ffffff?text=A+K'">
+
+                            </div>
+
+                            <h3 class="text-xl font-bold text-white mb-1">Amareshwar Karatagi</h3>
+
+                            <p class="text-primary text-xs font-bold uppercase tracking-wide mb-4 h-8 flex items-center justify-center">Engineering, Innovation & Gov Partnerships</p>
+
+                            
+
+                            <!-- QUOTE REDUCED FOR CARD PREVIEW -->
+
+                            <p class="text-slate-400 text-xs italic leading-relaxed mb-6 flex-grow">
+
+                                “Innovation thrives when bold engineering meets powerful collaboration...”
+
+                            </p>
+
+
+
+                            <span class="text-white hover:text-primary transition-colors text-2xl mt-auto"><i class="fab fa-linkedin"></i></span>
+
+                        </div>
+
+
+
+                        <!-- Member 3: Rushit Jani -->
+
+                        <div class="group bg-slate-900/40 backdrop-blur-md border border-white/10 p-8 rounded-2xl hover:bg-slate-900/60 hover:border-primary/50 transition-all duration-300 hover:-translate-y-2 shadow-lg tilt-card reveal flex flex-col items-center text-center cursor-pointer" onclick="openLeaderModal('rushit')">
+
+                            <div class="w-24 h-24 rounded-full overflow-hidden border-2 border-primary mb-6 shadow-lg group-hover:scale-105 transition-transform duration-300">
+
+                                <img src="https://img.sanishtech.com/u/6c851e8de4713b81384132cbac1a1778.jpg" onerror="this.onerror=null;this.src='https://placehold.co/100x100/0056b3/ffffff?text=R+J'">
+
+                            </div>
+
+                            <h3 class="text-xl font-bold text-white mb-1">Rushit Jani</h3>
+
+                            <p class="text-primary text-xs font-bold uppercase tracking-wide mb-4 h-8 flex items-center justify-center">Technology, AI/ML Systems & Digital Transformation</p>
+
+                            
+
+                            <!-- QUOTE REDUCED FOR CARD PREVIEW -->
+
+                            <p class="text-slate-400 text-xs italic leading-relaxed mb-6 flex-grow">
+
+                                “In a world driven by data and digital change, we are the architects of a smarter tomorrow...”
+
+                            </p>
+
+
+
+                            <span class="text-white hover:text-primary transition-colors text-2xl mt-auto"><i class="fab fa-linkedin"></i></span>
+
+                        </div>
+
+
+
+                        <!-- Member 4: Stavan Pandya -->
+
+                        <div class="group bg-slate-900/40 backdrop-blur-md border border-white/10 p-8 rounded-2xl hover:bg-slate-900/60 hover:border-primary/50 transition-all duration-300 hover:-translate-y-2 shadow-lg tilt-card reveal flex flex-col items-center text-center cursor-pointer" onclick="openLeaderModal('stavan')">
+
+                            <div class="w-24 h-24 rounded-full overflow-hidden border-2 border-primary mb-6 shadow-lg group-hover:scale-105 transition-transform duration-300">
+
+                                <img src="https://img.sanishtech.com/u/6a89b6e65ebde2b82e85adbf5b2169ba.png" onerror="this.onerror=null;this.src='https://placehold.co/100x100/0056b3/ffffff?text=S+P'">
+
+                            </div>
+
+                            <h3 class="text-xl font-bold text-white mb-1">Stavan Pandya</h3>
+
+                            <p class="text-primary text-xs font-bold uppercase tracking-wide mb-4 h-8 flex items-center justify-center">Product Engineering & Innovation</p>
+
+                            
+
+                            <!-- QUOTE REDUCED FOR CARD PREVIEW -->
+
+                            <p class="text-slate-400 text-xs italic leading-relaxed mb-6 flex-grow">
+
+                                “Great products don’t just meet needs—they inspire change...”
+
+                            </p>
+
+
+
+                            <span class="text-white hover:text-primary transition-colors text-2xl mt-auto"><i class="fab fa-linkedin"></i></span>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- ================= NEW SECTION: VISION & CTA (Updated to point to programs) ================= -->
+
+            <div class="py-24 px-4 relative overflow-hidden">
+
+                <div class="max-w-4xl mx-auto relative z-10 text-center">
+
+                    <!-- 1. OUR VISION -->
+
+                    <div class="mb-24 reveal">
+
+                        <div class="inline-flex items-center justify-center w-12 h-12 rounded-lg border-2 border-primary text-primary mb-6 shadow-[0_0_15px_rgba(37,99,235,0.3)] bg-slate-900/50 backdrop-blur-sm">
+
+                            <i class="fas fa-columns text-2xl"></i>
+
+                        </div>
+
+                        <h2 class="text-4xl md:text-5xl font-extrabold text-white mb-6 drop-shadow-xl">
+
+                            Our <span class="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-500">Vision</span>
+
+                        </h2>
+
+                        <p class="text-slate-100 text-lg md:text-xl leading-relaxed font-light max-w-3xl mx-auto drop-shadow-md shadow-black">
+
+                            To create a collaborative ecosystem where students, institutions, startups, and industry leaders converge to drive innovation in deep tech and core engineering. We believe in empowering the next generation through hands-on R&D, and meaningful industry partnerships.
+
+                        </p>
+
+                    </div>
+
+
+
+                    <!-- 2. CTA: JOURNEY (Updated to point to programs) -->
+
+                    <div class="reveal">
+
+                        <h2 class="text-4xl md:text-6xl font-extrabold text-white mb-6 tracking-tight drop-shadow-xl">
+
+                            Ready to Start Your <span class="text-transparent bg-clip-text bg-gradient-to-r from-blue-500 to-purple-500 drop-shadow-none">Journey?</span>
+
+                        </h2>
+
+                        <p class="text-slate-200 text-lg mb-10 drop-shadow-md">
+
+                            Join OptCELL Global and accelerate your career in deep tech and engineering
+
+                        </p>
+
+                        <!-- Updated CTA to point to Programs -->
+
+                        <button onclick="navigateTo('programs')" class="group relative inline-flex items-center justify-center px-10 py-4 text-lg font-bold text-white transition-all duration-200 bg-gradient-to-r from-blue-600 to-purple-600 rounded-full hover:shadow-[0_0_20px_rgba(124,58,237,0.5)] hover:scale-105 focus:outline-none ring-offset-2 focus:ring-2 ring-purple-500 shadow-lg">
+
+                            <span>Explore Programs</span>
+
+                            <i class="fas fa-arrow-right ml-2 group-hover:translate-x-1 transition-transform"></i>
+
+                        </button>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+
+        </div> <!-- End of #home -->
+
+
+
+        <!-- ================= PROGRAMS & INTERNSHIPS PAGE SECTION ================= -->
+
+        <div id="programs" class="page-section hidden program-page-content">
+
+            <!-- Header -->
+
+            <header class="pt-8 pb-12 px-4 sm:px-8">
+
+                <div class="max-w-4xl mx-auto text-center hero-container p-10">
+
+                    <h1 class="text-4xl sm:text-5xl font-black mb-4 text-white uppercase tracking-tight">
+
+                        Our <span class="gradient-text-anim">Internship Programs</span>
+
+                    </h1>
+
+                    <p class="text-lg sm:text-xl text-blue-100 max-w-2xl mx-auto font-inter">
+
+                        Join 90-day Deep Tech tracks designed for 80% hands-on project training to transform you into an industry-ready engineer.
+
+                    </p>
+
+                </div>
+
+            </header>
+
+
+
+            <!-- R&D Features (Glass Panel) -->
+
+            <section class="mb-20 px-4 sm:px-8">
+
+                <div class="max-w-5xl mx-auto p-8 md:p-12 glass-panel">
+
+                    <h2 class="text-2xl md:text-3xl font-extrabold mb-8 text-center text-blue-900 uppercase tracking-wide">
+
+                        Why the IP Product R&D Track Stands Apart
+
+                    </h2>
+
+
+
+                    <div class="grid md:grid-cols-2 gap-8 text-lg">
+
+                        <div class="flex items-start space-x-4">
+
+                            <span class="feature-num">1</span>
+
+                            <p class="text-gray-700 font-inter"><span class="font-bold text-blue-900">Elite R&D Exposure:</span> Work on cutting-edge research projects with patent potential.</p>
+
+                        </div>
+
+
+
+                        <div class="flex items-start space-x-4">
+
+                            <span class="feature-num">2</span>
+
+                            <p class="text-gray-700 font-inter"><span class="font-bold text-blue-900">Innovation Ecosystem:</span> Access to government partnerships and industry collaborations.</p>
+
+                        </div>
+
+
+
+                        <div class="flex items-start space-x-4">
+
+                            <span class="feature-num">3</span>
+
+                            <p class="text-gray-700 font-inter"><span class="font-bold text-blue-900">Limited Seats:</span> Only top 50 students selected through rigorous interviews.</p>
+
+                        </div>
+
+
+
+                        <div class="flex items-start space-x-4">
+
+                            <span class="feature-num">4</span>
+
+                            <p class="text-gray-700 font-inter"><span class="font-bold text-blue-900">Industry Mentors:</span> Learn from experts with deep tech and core engineering expertise.</p>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+
+
+            <!-- All Tracks Heading -->
+
+            <section class="max-w-6xl mx-auto mb-10 px-4 sm:px-8 text-center">
+
+                <h2 class="text-3xl sm:text-4xl font-black text-white uppercase tracking-widest relative inline-block">
+
+                    All R&D Tracks
+
+                    <div class="h-1 w-1/2 bg-white mx-auto mt-4 rounded-full opacity-50"></div>
+
+                </h2>
+
+            </section>
+
+
+
+            <!-- Three Cards Section -->
+
+            <div class="max-w-7xl mx-auto mb-20 px-4 sm:px-8 flex-grow">
+
+                <div class="grid gap-10 lg:grid-cols-3 md:grid-cols-2 items-stretch">
+
+
+
+                    <!-- Card 1: IP Product (Cyan Theme - Innovation Hall) -->
+
+                    <div class="program-card card-cyan">
+
+                        <div class="card-inner">
+
+                            <div class="featured-badge">Featured</div>
+
+                            <div class="text-center sm:text-left">
+
+                                <span class="header-icon text-4xl mb-4 inline-block"><i class="fa-solid fa-microchip"></i></span>
+
+                                <h2 class="card-title">IP Product & R&D Deep Tech</h2>
+
+                                <p class="card-subtitle">Advanced Research & Patent-Level Innovation</p>
+
+                            </div>
+
+
+
+                            <div class="mt-4">
+
+                                <div class="price-row">
+
+                                    <span class="price-new">₹30,000</span>
+
+                                    <span class="price-old">₹1,20,000</span>
+
+                                </div>
+
+
+
+                                <p class="text-sm text-blue-100 mb-1">Duration: <span class="font-bold text-white">3 Months</span></p>
+
+                                <p class="text-sm text-blue-100">Seats: <span class="font-bold text-white">50 (Interview Based)</span></p>
+
+
+
+                                <ul class="feature-list space-y-2">
+
+                                    <li>Patent & IP Development</li>
+
+                                    <li>Advanced AI/ML & Quantum Computing</li>
+
+                                    <li>Direct Industry Mentor Access</li>
+
+                                    <li>Publication Opportunities</li>
+
+                                    <li>Exclusive Placement Pipeline</li>
+
+                                </ul>
+
+                            </div>
+
+
+
+                            <div class="mt-8 text-center">
+
+                                <button class="apply-btn w-full" onclick="navigateTo('programs')">Apply Now</button>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+
+                    <!-- Card 2: Advanced (Purple Theme - R&D Lab) -->
+
+                    <div class="program-card card-purple">
+
+                        <div class="card-inner">
+
+                            <div class="text-center sm:text-left">
+
+                                <span class="header-icon text-4xl mb-4 inline-block"><i class="fa-solid fa-bolt"></i></span>
+
+                                <h2 class="card-title">Industry Advanced Internship</h2>
+
+                                <p class="card-subtitle">Master Industrial Systems & Live Projects</p>
+
+                            </div>
+
+
+
+                            <div class="mt-4">
+
+                                <div class="price-row">
+
+                                    <span class="price-new">₹15,000</span>
+
+                                    <span class="price-old">₹37,500</span>
+
+                                </div>
+
+
+
+                                <p class="text-sm text-purple-200 mb-1">Duration: <span class="font-bold text-white">3 Months</span></p>
+
+                                <p class="text-sm text-purple-200">Seats: <span class="font-bold text-white">Limited</span></p>
+
+
+
+                                <ul class="feature-list space-y-2">
+
+                                    <li>Power Electronics & Drives</li>
+
+                                    <li>Industry 5.0 & Automation</li>
+
+                                    <li>Live Industrial Projects</li>
+
+                                    <li>Entrepreneurship Training</li>
+
+                                    <li>High Placement Priority</li>
+
+                                </ul>
+
+                            </div>
+
+
+
+                            <div class="mt-8 text-center">
+
+                                <button class="apply-btn w-full" onclick="navigateTo('programs')">Apply Now</button>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+
+                    <!-- Card 3: Entry Level (Green Theme - Training Zone) -->
+
+                    <div class="program-card card-green">
+
+                        <div class="card-inner">
+
+                            <div class="text-center sm:text-left">
+
+                                <span class="header-icon text-4xl mb-4 inline-block"><i class="fa-solid fa-user-graduate"></i></span>
+
+                                <h2 class="card-title">Industry Entry-Level Internship</h2>
+
+                                <p class="card-subtitle">For Undergraduate & Beginner Engineers</p>
+
+                            </div>
+
+
+
+                            <div class="mt-4">
+
+                                <div class="price-row">
+
+                                    <span class="price-new">₹7,500</span>
+
+                                    <span class="price-old">₹18,750</span>
+
+                                </div>
+
+
+
+                                <p class="text-sm text-green-200 mb-1">Duration: <span class="font-bold text-white">3 Months</span></p>
+
+                                <p class="text-sm text-green-200">Seats: <span class="font-bold text-white">150 Students</span></p>
+
+
+
+                                <ul class="feature-list space-y-2">
+
+                                    <li>Hands-On Core Tech Training</li>
+
+                                    <li>Embedded Systems Basics</li>
+
+                                    <li>PLC/SCADA/DCS Fundamentals</li>
+
+                                    <li>Real-Time Project Work</li>
+
+                                    <li>Official Industry Certification</li>
+
+                                </ul>
+
+                            </div>
+
+
+
+                            <div class="mt-8 text-center">
+
+                                <button class="apply-btn w-full" onclick="navigateTo('programs')">Apply Now</button>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+
+                </div>
+
+            </div>
+
+
+
+            <!-- What All Programs Offer -->
+
+            <section class="max-w-6xl mx-auto mb-20 px-4 sm:px-8">
+
+                <h2 class="text-3xl font-bold text-center text-white mb-10">What All Programs Offer</h2>
+
+
+
+                <div class="grid md:grid-cols-3 gap-6">
+
+                    <div class="offer-box">
+
+                        <div class="offer-icon"><i class="fa-solid fa-screwdriver-wrench text-2xl"></i></div>
+
+                        <h3 class="text-xl font-bold text-white mb-2">80% Practical Training</h3>
+
+                        <p class="text-gray-300 text-sm">Focus on real-world implementation, code reviews, and project deployment.</p>
+
+                    </div>
+
+
+
+                    <div class="offer-box">
+
+                        <div class="offer-icon"><i class="fa-solid fa-network-wired text-2xl"></i></div>
+
+                        <h3 class="text-xl font-bold text-white mb-2">Live Industry Projects</h3>
+
+                        <p class="text-gray-300 text-sm">Contribute to AI, 6G, EV, or Quantum development streams.</p>
+
+                    </div>
+
+
+
+                    <div class="offer-box">
+
+                        <div class="offer-icon"><i class="fa-solid fa-chalkboard-user text-2xl"></i></div>
+
+                        <h3 class="text-xl font-bold text-white mb-2">Expert Mentorship</h3>
+
+                        <p class="text-gray-300 text-sm">Get guidance from senior engineers and deep tech professionals.</p>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+
+
+            <!-- Final CTA (Updated button to point to Contact) -->
+
+            <section class="max-w-4xl mx-auto mb-20 px-4">
+
+                <div class="cta-box p-10 text-center">
+
+                    <h2 class="text-3xl font-black text-white mb-4">Ready to Apply?</h2>
+
+                    <p class="text-blue-100 mb-8 max-w-lg mx-auto">Take the next step in your engineering career. Limited seats available for the upcoming cohort.</p>
+
+
+
+                    <div class="flex flex-col sm:flex-row justify-center gap-4">
+
+                        <button class="apply-btn" onclick="navigateTo('programs')">
+
+                            Apply Now
+
+                        </button>
+
+                        <button class="apply-btn" onclick="navigateTo('contact')">
+
+                            Contact Us
+
+                        </button>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+        </div>
+
+        <!-- End of #programs -->
+
+        
+
+        <!-- ================= INFRASTRUCTURE PAGE SECTION ================= -->
+
+        <div id="infrastructure" class="page-section hidden">
+
+            <!-- Apply Infrastructure specific background and text color wrapper -->
+
+            <div class="infra-page-content min-h-[calc(100vh-80px)]">
+
+
+
+                <header class="hero anim-load">
+
+                    <div class="hero-content">
+
+                        <h1 class="anim-load">World-Class <span>Infrastructure</span></h1>
+
+                        <p class="subtitle anim-load delay-1">State-of-the-art facilities designed for innovation, research, and collaborative growth</p>
+
+                        
+
+                        <div class="hero-desc anim-load delay-2">
+
+                            <p>At OptCELL Global, we believe that world-class infrastructure is fundamental to driving innovation. Our facilities are equipped with cutting-edge technology and designed to foster collaboration, creativity, and practical learning. From advanced R&D laboratories to modern training zones, every space is optimized for excellence.</p>
+
+                        </div>
+
+                    </div>
+
+                </header>
+
+
+
+                <main class="container">
+
+
+
+                    <section id="innovation-highlight" class="facility-row anim-load delay-3">
+
+                        <div class="text-block">
+
+                            <div class="icon-title">
+
+                                <i class="far fa-lightbulb floating-icon"></i>
+
+                                <h2>Innovation Hall</h2>
+
+                            </div>
+
+                            <p class="section-desc">State-of-the-art collaboration spaces designed for brainstorming, ideation, and team projects.</p>
+
+                            
+
+                            <h3>Key Features:</h3>
+
+                            <ul class="feature-list">
+
+                                <li>Holographic display systems</li>
+
+                                <li>Modern meeting spaces</li>
+
+                                <li>Collaborative workstations</li>
+
+                                <li>Digital whiteboards</li>
+
+                                <li>Presentation facilities</li>
+
+                            </ul>
+
+                        </div>
+
+                        <div class="image-block">
+
+                            <div class="img-wrapper">
+
+                                <img src="https://lh3.googleusercontent.com/p/AF1QipMxYErIhk3yo4zVIum21gg7bwcI9koXGGQAAVlX=s1360-w1360-h1020-rw" alt="Innovation Hall" onerror="this.onerror=null;this.src='https://placehold.co/600x400/00d2ff/ffffff?text=Innovation+Hall';">
+
+                                <div class="img-overlay"></div>
+
+                            </div>
+
+                        </div>
+
+                    </section>
+
+                    <section id="rnd-lab" class="facility-row reverse anim-load delay-4">
+
+                        <div class="text-block">
+
+                            <div class="icon-title">
+
+                                <i class="fas fa-microscope floating-icon"></i>
+
+                                <h2>R&D Laboratory</h2>
+
+                            </div>
+
+                            <p class="section-desc">Advanced testing and development facilities equipped with cutting-edge technology.</p>
+
+                            
+
+                            <h3>Key Features:</h3>
+
+                            <ul class="feature-list">
+
+                                <li>Precision testing equipment</li>
+
+                                <li>Advanced measurement tools</li>
+
+                                <li>Prototype development stations</li>
+
+                                <li>Quality assurance facilities</li>
+
+                                <li>Data analysis systems</li>
+
+                            </ul>
+
+                        </div>
+
+                        <div class="image-block">
+
+                            <div class="img-wrapper">
+
+                                <div class="scan-line"></div>
+
+                                <img src="https://lh3.googleusercontent.com/p/AF1QipMtt5SNqm8A6N3k2xMKeXr87jqkUXWsUxZM3Ntk=s1360-w1360-h1020-rw" alt="R&D Laboratory" onerror="this.onerror=null;this.src='https://placehold.co/600x400/d946ef/ffffff?text=R&D+Laboratory';">
+
+                                <div class="img-overlay"></div>
+
+                            </div>
+
+                        </div>
+
+                    </section>
+
+
+
+                    <section id="training-zone" class="facility-row anim-load delay-5">
+
+                        <div class="text-block">
+
+                            <div class="icon-title">
+
+                                <i class="fas fa-graduation-cap floating-icon"></i>
+
+                                <h2>Training Zones</h2>
+
+                            </div>
+
+                            <p class="section-desc">Modern learning environments designed for hands-on practical training and skill development.</p>
+
+                            
+
+                            <h3>Key Features:</h3>
+
+                            <ul class="feature-list">
+
+                                <li>Computer labs with latest software</li>
+
+                                <li>Practical workstations</li>
+
+                                <li>Interactive learning tools</li>
+
+                                <li>Video conferencing facilities</li>
+
+                                <li>Project presentation areas</li>
+
+                            </ul>
+
+                        </div>
+
+                        <div class="image-block">
+
+                            <div class="img-wrapper">
+
+                                <div class="hud-corner top-left"></div>
+
+                                <div class="hud-corner top-right"></div>
+
+                                <div class="hud-corner bottom-left"></div>
+
+                                <div class="hud-corner bottom-right"></div>
+
+                                
+
+                                <img src="https://lh3.googleusercontent.com/p/AF1QipMB0mFPBXngqQA9g2kB7cWHtb3-zmkpScYU70XD=s1360-w1360-h1020-rw" alt="Training Zones" onerror="this.onerror=null;this.src='https://placehold.co/600x400/10b981/ffffff?text=Training+Zone';">
+
+                                <div class="img-overlay"></div>
+
+                            </div>
+
+                        </div>
+
+                    </section>
+
+
+
+                    <section id="test-bench" class="facility-row reverse anim-load delay-5">
+
+                        <div class="text-block">
+
+                            <div class="icon-title">
+
+                                <i class="fas fa-layer-group floating-icon"></i>
+
+                                <h2>Test Bench Facilities</h2>
+
+                            </div>
+
+                            
+
+                            <div class="tech-badge">
+
+                                <i class="fas fa-wave-square"></i> DIAGNOSTICS: ONLINE
+
+                            </div>
+
+
+
+                            <p class="section-desc">Specialized testing and validation areas for engineering projects and prototypes.</p>
+
+                            
+
+                            <h3>Key Features:</h3>
+
+                            <ul class="feature-list">
+
+                                <li>Component testing stations</li>
+
+                                <li>System integration areas</li>
+
+                                <li>Performance monitoring tools</li>
+
+                                <li>Validation equipment</li>
+
+                                <li>Documentation facilities</li>
+
+                            </ul>
+
+                        </div>
+
+                        <div class="image-block">
+
+                            <div class="img-wrapper">
+
+                                <img src="https://img.sanishtech.com/u/c52b898dfd20901179e3d1b225d2f54e.png" alt="Test Bench Facilities" onerror="this.onerror=null;this.src='https://placehold.co/600x400/ef4444/ffffff?text=Test+Bench';">
+
+                                <div class="img-overlay"></div>
+
+                            </div>
+
+                        </div>
+
+                    </section>
+
+
+
+                    <section id="coworking-space" class="facility-row anim-load delay-5">
+
+                        <div class="text-block">
+
+                            <div class="icon-title">
+
+                                <i class="fas fa-laptop-code floating-icon"></i>
+
+                                <h2>Co-Working Spaces</h2>
+
+                            </div>
+
+                            
+
+                            <div class="status-badge">
+
+                                <span class="status-dot"></span> Status: ACTIVE 24/7
+
+                            </div>
+
+
+
+                            <p class="section-desc">Flexible, open-plan workspaces designed to foster networking and productivity for startups and students.</p>
+
+                            
+
+                            <h3>Key Features:</h3>
+
+                            <ul class="feature-list">
+
+                                <li>High-speed fiber internet</li>
+
+                                <li>Dedicated desks & hot desks</li>
+
+                                <li>Private meeting pods</li>
+
+                                <li>Creative lounge areas</li>
+
+                                <li>24/7 access & security</li>
+
+                            </ul>
+
+                        </div>
+
+                        <div class="image-block">
+
+                            <div class="img-wrapper">
+
+                                <img src="https://lh3.googleusercontent.com/p/AF1QipNfwlQRH2Y8OoVX8WizVn-9IvXpeutIPXbijbyS=s1360-w1360-h1020-rw" alt="Co-Working Spaces" onerror="this.onerror=null;this.src='https://placehold.co/600x400/f59e0b/ffffff?text=Co-Working';">
+
+                                <div class="img-overlay"></div>
+
+                            </div>
+
+                        </div>
+
+                    </section>
+
+
+
+                    <section id="auditorium" class="facility-row reverse anim-load delay-5">
+
+                        <div class="text-block">
+
+                            <div class="icon-title">
+
+                                <i class="fas fa-microphone-lines floating-icon"></i>
+
+                                <h2>Auditorium</h2>
+
+                            </div>
+
+                            
+
+                            <div class="soundwave-container">
+
+                                <div class="bar bar-1"></div>
+
+                                <div class="bar bar-2"></div>
+
+                                <div class="bar bar-3"></div>
+
+                                <div class="bar bar-4"></div>
+
+                                <span class="sound-label">ACOUSTICS: OPTIMIZED</span>
+
+                            </div>
+
+
+
+                            <p class="section-desc">A world-class venue for seminars, conferences, and large-scale academic events.</p>
+
+                            
+
+                            <h3>Key Features:</h3>
+
+                            <ul class="feature-list">
+
+                                <li>120+ Seating capacity</li>
+
+                                <li>Acoustic soundproofing</li>
+
+                                <li>High-definition projection</li>
+
+                                <li>Live streaming capabilities</li>
+
+                                <li>Green room & backstage</li>
+
+                            </ul>
+
+                        </div>
+
+                        <div class="image-block">
+
+                            <div class="img-wrapper">
+
+                                <img src="https://lh3.googleusercontent.com/p/AF1QipORabNx1AVudoh7rtVJxpw0RAyqMttmuY5w_nD8=s1360-w1360-h1020-rw" alt="Auditorium" onerror="this.onerror=null;this.src='https://placehold.co/600x400/ec4899/ffffff?text=Auditorium';">
+
+                                <div class="img-overlay"></div>
+
+                            </div>
+
+                        </div>
+
+                    </section>
+
+
+
+                    <section class="stats-section anim-load delay-5">
+
+                        <div class="stat-box">
+
+                            <span class="number">6</span>
+
+                            <span class="label">Major Facilities</span>
+
+                        </div>
+
+                        <div class="stat-box">
+
+                            <span class="number">100+</span>
+
+                            <span class="label">Workstations</span>
+
+                        </div>
+
+                        <div class="stat-box">
+
+                            <span class="number">24/7</span>
+
+                            <span class="label">Access Available</span>
+
+                        </div>
+
+                        <div class="stat-box">
+
+                            <span class="number">∞</span>
+
+                            <span class="label">Innovation Potential</span>
+
+                        </div>
+
+                    </section>
+
+
+
+                    <section class="cta-section anim-load delay-5">
+
+                        <h2>Experience Our <span>Facilities</span></h2>
+
+                        <p>Visit OptCELL Global to see our world-class infrastructure firsthand and understand how we're shaping the future of engineering education.</p>
+
+                        <a href="#" onclick="navigateTo('programs')" class="btn-primary-infra">See All Programs</a>
+
+                    </section>
+
+
+
+                </main>
+
+            </div>
+
+        </div>
+
+        
+
+        <!-- ================= ABOUT PAGE SECTION (NEW) ================= -->
+
+        <div id="about" class="page-section hidden">
+
+            <header class="hero anim-load">
+
+                <div class="hero-content">
+
+                    <h1 class="anim-load">About <span>OptCELL GLOBAL</span></h1>
+
+                    <p class="subtitle anim-load delay-1">Innovation. Sustainability. Growth.</p>
+
+                    
+
+                    <div class="hero-desc anim-load delay-2">
+
+                        <p>We are dedicated to bridging the gap between academia and industry through deep tech research, hands-on training, and strategic partnerships.</p>
+
+                    </div>
+
+                </div>
+
+                
+
+                <!-- Scroll Down Indicator -->
+
+                <div class="scroll-down" onclick="document.getElementById('about-intro').scrollIntoView()">
+
+                    <i class="fas fa-chevron-down"></i>
+
+                </div>
+
+            </header>
+
+
+
+            <main class="container">
+
+
+
+                <!-- SECTION 1: INTRO (Content from Image 1) -->
+
+                <section id="about-intro" class="white-card anim-load delay-3">
+
+                    <div class="intro-content">
+
+                        <p><strong>Optcell GLOBAL</strong> is your trusted partner in innovation and sustainability. We collaborate with businesses, educational institutions, and entrepreneurs to foster a thriving ecosystem for evolving ideas and solutions. Our Mission is to Ignite innovation and catalyze exponential growth through dynamic collaborations across Startups, Multinational Corporations, Universities, Government Initiatives, R&D Institutions, and Financial entities, equipping them with cutting-edge solutions and strategic guidance to redefine industry standards and drive unprecedented success.</p>
+
+                        
+
+                        <p>Our core focus areas include deep tech R&D, comprehensive training programs for students and professionals, facilitating partnerships between startups and established organizations, and supporting government-backed innovation initiatives across multiple sectors.</p>
+
+                    </div>
+
+                </section>
+
+
+
+                <!-- SECTION 2: MISSION & VISION (Content from Image 1) -->
+
+                <div class="mv-grid anim-load delay-4">
+
+                    
+
+                    <!-- Mission Card -->
+
+                    <div class="mv-card" id="mission-card">
+
+                        <div class="mv-header">
+
+                            <i class="fas fa-bullseye"></i>
+
+                            <h2>Our Mission</h2>
+
+                        </div>
+
+                        <div class="mv-body">
+
+                            <p>To create a collaborative innovation ecosystem where students, institutions, startups, and industry leaders converge to solve real-world challenges through deep tech and core engineering.</p>
+
+                        </div>
+
+                    </div>
+
+
+
+                    <!-- Vision Card -->
+
+                    <div class="mv-card" id="vision-card">
+
+                        <div class="mv-header">
+
+                            <i class="fas fa-eye"></i>
+
+                            <h2>Our Vision</h2>
+
+                        </div>
+
+                        <div class="mv-body">
+
+                            <p>To be the leading platform for collaborative growth, empowering the next generation of engineers and innovators while driving breakthrough solutions in deep tech domains.</p>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+                
+
+                <!-- SECTION 3: GALLERY (NEW) -->
+
+                <section id="gallery" class="gallery-section anim-load delay-5">
+
+                    <div class="gallery-header">
+
+                        <h2>Life at <span>OptCELL</span></h2>
+
+                    </div>
+
+                    
+
+                    <!-- Admin Controls -->
+
+                    <div id="admin-panel" class="admin-controls">
+
+                        <h3 style="color: #333; margin-bottom: 15px;">Admin Controls</h3>
+
+                        <input type="text" id="img-url" placeholder="Paste Image URL here (https://...)" class="admin-input">
+
+                        <input type="text" id="img-caption" placeholder="Short Caption" class="admin-input" style="width: 30%;">
+
+                        <button id="add-btn" class="btn-small">Add Photo</button>
+
+                    </div>
+
+
+
+                    <div id="gallery-grid" class="gallery-grid">
+
+                        <!-- Dynamic Content Will Load Here -->
+
+                        <div style="color: white; text-align: center; grid-column: 1/-1;">Loading Gallery...</div>
+
+                    </div>
+
+                </section>
+
+
+
+                <!-- SECTION 4: CORE VALUES -->
+
+                <section class="values-section anim-load delay-5">
+
+                    <div class="values-header">
+
+                        <h2>Our <span>Core Values</span></h2>
+
+                    </div>
+
+                    
+
+                    <div class="values-grid">
+
+                        <!-- Value 1: Innovation First -->
+
+                        <div class="value-card">
+
+                            <i class="fas fa-bullseye value-icon"></i>
+
+                            <h3 class="value-title">Innovation First</h3>
+
+                            <p class="value-desc">Driving breakthrough solutions in deep tech and core engineering.</p>
+
+                        </div>
+
+
+
+                        <!-- Value 2: Collaborative Growth -->
+
+                        <div class="value-card">
+
+                            <i class="fas fa-users value-icon"></i>
+
+                            <h3 class="value-title">Collaborative Growth</h3>
+
+                            <p class="value-desc">Building ecosystems that connect students, industry, and institutions.</p>
+
+                        </div>
+
+
+
+                        <!-- Value 3: Excellence -->
+
+                        <div class="value-card">
+
+                            <i class="fas fa-medal value-icon"></i>
+
+                            <h3 class="value-title">Excellence</h3>
+
+                            <p class="value-desc">Maintaining highest standards in R&D and training programs.</p>
+
+                        </div>
+
+
+
+                        <!-- Value 4: Partnership -->
+
+                        <div class="value-card">
+
+                            <i class="fas fa-handshake value-icon"></i>
+
+                            <h3 class="value-title">Partnership</h3>
+
+                            <p class="value-desc">Creating meaningful collaborations across sectors.</p>
+
+                        </div>
+
+                    </div>
+
+                </section>
+
+
+
+
+
+                <!-- SECTION 5: STRATEGIC PARTNERSHIPS -->
+
+                <section class="partnerships-section anim-load delay-5">
+
+                    <div class="partnerships-header">
+
+                        <h2>Strategic <span>Partnerships</span></h2>
+
+                        <p>Collaborating with leading institutions, government bodies, and industry partners</p>
+
+                    </div>
+
+
+
+                    <div class="partnerships-grid">
+
+                        
+
+                        <!-- Card 1 -->
+
+                        <div class="partner-card">
+
+                            <h3 class="partner-title">Government Initiatives</h3>
+
+                            <p class="partner-desc">Active participation in government-backed innovation programs and skill development initiatives</p>
+
+                        </div>
+
+
+
+                        <!-- Card 2 -->
+
+                        <div class="partner-card">
+
+                            <h3 class="partner-title">VTU VRIF-TCOE</h3>
+
+                            <p class="partner-desc">Strategic partnership for internship programs and academic collaboration</p>
+
+                        </div>
+
+
+
+                        <!-- Card 3 -->
+
+                        <div class="partner-card">
+
+                            <h3 class="partner-title">Industry Partners</h3>
+
+                            <p class="partner-desc">Deep connections with leading corporations for real-world project exposure</p>
+
+                        </div>
+
+
+
+                        <!-- Card 4 -->
+
+                        <div class="partner-card">
+
+                            <h3 class="partner-title">Startup Ecosystem</h3>
+
+                            <p class="partner-desc">Supporting innovation-driven startups through mentorship and infrastructure</p>
+
+                        </div>
+
+
+
+                    </div>
+
+                </section>
+
+
+
+            </main>
+
+        </div>
+
+        <!-- END OF #ABOUT -->
+
+        
+
+        <!-- ================= CONTACT PAGE SECTION (NEW) ================= -->
+
+        <div id="contact" class="page-section hidden pt-12 pb-32 md:pt-24 md:pb-40 px-4 relative z-10">
+
+            <div class="max-w-7xl mx-auto">
+
+                
+
+                <div class="hero animate-enter delay-0">
+
+                    <h1>
+
+                        Get in <span>Touch</span>
+
+                    </h1>
+
+                    <p class="subtitle">
+
+                        Have questions about our programs or want to schedule a campus visit? We are here to assist you.
+
+                    </p>
+
+                </div>
+
+
+
+                <div class="grid lg:grid-cols-3 gap-8">
+
+                    
+
+                    <div class="lg:col-span-2 animate-enter delay-1">
+
+                        <div class="premium-card h-full">
+
+                            <h2 class="card-title">Send a Message</h2>
+
+                            <p class="card-desc">Fill out the form below. Our team typically responds within 24 hours.</p>
+
+                            
+
+                            <form id="contact-form-real" class="space-y-6">
+
+                                <div class="grid md:grid-cols-2 gap-6">
+
+                                    <div class="modern-input-group">
+
+                                        <label>Full Name</label>
+
+                                        <input type="text" id="contact-name" class="modern-input" placeholder="e.g. John Doe" required>
+
+                                    </div>
+
+                                    <div class="modern-input-group">
+
+                                        <label>Email Address</label>
+
+                                        <input type="email" id="contact-email" class="modern-input" placeholder="john@example.com" required>
+
+                                    </div>
+
+                                </div>
+
+                                
+
+                                <div class="modern-input-group">
+
+                                    <label>Message</label>
+
+                                    <textarea rows="6" id="contact-message" class="modern-input" placeholder="How can we help you?" required></textarea>
+
+                                </div>
+
+                                
+
+                                <button type="submit" class="modern-btn">
+
+                                    Send Message
+
+                                    <i class="fas fa-paper-plane"></i>
+
+                                </button>
+
+                            </form>
+
+                        </div>
+
+                    </div>
+
+
+
+                    <div class="space-y-6 animate-enter delay-2">
+
+                        
+
+                        <div class="premium-card" style="padding: 2rem;">
+
+                            <div class="flex items-center gap-3 mb-6 pb-4 border-b border-gray-100">
+
+                                <div class="w-2 h-8 bg-blue-500 rounded-full"></div>
+
+                                <h3 class="text-xl font-bold text-slate-800 m-0">Contact Info</h3>
+
+                            </div>
+
+                            
+
+                            <div class="space-y-6">
+
+                                <div class="flex items-start gap-4 group">
+
+                                    <a href="https://mail.google.com/mail/?view=cm&fs=1&to=info@optcell.in" target="_blank" class="icon-circle shadow-sm">
+
+                                        <i class="fas fa-envelope"></i>
+
+                                    </a>
+
+                                    <div class="flex-grow pt-1">
+
+                                        <h4 class="font-bold text-slate-800 text-sm mb-1">Email</h4>
+
+                                        <a href="mailto:info@optcell.in" class="block hover-link text-sm font-medium">info@optcell.in</a>
+
+                                        <a href="mailto:support@optcell.in" class="block hover-link text-sm font-medium">support@optcell.in</a>
+
+                                    </div>
+
+                                </div>
+
+
+
+                                <a href="tel:+919035874229" class="flex items-center gap-4 group">
+
+                                    <div class="icon-circle shadow-sm">
+
+                                        <i class="fas fa-phone"></i>
+
+                                    </div>
+
+                                    <div>
+
+                                        <h4 class="font-bold text-slate-800 text-sm mb-0.5">Phone</h4>
+
+                                        <span class="hover-link text-sm font-medium">+91 90358 74229</span>
+
+                                    </div>
+
+                                </a>
+
+
+
+                                <a href="https://wa.me/919035874229" target="_blank" class="flex items-center gap-4 group">
+
+                                    <div class="icon-circle shadow-sm">
+
+                                        <i class="fab fa-whatsapp text-xl"></i>
+
+                                    </div>
+
+                                    <div>
+
+                                        <h4 class="font-bold text-slate-800 text-sm mb-0.5">WhatsApp</h4>
+
+                                        <span class="hover-link text-sm font-medium">Chat on WhatsApp</span>
+
+                                    </div>
+
+                                </a>
+
+
+
+                                <div class="flex items-start gap-4 group">
+
+                                    <div class="icon-circle shadow-sm">
+
+                                        <i class="fas fa-map-marker-alt"></i>
+
+                                    </div>
+
+                                    <div class="pt-1">
+
+                                        <h4 class="font-bold text-slate-800 text-sm mb-1">Address</h4>
+
+                                        <p class="text-slate-500 text-sm leading-relaxed">
+
+                                            OptCELL Global<br>
+
+                                            Innovation Park, Bangalore<br>
+
+                                            Karnataka, India
+
+                                        </p>
+
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+
+
+                        <div class="premium-card animate-enter delay-3" style="padding: 1.5rem;">
+
+                            <h3 class="text-lg font-bold text-slate-800 mb-4 flex items-center gap-2">
+
+                                <i class="fas fa-bolt text-yellow-500"></i> Quick Actions
+
+                            </h3>
+
+                            <div class="space-y-3">
+
+                                <button class="action-btn group" onclick="navigateTo('programs')">
+
+                                    Apply for Internship 
+
+                                    <i class="fas fa-arrow-right text-gray-300 group-hover:text-blue-500 transition-colors"></i>
+
+                                </button>
+
+                                <button class="action-btn group" onclick="navigateTo('infrastructure')">
+
+                                    Explore Infrastructure 
+
+                                    <i class="fas fa-building text-gray-300 group-hover:text-blue-500 transition-colors"></i>
+
+                                </button>
+
+                            </div>
+
+                        </div>
+
+
+
+                        <a href="https://www.google.com/maps/search/?api=1&query=OptCELL+Global+1st+Main+Rd+RHCS+Layout+Annapoorneshwari+Nagar+Naagarabhaavi+Bengaluru+Karnataka+560091" target="_blank" class="block h-48 rounded-2xl overflow-hidden shadow-lg relative group cursor-pointer border-2 border-white/50 hover:border-white transition-all animate-enter delay-3">
+
+                            <img src="https://images.unsplash.com/photo-1524661135-423995f22d0b?q=80&w=1000&auto=format&fit=crop" class="w-full h-full object-cover filter brightness-90 group-hover:brightness-100 transition duration-500 group-hover:scale-110">
+
+                            <div class="absolute inset-0 flex items-center justify-center">
+
+                                <span class="bg-white text-slate-900 px-5 py-2.5 rounded-full text-xs font-bold shadow-lg flex items-center gap-2 group-hover:bg-blue-600 group-hover:text-white transition-all transform group-hover:scale-105">
+
+                                    <i class="fas fa-map-location-dot"></i> View on Google Maps
+
+                                </span>
+
+                            </div>
+
+                        </a>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <!-- END OF #CONTACT -->
+
+        
+
+    </main>
+
+
+
+    <!-- Footer -->
+
+    <footer class="bg-[#050A1E] text-slate-400 py-10 mt-auto border-t border-white/10 relative z-20">
+
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+
+            <!-- Adjusted grid to lg:grid-cols-4 to make space for the new CONNECT section -->
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-8">
+
+                
+
+                <!-- Column 1: Company Info -->
+
+                <div>
+
+                    <div class="flex items-center gap-2 mb-4">
+
+                        <i class="fas fa-building text-slate-300 text-lg"></i>
+
+                        <h3 class="text-white font-bold text-base tracking-wider">OPTCELL GLOBAL</h3>
+
+                    </div>
+
+                    <p class="text-xs leading-relaxed mb-4">
+
+                        Empowering the next generation of deep tech innovators through industry-aligned R&D and collaboration.
+
+                    </p>
+
+                </div>
+
+
+
+                <!-- Column 2: Quick Links (Updated to include About) -->
+
+                <div>
+
+                    <div class="flex items-center gap-2 mb-4">
+
+                        <i class="fas fa-bolt text-secondary text-base"></i>
+
+                        <h3 class="text-white font-bold text-base tracking-wider">QUICK LINKS</h3>
+
+                    </div>
+
+                    <ul class="space-y-2 text-xs">
+
+                        <li><a href="#" onclick="navigateTo('home')" class="hover:text-white transition-colors">Home</a></li>
+
+                        <li><a href="#" onclick="navigateTo('programs')" class="hover:text-white transition-colors">Programs & Internships</a></li>
+
+                        <li><a href="#" onclick="navigateTo('infrastructure')" class="hover:text-white transition-colors">Infrastructure</a></li>
+
+                        <li><a href="#" onclick="navigateTo('about')" class="hover:text-white transition-colors">About</a></li>
+
+                        <li><a href="#" onclick="navigateTo('contact')" class="hover:text-white transition-colors">Contact</a></li>
+
+                    </ul>
+
+                </div>
+
+                
+
+                <!-- Column 3: Programme (Retained) -->
+
+                <div>
+
+                    <div class="flex items-center gap-2 mb-4">
+
+                        <i class="fas fa-graduation-cap text-green-400 text-base"></i>
+
+                        <h3 class="text-white font-bold text-base tracking-wider">PROGRAMME TRACKS</h3>
+
+                    </div>
+
+                    <ul class="space-y-2 text-xs">
+
+                        <li><a href="#" onclick="navigateTo('programs')" class="hover:text-white transition-colors">IP Product R&D Track</a></li>
+
+                        <li><a href="#" onclick="navigateTo('programs')" class="hover:text-white transition-colors">Advanced Internship</a></li>
+
+                        <li><a href="#" onclick="navigateTo('programs')" class="hover:text-white transition-colors">Entry-Level Internship</a></li>
+
+                    </ul>
+
+                </div>
+
+
+
+                <!-- Column 4: Connect (from Contact Page, adjusted for existing colors) -->
+
+                <div>
+
+                    <div class="flex items-center gap-2 mb-4">
+
+                        <i class="fas fa-envelope-open-text text-sky-400 text-base"></i>
+
+                        <h3 class="text-white font-bold text-base tracking-wider">CONNECT</h3>
+
+                    </div>
+
+                    <div class="space-y-3 text-xs">
+
+                        <div class="bg-white/5 p-2 rounded-lg border border-white/10 hover:bg-white/10 transition-colors">
+
+                            <a href="mailto:info@optcell.in" class="text-white block w-full h-full">info@optcell.in</a>
+
+                        </div>
+
+                        <div class="bg-white/5 p-2 rounded-lg border border-white/10 hover:bg-white/10 transition-colors">
+
+                            <a href="tel:+919035874229" class="text-white block w-full h-full">+91 90358 74229</a>
+
+                        </div>
+
+                        <div class="bg-white/5 p-2 rounded-lg border border-white/10">
+
+                            <p class="leading-relaxed">1st Main Rd, RHCS Layout,<br>Bengaluru, Karnataka</p>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            
+
+            <!-- Bottom Bar -->
+
+            <div class="border-t border-white/10 pt-6 text-center text-[10px] text-slate-500">
+
+                <p>&copy; 2025 OptCELL Global. All rights reserved. <span class="ml-2">Made with <i class="fas fa-heart text-blue-600 mx-1"></i> in India</span></p>
+
+            </div>
+
+        </div>
+
+    </footer>
+
+
+
+    <!-- FIXED APPLY NOW BUTTON -->
+
+    <a href="#" onclick="navigateTo('programs')" class="fixed bottom-6 right-6 z-[100] group">
+
+        <!-- Glow Effect -->
+
+        <div class="absolute inset-0 bg-secondary rounded-full blur opacity-40 group-hover:opacity-70 transition-opacity duration-500 animate-pulse"></div>
+
+        
+
+        <!-- Button (Secondary Theme Gradient) -->
+
+        <button class="relative bg-gradient-to-r from-secondary to-orange-500 hover:from-orange-500 hover:to-secondary text-white font-bold py-4 px-8 rounded-full shadow-2xl flex items-center gap-2 transform group-hover:scale-105 transition-all duration-300 border-2 border-white/20">
+
+            <span>Apply Now</span>
+
+            <i class="fas fa-arrow-right text-sm group-hover:translate-x-1 transition-transform"></i>
+
+        </button>
+
+    </a>
+
+
+
+    <!-- Scripts -->
+
+    <script>
+
+        // Define functions immediately to be available for inline handlers
+
+        window.navigateTo = function(pageId) {
+
+            // Logic handled inside DOMContentLoaded via event dispatch
+
+            document.dispatchEvent(new CustomEvent('navigate-to', { detail: pageId }));
+
+        };
+
+        
+
+        window.toggleMobileMenu = function() {
+
+            const menu = document.getElementById('mobile-menu');
+
+            if(menu) menu.classList.toggle('hidden');
+
+        };
+
+        
+
+        // Gallery Admin functions removed as page is removed.
+
+
+
+        // --- NEW: Team Data Structure ---
+
+        const teamData = {
+
+            shalini: {
+
+                name: "A R Shalini",
+
+                title: "Strategic Operations & R&D Strategy",
+
+                image: "https://img.sanishtech.com/u/cc085d22c76786707dcbfa7be91671a6.jpg",
+
+                quote: "“At the intersection of strategy and innovation, we don’t just plan the future—we build it. I invite you to join us as we transform R&D into a strategic engine that powers meaningful change across industries. Together, we will streamline operations, accelerate insights and unlock possibilities that redefine how businesses evolve. Let's design tomorrow's breakthroughs today.”",
+
+                linkedin: "https://www.linkedin.com/in/a-r-shalini-837867237/"
+
+            },
+
+            amareshwar: {
+
+                name: "Amareshwar Karatagi",
+
+                title: "Engineering, Innovation & Gov Partnerships",
+
+                image: "https://img.sanishtech.com/u/c105374805945b8e3456f8cb3f15950a.jpg",
+
+                quote: "“Innovation thrives when bold engineering meets powerful collaboration. I am proud to lead our engineering and partnership efforts as we shape pioneering solutions alongside government and industry alike. With every project, we strive not just to meet expectations—but to exceed them, forging connections that fuel societal progress. Join us in engineering what's next.”",
+
+                linkedin: "https://www.linkedin.com/in/amarkaratagi/"
+
+            },
+
+            rushit: {
+
+                name: "Rushit Jani",
+
+                title: "Technology, AI/ML Systems & Digital Transformation",
+
+                image: "https://img.sanishtech.com/u/6c851e8de4713b81384132cbac1a1778.jpg",
+
+                quote: "“In a world driven by data and digital change, we are the architects of a smarter tomorrow. At the helm of our AI/ML and digital transformation ambitions, I'm committed to translating insight into action—delivering systems that anticipate, adapt and evolve. Let's journey into the future together, empowered by technology that transforms vision into reality.”",
+
+                linkedin: "https://www.linkedin.com/in/rushit-jani/"
+
+            },
+
+            stavan: {
+
+                name: "Stavan Pandya",
+
+                title: "Product Engineering & Innovation",
+
+                image: "https://img.sanishtech.com/u/6a89b6e65ebde2b82e85adbf5b2169ba.png",
+
+                quote: "“Great products don't just meet needs—they inspire change. In leading our product engineering and innovation domain, I believe in crafting experiences that resonate and elevate. From blueprint to launch, we engineer with empathy, precision and purpose. Discover how we turn ideas into impact, and let's build something extraordinary together.”",
+
+                linkedin: "https://www.linkedin.com/in/stavan-pandya-b0a4a0296/"
+
+            }
+
+        };
+
+
+
+        // --- NEW: Leader Modal Logic ---
+
+        window.openLeaderModal = function(memberId) {
+
+            const member = teamData[memberId];
+
+            const modal = document.getElementById('leader-modal');
+
+            
+
+            if (!member || !modal) return;
+
+
+
+            // Populate modal content
+
+            document.getElementById('leader-modal-image').src = member.image;
+
+            document.getElementById('leader-modal-image').alt = member.name;
+
+            document.getElementById('leader-modal-name').innerText = member.name;
+
+            document.getElementById('leader-modal-title').innerText = member.title;
+
+            
+
+            // Remove wrapping quotes from quote for modal display
+
+            const rawQuote = member.quote.replace(/^“|”$/g, '').trim();
+
+            document.getElementById('leader-modal-quote').innerText = rawQuote;
+
+            
+
+            document.getElementById('leader-modal-linkedin').href = member.linkedin;
+
+
+
+            modal.classList.add('active');
+
+        }
+
+        
+
+        document.addEventListener('DOMContentLoaded', () => {
+
+            // === Variables ===
+
+            const modal = document.getElementById('admin-modal');
+
+            const dateInput = document.getElementById('admin-date-input');
+
+            const btnCancel = document.getElementById('btn-cancel-modal');
+
+            const btnSave = document.getElementById('btn-save-modal');
+
+            const btnAdminOpen = document.getElementById('btn-admin-open');
+
+            const toast = document.getElementById('toast');
+
+            
+
+            // Contact Form
+
+            const contactForm = document.getElementById('contact-form-real');
+
+            
+
+            // Leader Modal Element
+
+            const btnCloseLeaderModal = document.getElementById('btn-close-leader-modal');
+
+
+
+            let deadline = new Date();
+
+            deadline.setDate(deadline.getDate() + 14); // Default 14 days
+
+
+
+            // === Navigation Implementation (Updated to include about page) ===
+
+            document.addEventListener('navigate-to', (e) => {
+
+                const pageId = e.detail;
+
+                
+
+                document.querySelectorAll('.page-section').forEach(el => el.classList.add('hidden'));
+
+                const target = document.getElementById(pageId);
+
+                
+
+                // NOTE: Gallery admin button visibility check for about page
+
+                if (pageId === 'about') {
+
+                    // Check if admin panel exists and show/hide based on admin status
+
+                    const adminPanel = document.getElementById('admin-panel');
+
+                    if (adminPanel) {
+
+                        // Check if admin mode is active (you might need to implement this logic)
+
+                        // For now, we'll keep it hidden by default as per CSS
+
+                    }
+
+                }
+
+
+
+                if(target) target.classList.remove('hidden');
+
+                window.scrollTo(0,0);
+
+                
+
+                // Highlight Nav
+
+                document.querySelectorAll('.nav-item').forEach(el => {
+
+                    el.classList.remove('scale-125', 'text-secondary', 'font-extrabold', 'border-b-2', 'border-secondary');
+
+                    el.classList.add('text-white/90', 'font-medium');
+
+                });
+
+                const activeNav = document.getElementById('nav-' + pageId);
+
+                if(activeNav) {
+
+                    activeNav.classList.remove('text-white/90', 'font-medium');
+
+                    activeNav.classList.add('scale-125', 'text-secondary', 'font-extrabold', 'border-b-2', 'border-secondary');
+
+                }
+
+                document.getElementById('mobile-menu').classList.add('hidden');
+
+            });
+
+            
+
+            // Gallery functionality for about page
+
+            window.renderGallery = () => { /* No-op */ };
+
+
+
+            // === Smart Scroll ===
+
+            let lastScrollTop = 0;
+
+            const navWrapper = document.getElementById('main-nav-wrapper');
+
+            window.addEventListener('scroll', () => {
+
+                let scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+
+                if(scrollTop > lastScrollTop) navWrapper.classList.add('-translate-y-full');
+
+                else navWrapper.classList.remove('-translate-y-full');
+
+                lastScrollTop = scrollTop <= 0 ? 0 : scrollTop;
+
+            });
+
+
+
+            // === Slider ===
+
+            const track = document.getElementById('slider-track');
+
+            let currentSlide = 0;
+
+            if (track) {
+
+                setInterval(() => {
+
+                    if (track) {
+
+                        currentSlide = (currentSlide + 1) % 4;
+
+                        track.style.transform = `translateX(-${currentSlide * 100}%)`;
+
+                    }
+
+                }, 5000);
+
+            }
+
+
+
+            // === Timer ===
+
+            function updateTimer() {
+
+                const daysEl = document.getElementById('timer-days');
+
+                const hoursEl = document.getElementById('timer-hours');
+
+                const minutesEl = document.getElementById('timer-minutes');
+
+                const secondsEl = document.getElementById('timer-seconds');
+
+
+
+                // Strict Null Check
+
+                if (!daysEl || !hoursEl || !minutesEl || !secondsEl) return;
+
+
+
+                const t = deadline - new Date().getTime();
+
+                if (t < 0) return;
+
+                const d = Math.floor(t / (1000 * 60 * 60 * 24));
+
+                const h = Math.floor((t % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+
+                const m = Math.floor((t % (1000 * 60 * 60)) / (1000 * 60));
+
+                const s = Math.floor((t % (1000 * 60)) / 1000);
+
+
+
+                daysEl.innerText = d < 10 ? '0'+d : d;
+
+                hoursEl.innerText = h < 10 ? '0'+h : h;
+
+                minutesEl.innerText = m < 10 ? '0'+m : m;
+
+                secondsEl.innerText = s < 10 ? '0'+s : s;
+
+            }
+
+            setInterval(updateTimer, 1000);
+
+            updateTimer();
+
+
+
+            // === Admin Modal (Deadline) ===
+
+            if(btnAdminOpen) {
+
+                btnAdminOpen.addEventListener('click', () => {
+
+                    modal.classList.add('active');
+
+                    dateInput.value = deadline.toISOString().split('T')[0];
+
+                });
+
+            }
+
+            if(btnCancel) btnCancel.addEventListener('click', () => modal.classList.remove('active'));
+
+            if(btnSave) {
+
+                btnSave.addEventListener('click', () => {
+
+                    const val = dateInput.value;
+
+                    if(val) {
+
+                        deadline = new Date(val + "T23:59:59");
+
+                        modal.classList.remove('active');
+
+                        showToast("Deadline updated successfully!", "success");
+
+                        updateTimer();
+
+                    } else {
+
+                        showToast("Invalid Date", "error");
+
+                    }
+
+                });
+
+            }
+
+            
+
+            // Gallery Admin Logic for About Page
+
+            const adminTrigger = document.getElementById('admin-trigger');
+
+            if (adminTrigger) {
+
+                adminTrigger.addEventListener('click', () => {
+
+                    const pwd = prompt("Enter Admin Password:");
+
+                    if(pwd === "admin123") {
+
+                        const adminPanel = document.getElementById('admin-panel');
+
+                        if (adminPanel) {
+
+                            adminPanel.classList.add('active');
+
+                            // Add admin mode class to gallery items
+
+                            document.querySelectorAll('.gallery-item').forEach(item => {
+
+                                item.classList.add('admin-mode');
+
+                            });
+
+                        }
+
+                        alert("Admin Mode Enabled.");
+
+                    } else {
+
+                        alert("Incorrect Password");
+
+                    }
+
+                });
+
+            }
+
+
+
+            // === Contact Form Submission Handler (Updated to use showToast) ===
+
+            if (contactForm) {
+
+                contactForm.addEventListener('submit', (e) => {
+
+                    e.preventDefault();
+
+                    
+
+                    const name = document.getElementById('contact-name').value;
+
+                    const email = document.getElementById('contact-email').value;
+
+                    const message = document.getElementById('contact-message').value;
+
+
+
+                    if (name && email && message) {
+
+                        // Simulate sending data
+
+                        console.log("Contact form submitted:", { name, email, message });
+
+                        showToast("Your message has been sent successfully!", "success");
+
+                        contactForm.reset();
+
+                    } else {
+
+                        showToast("Please fill all required fields.", "error");
+
+                    }
+
+                });
+
+            }
+
+            
+
+            // === Leader Modal Close Listener ===
+
+            if (btnCloseLeaderModal) {
+
+                btnCloseLeaderModal.addEventListener('click', () => {
+
+                    document.getElementById('leader-modal').classList.remove('active');
+
+                });
+
+            }
+
+
+
+
+
+            // === Toast ===
+
+            window.showToast = function(msg, type) {
+
+                const title = document.getElementById('toast-title');
+
+                const message = document.getElementById('toast-message');
+
+                const icon = document.getElementById('toast-icon');
+
+                const toastEl = document.getElementById('toast');
+
+                
+
+                title.innerText = type === 'error' ? 'Error' : 'Success!';
+
+                message.innerText = msg;
+
+                
+
+                // Reset classes first to ensure transition works
+
+                toastEl.className = `fixed bottom-8 right-8 px-6 py-4 rounded-xl shadow-2xl z-[100] transform transition-all duration-500 flex items-center gap-3 text-white translate-y-20 opacity-0 ${type === 'error' ? 'bg-red-500' : 'bg-green-500'}`;
+
+                icon.className = type === 'error' ? 'fas fa-exclamation-circle text-2xl' : 'fas fa-check-circle text-2xl';
+
+
+
+                // Trigger animation
+
+                setTimeout(() => {
+
+                    toastEl.classList.remove('translate-y-20', 'opacity-0');
+
+                }, 10);
+
+
+
+                setTimeout(() => {
+
+                    toastEl.classList.add('translate-y-20', 'opacity-0');
+
+                }, 3000);
+
+            }
+
+
+
+            // Init Highlight
+
+            // Initial navigation to 'home' to set up initial active state
+
+            document.dispatchEvent(new CustomEvent('navigate-to', { detail: 'home' }));
+
+
+
+            // === Dark Mode Toggle (Fixed) ===
+
+            window.toggleDarkMode = function() {
+
+                const html = document.documentElement;
+
+                if (html.classList.contains('dark')) {
+
+                    html.classList.remove('dark');
+
+                    localStorage.theme = 'light';
+
+                } else {
+
+                    html.classList.add('dark');
+
+                    localStorage.theme = 'dark';
+
+                }
+
+            };
+
+
+
+            // Check for saved user preference
+
+            if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+
+                document.documentElement.classList.add('dark')
+
+            } else {
+
+                document.documentElement.classList.remove('dark')
+
+            }
+
+            
+
+            // === Scroll Reveal Observer (COMBINED LOGIC) ===
+
+            const observerOptions = { threshold: 0.1 };
+
+            const observer = new IntersectionObserver((entries) => {
+
+                entries.forEach(entry => {
+
+                    if (entry.isIntersecting) {
+
+                        // Handle original reveal
+
+                        if (entry.target.classList.contains('reveal')) {
+
+                             entry.target.classList.add('active');
+
+                        }
+
+                        // Handle infrastructure page anim-load
+
+                        if (entry.target.classList.contains('anim-load')) {
+
+                            entry.target.classList.add('visible');
+
+                        }
+
+                        // Handle contact page animate-enter
+
+                        if (entry.target.classList.contains('animate-enter')) {
+
+                            entry.target.classList.add('active');
+
+                        }
+
+                    }
+
+                });
+
+            }, observerOptions);
+
+
+
+            // Observe all relevant classes
+
+            document.querySelectorAll('.reveal, .anim-load, .animate-enter').forEach(el => observer.observe(el));
+
+
+
+            // === About Page Gallery Animation Observer ===
+
+            const aboutObserver = new IntersectionObserver((entries) => {
+
+                entries.forEach(entry => {
+
+                    if (entry.isIntersecting) {
+
+                        entry.target.classList.add('visible');
+
+                    }
+
+                });
+
+            }, { threshold: 0.1 });
+
+
+
+            document.querySelectorAll('#about .anim-load').forEach((el) => {
+
+                aboutObserver.observe(el);
+
+            });
+
+        });
+
+    </script>
+
+</body>
+
+</html>
